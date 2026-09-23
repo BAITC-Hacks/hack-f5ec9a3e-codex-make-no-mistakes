@@ -10,3 +10,7 @@ dist/
 /artifacts/demand-cleaning/
 /artifacts/lightgbm-cleaning/
 /artifacts/lightgbm-combined/
+artifacts/inventory-evaluation/
+artifacts/forecast-drafts-*.csv
+artifacts/monthly-forecast-*/
+experiments/monthly/**/*.jsonl.gz

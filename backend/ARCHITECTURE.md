@@ -31,7 +31,7 @@ now calls these APIs. See [backend methodology](PLANNING.md) and [contract](../d
 
 ## Русский
 
-Модульный монолит по принципам TenderVision: один Python-пакет `replenishment`, PostgreSQL 17, одна история Alembic. Реализованы **17 таблиц**, миграция `0001`, импорт Excel, API чтения и React-интерфейс. Расчёт заказов остаётся следующим этапом.
+Модульный монолит по принципам TenderVision: один Python-пакет `replenishment`, PostgreSQL 17, одна история Alembic. Реализованы **24 таблицы**, миграции `0001`–`0003`, импорт Excel, основной forecast-first расчёт, API чтения и React-интерфейс источников.
 
 | Модуль | Владеет | Не делает |
 | --- | --- | --- |
@@ -42,7 +42,9 @@ now calls these APIs. See [backend methodology](PLANNING.md) and [contract](../d
 | `inventory` | Месячные остатки и компоненты текущих запасов с неопределённостью склада/даты | Суммирование пересекающихся складских колонок |
 | `supply` | MOQ/кратность как наблюдения, ожидаемые поставки и строки поставок | Выдумывание lead time или перевод единиц без основания |
 | `schema.py` | Сбор metadata для миграции и проверки | Доменная логика, создание соединений при импорте |
-| `cli` | Транзакция импорта через публичные `writing.py` модулей | HTTP и расчёт заказов |
+| `calculation` | Канонические входы, чистый прогноз/закупочная арифметика, снимки входов и результаты | Подмена неизвестных фактов, HTTP внутри арифметики |
+| `ordering` | Сотрудники, редактируемый документ по всему расчёту, утверждение и блокировка | Изменение рекомендаций, аутентификация, отправка поставщику |
+| `cli` | Транзакция импорта через публичные `writing.py`, запуск/экспорт расчёта | HTTP и бизнес-арифметика |
 | `browsing` | Read-only SQL-проекции через переданную metadata | Запись и выбор канонического источника |
 | `api` | HTTP-валидация и сериализация | Парсинг Excel и бизнес-расчёт |
 
@@ -54,15 +56,15 @@ flowchart LR
     CLI --> Demand[demand]
     CLI --> Inventory[inventory]
     CLI --> Supply[supply]
-    Demand -.-> Calculation[Будущий расчёт и сценарии]
-    Inventory -.-> Calculation
-    Supply -.-> Calculation
+    Demand --> Calculation[Прогноз и черновики]
+    Inventory --> Calculation
+    Supply --> Calculation
     Catalog --> Browsing[browsing: SQL-проекции]
     Demand --> Browsing
     Inventory --> Browsing
     Supply --> Browsing
     Browsing --> API[FastAPI → React]
-    Calculation -.-> API
+    Calculation --> API
 ```
 
 Стрелки показывают поток данных, не разрешение импортировать чужие ORM-модели. Модели модулей зависят только от `kernel`; внешние ключи заданы именами таблиц. `schema.py`, миграции и интеграционные тесты — явные точки сборки. `uv run lint-imports` проверяет независимость пяти модулей и отсутствие доменных зависимостей у `kernel`. Импорт пакетов не читает файлы, окружение и сеть, не подключается к БД.
@@ -84,13 +86,13 @@ flowchart LR
 
 ## English
 
-A TenderVision-style modular monolith: one `replenishment` distribution, PostgreSQL 17 and one Alembic history. Implemented: **17 tables**, migration `0001`, Excel ingestion, read API and React tables. Order calculation remains subsequent work. `cli` composes public module writers within a workbook transaction; `browsing` composes read-only SQL projections using injected metadata; `api` validates HTTP and serializes results.
+A TenderVision-style modular monolith: one `replenishment` distribution, PostgreSQL 17 and one Alembic history. Implemented: **24 tables**, migrations `0001`–`0003`, Excel ingestion, forecast-first calculation, read API and React source tables. `cli` composes public module writers within a workbook transaction; `browsing` composes read-only SQL projections using injected metadata; `api` validates HTTP and serializes results.
 
 Ownership: `kernel` owns persistence primitives; `intake` owns original workbook evidence and quality findings; `catalog` owns supplier-scoped product identities, source attributes and warehouses; `demand` owns movements, monthly sales, seasonality and report metrics; `inventory` owns monthly/current stock; `supply` owns observed quantity rules and incoming shipments. `schema.py` assembles metadata only.
 
 Domain storage packages import only `kernel`, never each other's internals. String foreign keys express relational links. Metadata assembly, migrations and integration tests are composition roots. Import-linter enforces module independence and a domain-free kernel. Package imports have no environment, database, filesystem or network side effects.
 
-Module commands expose public `writing.py` functions. Parsers belong in `intake/adapters`; CLI composes normalization and workbook transactions. `browsing` is an explicit read-composition root with injected metadata, without private ORM imports. React uses `frontend/src/api/types.ts`; `API.md` documents HTTP and examples. Future calculation arithmetic stays independent of ORM and HTTP.
+Module commands expose public `writing.py` functions. Parsers belong in `intake/adapters`; CLI composes normalization and workbook transactions. `browsing` is an explicit read-composition root with injected metadata, without private ORM imports. React uses `frontend/src/api/types.ts`; `API.md` documents HTTP and examples. Forecast and purchasing arithmetic stay independent of ORM, HTTP, filesystem and LLM calls. Import-linter enforces these boundaries.
 
 Storage guarantees:
 
@@ -112,3 +114,35 @@ Research runners use the same policy at each historical cutoff; see the
 [cleaning protocol](../docs/DEMAND_CLEANING.md). Storage tables and API contracts
 remain unchanged. / Очистка возвращает объяснимые производные значения отдельно
 от неизменяемого сырья; схема БД и API не меняются.
+## Calculation ownership / Границы расчёта
+
+`calculation.contracts`, `forecasting`, `purchasing` and the `calculate(batch)` entry point own the
+pure V2 calculation. `calculation.inputs` reads explicitly selected hashes/versions through injected
+metadata. `calculation.models` imports only kernel primitives. `calculation.persistence` owns
+transactional result writes and exact stored-quantity CSV export. `calculation.llm` owns bounded
+external inference; it is outside numerical arithmetic. `calculation.evaluation` evaluates historical
+origins, while ML research dependencies remain outside the production lock until promotion is justified.
+
+`cli.calculate` and `POST /api/v2/calculation/runs` share `calculation.inputs.load_run_batch` to check
+selected imports and load one repeatable-read input snapshot. Both invoke the same calculation and
+atomic result persistence. PostgreSQL advisory locks serialize identical request fingerprints,
+not unrelated calculations. Completed runs are reused unless explicitly rerun; failed writes cannot
+leave a completed partial run. `browsing` joins result identities without domain-private ORM imports.
+
+Новый модуль не вводит сервис, очередь, UI закупок или реестр моделей. Исходники и старые эксперименты
+неизменяемы; нормализация добавляется новой версией. Три опубликованных месяца и отдельный внутренний
+мост текущего месяца описаны в [методологии](../docs/INVENTORY_EVALUATION.md).
+
+
+## Ordering ownership (migration 0003)
+
+`ordering` owns employee identities, editable documents, and document lines. Its storage imports only
+`kernel`; operations read calculation tables through injected metadata without importing calculation
+internals. `api.ordering` validates HTTP and composes transactions; `cli.seed_demo` is an explicit fixture
+composition root. `schema.py` registers ordering, and import-linter includes it in domain independence.
+No new dependency, UI, authentication, supplier submission, reopening, or approval export is introduced.
+
+A unique run reference permits one document per run. Creation locks the run to serialize duplicate requests;
+mutations lock the document, check revision/status, validate and commit atomically. Full reads take a shared
+document lock so header and line edits form a consistent view. Approval is permanent; database triggers
+also block updates/deletes after approval, and line mutations acquire the same parent lock.

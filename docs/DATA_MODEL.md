@@ -2,7 +2,7 @@
 
 ## Русский
 
-Схема v1 покрывает данные всех **12 книг и 14 листов**. Это модели и миграция; массовый импорт ещё не реализован. Оригинальные файлы сохраняются целиком в `intake_workbooks`, поэтому «покрытие» не означает, что неизвестным полям приписан выдуманный смысл.
+Схема v1 покрывает данные всех **12 книг и 14 листов**. Импорт сохраняет оригиналы и нормализованные наблюдения по версии. Оригинальные файлы сохраняются целиком в `intake_workbooks`, поэтому «покрытие» не означает, что неизвестным полям приписан выдуманный смысл.
 
 Для каждого листа — `intake_sheets`, для каждой непустой строки, включая шапки, итоги и служебные подписи, — `intake_rows`. Пустые/неизвестные поля остаются NULL; тип и ошибка ячейки доступны через исходную строку. Указанные ниже короткие имена сопоставляются с полными путями в [инвентаре](sources/workbook-inventory.json).
 
@@ -53,11 +53,11 @@
 
 Уникальность нормализованного наблюдения задаётся строкой, колонкой (где применимо) и версией нормализатора. Это не разрешает суммировать все источники и версии. Канонический источник и выбор версии для расчёта — отдельные правила следующей задачи.
 
-Отсутствующие customer ID, stockout-интервалы, нормативные lead time, BOM и конверсии единиц не заполнены синтетическими значениями. Таблицы будущих пользовательских сценариев и результатов расчёта добавятся отдельной миграцией; их входы должны иметь происхождение «пользователь/допущение/синтетика», а не маскироваться под Excel.
+Отсутствующие customer ID, stockout-интервалы, нормативные lead time, BOM и конверсии единиц не заполнены синтетическими значениями. Таблицы результатов расчёта добавлены миграцией `0002`; пользовательские сценарии остаются отдельной задачей; их входы должны иметь происхождение «пользователь/допущение/синтетика», а не маскироваться под Excel.
 
 ## English
 
-Schema v1 covers all **12 workbooks and 14 sheets** through complete XLSX evidence plus typed observations. Models and migration are implemented; bulk ingestion is not. Every sheet and nonempty row, including headers, totals and notes, has a raw evidence location. Blank, zero, error and formula-result states remain distinguishable.
+The source schema covers all **12 workbooks and 14 sheets** through complete XLSX evidence plus versioned typed observations. The importer and migrations are implemented. Every sheet and nonempty row, including headers, totals and notes, has a raw evidence location. Blank, zero, error and formula-result states remain distinguishable.
 
 Sheet mapping:
 
@@ -71,6 +71,50 @@ Sheet mapping:
 
 Systeme `TDSheet` mapping: A stays raw; B:D identify article/SKU/name; E records category code/year; F records an unknown cost metric; G:R and U:AO record monthly sales; S:T and AP:AQ record supplied totals/averages; AR:AS record growth/seasonality changes; AT:AW record separate stock components; AX:AZ record on-hand/reserved/free stock; BA records reported coverage; BB records planned order when present; BC records incoming shipment quantities with an explicitly uncertain year; BH records weight when present. Other blank/formatted regions remain in original evidence. The thirteen-month formula is retained as source evidence, not adopted as policy.
 
-Workbook bytes are SHA-256 pinned and immutable. Typed observations link to source row/column and normalizer version. Product identity is supplier + exact string SKU; conflicting source attributes are preserved rather than overwritten. `intake_findings` records scoped issue keys, evidence, status and resolution. Audit baseline findings will be loaded when ingestion is implemented.
+Workbook bytes are SHA-256 pinned and immutable. Typed observations link to source row/column and normalizer version. Product identity is supplier + exact string SKU; conflicting source attributes are preserved rather than overwritten. `intake_findings` records scoped issue keys, evidence, status and resolution. Versioned import findings preserve errors, missing formula caches, mappings and source limitations.
 
-Source uniqueness prevents replay duplicates, but is not a rule for selecting the authoritative source. Future calculations must explicitly select and pin versions. Missing customer IDs, exact stockout intervals, lead-time directories, BOM and unit conversions are not invented. Scenario/override and calculation-result tables will be a separate migration, with user/assumed/synthetic inputs explicitly distinguished from Excel evidence.
+Source uniqueness prevents replay duplicates, but is not a rule for selecting the authoritative source. Future calculations must explicitly select and pin versions. Missing customer IDs, exact stockout intervals, lead-time directories, BOM and unit conversions are not invented. Calculation-result tables are added by migration `0002`; scenario/override workflows remain separate, with user/assumed/synthetic inputs explicitly distinguished from Excel evidence.
+
+## Calculation results / Результаты, migration 0002
+
+Four additional result tables are owned by `calculation`:
+
+| Table | Typed fields | Bounded JSONB evidence |
+| --- | --- | --- |
+| `calculation_runs` | UUID, fingerprint, contract version, planning date, status, timestamps | Pinned sources, parameters, code/model versions, quality/evaluation summary, LLM accounting, failure |
+| `calculation_inputs` | Run + series identity, supplier, exact SKU, source scope, nullable unit | Canonical input snapshot with history, attributes, adjustments and assumptions |
+| `calculation_forecasts` | Run/series, target month, quantity `Numeric(30,12)`, model, forecast status | Explanation and provenance |
+| `calculation_drafts` | Run/series, purchase quantity/unit, coverage dates, urgency, draft state, blocking reason | Components, evidence and assumptions |
+
+Unique constraints prevent duplicate series/targets within a run; composite foreign keys keep every
+result attached to its run-owned input snapshot. Forecast status and quantity, and draft state and
+quantity, must agree. Negative/NaN quantities are rejected. A completed run is committed atomically;
+failed transactions retain only failure metadata where the database remains available. Repeated
+identical inputs and code versions reuse a completed run unless rerun explicitly.
+
+Исходные таблицы и зарегистрированные эксперименты не перезаписываются. Карты листов и замечания
+нормализации добавляются по версии. Канонический ряд сохраняет охват и единицу; неизвестное не
+получает выдуманное значение. Снимки результатов позволяют воспроизвести выбор данных независимо
+от последующих импортов.
+
+
+## Employee order documents (migration 0003)
+
+Three tables owned by `ordering` extend storage without rewriting calculation inputs/results:
+
+| Table | Contents / constraints |
+| --- | --- |
+| `ordering_employees` | UUID, display name; seeded demo attribution, not authentication |
+| `ordering_documents` | Unique calculation run, editable/approved status, positive revision, note, creator/last-editor/approver FKs, created/updated/approved timestamps |
+| `ordering_lines` | Document + run, original draft identified by `(run_id, series_id)`, editable `Numeric(30,12)` quantity, purchase unit, inclusion flag, manual-completion reason |
+
+Composite FKs enforce line/run/document agreement and reference the original draft's unique run/series key.
+Document reads join the original draft (including its UUID), input snapshot, forecasts and run provenance.
+Calculation recommendations and CSV exports are not modified. Database guards freeze approved documents
+and their lines; approval timestamp and approver must agree with status.
+
+Forward deployment: apply `0003` before starting the ordering API or seed. Old calculation readers/writers
+continue using unchanged tables. Rollback application first, then downgrade to `0002` only if explicitly
+accepting removal of all employee/document/line data; original calculation and source data remain intact.
+There is no automatic destructive contraction or data backfill. Synthetic seed replay inserts only missing
+stable fixture IDs in a transaction and never resets employee edits.

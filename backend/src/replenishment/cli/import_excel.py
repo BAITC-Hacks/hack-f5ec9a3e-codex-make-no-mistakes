@@ -20,6 +20,7 @@ from replenishment.intake import writing as intake
 from replenishment.intake.adapters.csv import CsvWorkbook, csv_observation
 from replenishment.intake.adapters.normalization import (
     classify,
+    mapping_from_payload,
     number,
     observations,
     seasonality,
@@ -32,7 +33,7 @@ from replenishment.schema import metadata  # noqa: F401 -- assemble FK metadata 
 from replenishment.supply import writing as supply
 
 BATCH_SIZE = 500
-NORMALIZER_VERSION = "v1"
+NORMALIZER_VERSION = "v2.3"
 
 
 def supplier_for(path, override=None):
@@ -59,7 +60,70 @@ def discover(path):
     return files
 
 
-def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION, *, content=None):
+def _mapping_context(sheet, prefix, sample=()):
+    cells = []
+    for row, values in prefix:
+        for column, cell in values.items():
+            current = cell.get("cached_value") if cell.get("type") == "f" else cell.get("value")
+            cells.append(
+                {
+                    "cell": f"{column}{row}",
+                    "value": current,
+                    "formula": cell.get("formula"),
+                    "type": cell.get("cached_type", cell.get("type")),
+                }
+            )
+    sample_cells = []
+    for row, values in sample:
+        for column, cell in values.items():
+            current = cell.get("cached_value") if cell.get("type") == "f" else cell.get("value")
+            sample_cells.append(
+                {
+                    "cell": f"{column}{row}",
+                    "value": current,
+                    "formula": cell.get("formula"),
+                    "type": cell.get("cached_type", cell.get("type")),
+                }
+            )
+    return {
+        "sheet": sheet.name,
+        "available_cells": [item["cell"] for item in cells],
+        "header_cells": cells,
+        "representative_cells": sample_cells,
+        "merged_ranges": sheet.layout.get("merged_ranges", []),
+    }
+
+
+def _resolve_sheet_mapping(headers, supplier, *, sheet=None, prefix=(), sample=(), llm=None, resolver=None):
+    try:
+        return classify(headers, supplier), None
+    except ValueError as deterministic_error:
+        if resolver is not None:
+            result = resolver(headers, supplier)
+            if isinstance(result, dict):
+                result = mapping_from_payload(result, headers, supplier)
+            if result is None:
+                raise deterministic_error
+            return result, "injected"
+        if llm is None:
+            return None, str(deterministic_error)
+        from replenishment.calculation.llm import extract_mapping
+
+        context = _mapping_context(sheet, prefix, sample)
+        result = extract_mapping(
+            llm, context, validator=lambda payload: mapping_from_payload(payload, headers, supplier)
+        )
+        if not result.ok or result.value is None:
+            return None, result.error or "mapping_failed"
+        try:
+            return mapping_from_payload(result.value, headers, supplier), result.model or "llm"
+        except ValueError as error:
+            return None, str(error)
+
+
+def import_workbook(
+    engine, path, supplier=None, version=NORMALIZER_VERSION, *, llm=None, mapping_resolver=None, content=None
+):
     path = Path(path)
     supplier = supplier_for(path, supplier)
     if not re.fullmatch(r"[A-Za-z0-9._-]{1,64}", version):
@@ -67,64 +131,109 @@ def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION, *, 
     original_path = str(path.resolve()) if content is None else str(path)
     content = path.read_bytes() if content is None else content
     digest = hashlib.sha256(content).hexdigest()
+    # Avoid parsing or paid mapping calls for an already committed hash/version.
+    # Recheck under the write lock below to handle concurrent importers.
+    with engine.connect() as connection:
+        _, complete = intake.existing_workbook(connection, digest, version, supplier)
+    if complete:
+        return {"path": str(path), "sha256": digest, "status": "skipped", "normalizer_version": version}
     counts = Counter()
-    with engine.begin() as connection:
-        intake.lock_import(connection)
-        workbook_id, complete = intake.existing_workbook(connection, digest, version, supplier)
-        if complete:
-            return {"path": str(path), "sha256": digest, "status": "skipped",
-                    "workbook_id": str(workbook_id), "normalizer_version": version}
-        new_source = workbook_id is None
-        workbook_id = workbook_id or uuid4()
-        if new_source:
-            intake.write_import_batch(
-                connection,
-                {
-                    "workbooks": [
-                        {
-                            "id": workbook_id,
-                            "sha256": digest,
-                            "original_path": original_path,
-                            "archive_name": None,
-                            "byte_size": len(content),
-                            "content": content,
-                            "capture_version": "csv-v1" if path.suffix.lower() == ".csv" else "xlsx-xml-v1",
-                        }
-                    ]
-                },
+    findings = {}
+    book = CsvWorkbook(content) if path.suffix.lower() == ".csv" else Workbook(content)
+    try:
+        # Resolve every worksheet before opening the database write transaction.
+        # Paused row generators are reused below, so the workbook is parsed once.
+        prepared = []
+        for sheet in book.sheets:
+            iterator = book.rows(sheet)
+            prefix = list(islice(iterator, 40 if sheet.rows < 100 else 3))
+            sample = list(islice(iterator, 3)) if sheet.rows >= 100 else []
+            headers = dict(prefix)
+            mapping, mapping_source = _resolve_sheet_mapping(
+                headers,
+                supplier,
+                sheet=sheet,
+                prefix=prefix,
+                sample=sample,
+                llm=llm,
+                resolver=mapping_resolver,
             )
-        supplier_id, products, warehouses = catalog.identities(connection, supplier)
-        existing_sheets = intake.existing_sheets(connection, workbook_id)
-        findings = {}
+            prepared.append((sheet, iterator, prefix + sample, headers, mapping, mapping_source))
 
-        def finding(code, sheet, row=None, column=None, details=None):
-            key = f"{version}:{sheet}:{code}"
-            entry = findings.setdefault(
-                key,
-                {
-                    "id": uuid4(),
-                    "workbook_id": workbook_id,
-                    "finding_key": key,
-                    "code": code,
-                    "evidence": {"sheet": sheet, "normalizer_version": version, "count": 0, "examples": []},
-                    "description": FINDINGS[code],
-                    "status": "open",
-                    "resolution": None,
-                },
-            )
-            entry["evidence"]["count"] += 1
-            if len(entry["evidence"]["examples"]) < 20:
-                entry["evidence"]["examples"].append({"row": row, "column": column, "details": details})
+        with engine.begin() as connection:
+            intake.lock_import(connection)
+            workbook_id, complete = intake.existing_workbook(connection, digest, version, supplier)
+            if complete:
+                return {
+                    "path": str(path),
+                    "sha256": digest,
+                    "status": "skipped",
+                    "normalizer_version": version,
+                }
+            new_source = workbook_id is None
+            workbook_id = workbook_id or uuid4()
+            if new_source:
+                intake.write_import_batch(
+                    connection,
+                    {
+                        "workbooks": [
+                            {
+                                "id": workbook_id,
+                                "sha256": digest,
+                                "original_path": original_path,
+                                "archive_name": None,
+                                "byte_size": len(content),
+                                "content": content,
+                                "capture_version": (
+                                    "csv-v1" if path.suffix.lower() == ".csv" else "xlsx-xml-v1"
+                                ),
+                            }
+                        ]
+                    },
+                )
+            supplier_id, products, warehouses = catalog.identities(connection, supplier)
+            existing_sheets = intake.existing_sheets(connection, workbook_id)
 
-        date_match = re.search(r"\d{2}\.\d{2}\.\d{4}", path.name)
-        as_of = datetime.strptime(date_match[0], "%d.%m.%Y").date() if date_match else None
-        book = CsvWorkbook(content) if path.suffix.lower() == ".csv" else Workbook(content)
-        try:
-            for sheet in book.sheets:
-                iterator = book.rows(sheet)
-                prefix = list(islice(iterator, 40 if sheet.rows < 100 else 3))
-                headers = dict(prefix)
-                kind, header_end, sku_col, name_col, article_col, unit_col = classify(headers, supplier)
+            def finding(code, sheet, row=None, column=None, details=None):
+                key = f"{version}:{sheet}:{code}"
+                entry = findings.setdefault(
+                    key,
+                    {
+                        "id": uuid4(),
+                        "workbook_id": workbook_id,
+                        "finding_key": key,
+                        "code": code,
+                        "evidence": {
+                            "sheet": sheet,
+                            "normalizer_version": version,
+                            "count": 0,
+                            "examples": [],
+                        },
+                        "description": FINDINGS[code],
+                        "status": "open",
+                        "resolution": None,
+                    },
+                )
+                entry["evidence"]["count"] += 1
+                if len(entry["evidence"]["examples"]) < 20:
+                    entry["evidence"]["examples"].append({"row": row, "column": column, "details": details})
+
+            date_match = re.search(r"\d{2}\.\d{2}\.\d{4}", path.name)
+            as_of = datetime.strptime(date_match[0], "%d.%m.%Y").date() if date_match else None
+            for sheet, iterator, prefix, headers, mapping, mapping_source in prepared:
+                if mapping is None:
+                    kind, header_end = "unresolved", 0
+                    sku_col = name_col = article_col = unit_col = None
+                else:
+                    kind, header_end, sku_col, name_col, article_col, unit_col = mapping
+                finding(
+                    "worksheet_mapping" if mapping is not None else "worksheet_unresolved",
+                    sheet.name,
+                    details={
+                        "mapping": mapping.as_dict() if mapping is not None else None,
+                        "resolution": mapping_source,
+                    },
+                )
                 sheet_id = existing_sheets.get(sheet.name) or uuid4()
                 if sheet.name not in existing_sheets:
                     intake.write_import_batch(
@@ -144,11 +253,11 @@ def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION, *, 
                         },
                     )
                 shipments = {}
-                if kind in ("shipments", "snapshot"):
-                    header = headers[1 if kind == "shipments" else 2]
-                    columns = list("DEFGHI") if kind == "shipments" else ["BC"]
+                if mapping is not None and kind in ("shipments", "snapshot"):
+                    header_row = mapping.header_rows[-1] if mapping.header_rows else 1
+                    header = headers.get(header_row, {})
                     records = []
-                    for column in columns:
+                    for column in mapping.shipment_columns:
                         shipment_id = uuid4()
                         shipments[column] = shipment_id
                         records.append(
@@ -181,14 +290,15 @@ def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION, *, 
                                 {"id": row_id, "sheet_id": sheet_id, "row_number": row, "cells": cells}
                             )
                         common = {"source_row_id": row_id, "normalizer_version": version}
+                        if mapping is None:
+                            continue
                         for column, cell in cells.items():
                             cell_type = cell.get("cached_type", cell["type"])
                             if cell_type == "e":
                                 finding("excel_error", sheet.name, row, column, cell.get("value"))
                             if cell_type == "n" and value(cells, column) not in (None, ""):
-                                normalized_number = number(cells, column)
                                 original = Decimal(value(cells, column))
-                                if normalized_number != original:
+                                if number(cells, column) != original:
                                     finding("numeric_rounding", sheet.name, row, column, str(original))
                             if cell["type"] == "f" and cell.get("cached_value") is None:
                                 finding("formula_cache_missing", sheet.name, row, column)
@@ -205,7 +315,7 @@ def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION, *, 
                             continue
                         if not isinstance(sku, str):
                             raise ValueError(f"SKU must be stored as text: {sheet.name}!{sku_col}{row}")
-                        if kind not in ("movements", "csv") and sku in seen:
+                        if kind != "movements" and sku in seen:
                             finding(
                                 "duplicate_sku",
                                 sheet.name,
@@ -218,8 +328,10 @@ def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION, *, 
                             products[sku] = uuid4()
                             product_rows.append({"id": products[sku], "supplier_id": supplier_id, "sku": sku})
                         product_id = products[sku]
+                        fields = mapping.fields
                         unit = value(cells, unit_col) if unit_col else None
-                        category = value(cells, "E") if kind == "snapshot" else None
+                        category_column = fields.get("category")
+                        category = value(cells, category_column) if category_column else None
                         catalog_rows.append(
                             {
                                 "id": uuid4(),
@@ -233,33 +345,42 @@ def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION, *, 
                             }
                         )
                         items = ([csv_observation(cells, row)] if kind == "csv" else
-                                 observations(kind, supplier, cells, row, headers, unit, as_of))
+                                 observations(kind, supplier, cells, row, headers, unit, as_of, mapping))
                         for table, item in items:
                             if table == "movements" or kind == "csv":
                                 name = item.pop("warehouse_name")
                                 if not name and table == "movements":
-                                    raise ValueError(f"Movement warehouse missing: {sheet.name}!G{row}")
+                                    finding(
+                                        "missing_movement_warehouse",
+                                        sheet.name,
+                                        row,
+                                        mapping.fields.get("warehouse"),
+                                    )
+                                    # SalesMovement requires a warehouse FK;
+                                    # retain the raw row and finding without
+                                    # assigning a guessed location.
+                                    continue
                                 if name and name not in warehouses:
                                     warehouses[name] = uuid4()
                                     warehouse_rows.append({"id": warehouses[name], "name": name})
                                 item["warehouse_id"] = warehouses.get(name)
                             if table == "movements":
                                 if item["quantity"] is None:
-                                    finding("missing_movement_quantity", sheet.name, row, "H")
+                                    finding(
+                                        "missing_movement_quantity",
+                                        sheet.name,
+                                        row,
+                                        mapping.fields.get("quantity"),
+                                    )
                                 elif item["quantity"] < 0:
-                                    finding("negative_movement", sheet.name, row, "H", str(item["quantity"]))
+                                    finding(
+                                        "negative_movement",
+                                        sheet.name,
+                                        row,
+                                        mapping.fields.get("quantity"),
+                                        str(item["quantity"]),
+                                    )
                             if table == "shipment_lines":
-                                if kind == "csv":
-                                    shipment_id = uuid4()
-                                    shipments[item["source_column"]] = shipment_id
-                                    batch["shipments"].append({
-                                        "id": shipment_id, "supplier_id": supplier_id,
-                                        "source_sheet_id": sheet_id, "source_column": f"E{row}",
-                                        "normalizer_version": version, "header": value(cells, "D"),
-                                        "document_number": item.pop("document_number"), "ordered_on": None,
-                                        "expected_on": item.pop("expected_on"), "date_basis": "explicit",
-                                        "warehouse_id": item.pop("warehouse_id"),
-                                    })
                                 item.update(
                                     shipment_id=shipments[item["source_column"]], supplier_id=supplier_id
                                 )
@@ -297,34 +418,41 @@ def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION, *, 
                     finding("relative_change_not_multiplier", sheet.name, 2, "AR:AS")
                 if kind == "shipments" and supplier == "iek":
                     finding("unstructured_unit_conversion", sheet.name)
-        finally:
-            book.close()
-        findings[f"import:{version}"] = {
-            "id": uuid4(),
-            "workbook_id": workbook_id,
-            "finding_key": f"import:{version}",
-            "code": "import_complete",
-            "evidence": {"supplier": supplier, "normalizer_version": version, "counts": dict(counts)},
-            "description": "Импорт завершён атомарно / Import committed atomically",
-            "status": "accepted_limitation",
-            "resolution": "Completion marker; not a data quality defect",
-        }
-        intake.write_import_batch(connection, {"findings": list(findings.values())})
+            findings[f"import:{version}"] = {
+                "id": uuid4(),
+                "workbook_id": workbook_id,
+                "finding_key": f"import:{version}",
+                "code": "import_complete",
+                "evidence": {"supplier": supplier, "normalizer_version": version, "counts": dict(counts)},
+                "description": "Импорт завершён атомарно / Import committed atomically",
+                "status": "accepted_limitation",
+                "resolution": "Completion marker; not a data quality defect",
+            }
+            intake.write_import_batch(connection, {"findings": list(findings.values())})
+    finally:
+        book.close()
     return {
         "path": str(path),
         "sha256": digest,
         "status": "imported",
-        "workbook_id": str(workbook_id),
         "normalizer_version": version,
         "counts": dict(counts),
         "findings": len(findings) - 1,
-        "warnings": [{"code": entry["code"], "description": entry["description"],
-                      "evidence": entry["evidence"]}
-                     for entry in findings.values() if entry["code"] != "import_complete"],
     }
 
 
 FINDINGS = {
+    "worksheet_mapping": (
+        "Worksheet mapping resolved with cited source cells / Сопоставление листа разрешено с источниками"
+    ),
+    "worksheet_unresolved": (
+        "Worksheet mapping unresolved; raw evidence retained without observations / "
+        "Сопоставление не разрешено; исходные данные сохранены без наблюдений"
+    ),
+    "missing_movement_warehouse": (
+        "Movement warehouse missing; row retained without a guessed scope / "
+        "Склад движения отсутствует; строка сохранена без догаданного охвата"
+    ),
     "excel_error": "Ошибка Excel сохранена; типизированное число NULL / Excel error retained, numeric NULL",
     "numeric_rounding": "Округлено до 12 знаков / Rounded to 12 decimals; original retained",
     "formula_cache_missing": "Нет кеша формулы / Formula cache absent, not recalculated",
@@ -349,21 +477,29 @@ def main():
     parser.add_argument("path", type=Path)
     parser.add_argument("--supplier", choices=("iek", "systeme"))
     parser.add_argument("--normalizer-version", default=NORMALIZER_VERSION)
+    parser.add_argument("--llm-config", type=Path, help="Explicit model IDs and prices for unresolved sheets")
+    parser.add_argument("--llm-cache", type=Path)
     args = parser.parse_args()
     url = os.environ.get("DATABASE_URL")
     if not url:
         parser.error("DATABASE_URL is required; apply `uv run alembic upgrade head` first")
     engine = create_engine(url)
     try:
+        from replenishment.calculation.llm import BudgetLedger, load_llm_client
+
+        llm = load_llm_client(args.llm_config, cache_path=args.llm_cache, budget=BudgetLedger())
         files = discover(args.path)
         assignments = [(path, supplier_for(path, args.supplier)) for path in files]
         for path, supplier in assignments:
             print(
                 json.dumps(
-                    import_workbook(engine, path, supplier, args.normalizer_version), ensure_ascii=False
+                    import_workbook(engine, path, supplier, args.normalizer_version, llm=llm),
+                    ensure_ascii=False,
                 ),
                 flush=True,
             )
+        if llm:
+            print(json.dumps({"llm_accounting": llm.budget.snapshot()}, ensure_ascii=False))
     finally:
         engine.dispose()
 

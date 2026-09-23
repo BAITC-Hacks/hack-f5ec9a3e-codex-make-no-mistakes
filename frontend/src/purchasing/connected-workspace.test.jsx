@@ -18,6 +18,7 @@ test('server revisions, decimal overrides, approval conflict, export and reload 
     let response;
     if(url.includes('/tables/warehouses'))response={items:[{id:'w',name:'Алматы'}]};
     else if(url.includes('/tables/workbooks'))response={items:[]};
+    else if(url.includes('/tables/'))response={items:[],total:0,page:1};
     else if(url.endsWith('/planning/demo-cases'))response=[{id:'baseline',name:'Synthetic baseline',input}];
     else if(url.endsWith('/planning/calculate'))response=result;
     else if(url.endsWith('/scenarios')&&body){saved={id:'saved',name:body.name,input:body.input,result,overrides:[],revision:1,approved_revision:null};response=saved;}
@@ -30,6 +31,8 @@ test('server revisions, decimal overrides, approval conflict, export and reload 
     return {ok:true,json:async()=>structuredClone(response)};
   }));
   render(<ConnectedWorkspace/>);
+  await waitFor(()=>expect(screen.getAllByRole('button',{name:/Источники данных/})[0].disabled).toBe(false));
+  fireEvent.click(screen.getAllByRole('button',{name:/Источники данных/})[0]);
   await waitFor(()=>expect(screen.getByLabelText('Синтетический пример').disabled).toBe(false));
   fireEvent.change(screen.getByLabelText('Синтетический пример'),{target:{value:'baseline'}});
   await screen.findByLabelText('Заказать REAL-001');
@@ -60,7 +63,7 @@ test('server revisions, decimal overrides, approval conflict, export and reload 
   cleanup();render(<ConnectedWorkspace/>);
   await waitFor(()=>expect(screen.getAllByRole('button',{name:/Заказы поставщикам/})[0].disabled).toBe(false));
   fireEvent.click(screen.getAllByRole('button',{name:/Заказы поставщикам/})[0]);
-  fireEvent.click(await screen.findByRole('button',{name:/Закупка 2026-09-23 · версия 2/}));
+  fireEvent.click(await screen.findByRole('button',{name:/Закупка 2026-09-23.* · версия 2/}));
   await screen.findByRole('link',{name:'Скачать утверждённый CSV'});
   fireEvent.change(screen.getByLabelText('Заказать REAL-001'),{target:{value:'25'}});
   expect(screen.queryByRole('link',{name:'Скачать утверждённый CSV'})).toBeNull();

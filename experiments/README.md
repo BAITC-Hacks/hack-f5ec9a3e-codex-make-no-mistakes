@@ -65,6 +65,22 @@ For each new attempt post a short issue comment: run ID, hypothesis, what change
 
 This file-based register is enough for the current local team experiments. Consider MLflow or another shared service when runs move to multiple machines and artifact synchronization becomes a recurring burden.
 
+## Monthly forecast-first comparison
+
+The separate [monthly V2 result](monthly/20260923-forecast-first/results.json) uses three calendar
+targets after a bridge month. It is not comparable with the registered 7/28-day benchmark above.
+It retains exact source hashes, code snapshots, the fixed LightGBM settings and promotion rejection.
+Detailed target ledgers are local `*.jsonl.gz` archives; compact results and code can be tracked.
+
+```sh
+experiments/.venv/bin/python scripts/backtest_monthly_lightgbm.py --output artifacts/monthly-forecast-new
+```
+
+An existing output directory is refused. To reproduce the frozen run, restore its `code/` files
+to their original repository-relative paths in a separate checkout and use the pinned research
+requirements. Recent level was retained; LightGBM was 15.24% worse on development. No production
+ML dependency was added, and the historical register remains unchanged.
+
 ## Русский
 
 Общий журнал — `INDEX.md` и `comparison.csv`; обсуждение — issue #4. Каждый завершённый запуск регистрируется отдельным каталогом с параметрами, метриками, хешами данных, снимками кода и сжатыми прогнозами. Старые запуски не перезаписываются.

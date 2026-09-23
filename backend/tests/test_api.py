@@ -73,7 +73,7 @@ def api():
 def test_descriptors_and_validation(api):
     client, _ = api
     descriptors = client.get("/api/v1/tables").json()
-    assert len(descriptors) == 16
+    assert len(descriptors) == 20
     for descriptor in descriptors:
         assert client.get(f"/api/v1/tables/{descriptor['key']}").status_code == 200
     assert "content" not in [col["key"] for item in descriptors for col in item["columns"]]
@@ -136,4 +136,38 @@ def test_database_errors_do_not_leak_credentials(monkeypatch):
             response = client.get(f"/api/v1/{path}")
             assert response.status_code == 503
             assert response.json() == {"detail": "Database unavailable"}
+        response = client.post("/api/v2/calculation/runs", json={
+            "planning_date": "2026-09-22",
+            "source_selection": [{"table": "demand_monthly_sales", "sha256": "a" * 64,
+                                  "normalizer_version": "v2.3"}],
+        })
+        assert response.status_code == 503
+        assert response.json() == {"detail": "Database unavailable"}
     engine.dispose()
+
+
+def test_calculation_request_validation_before_database_access(monkeypatch):
+    engine = create_engine("postgresql+psycopg://user:secret@localhost/unavailable")
+
+    def unexpected_connection():
+        pytest.fail("Invalid calculation request must not access the database")
+
+    monkeypatch.setattr(engine, "connect", unexpected_connection)
+    source = {"table": "demand_monthly_sales", "sha256": "a" * 64, "normalizer_version": "v2.3"}
+    valid = {"planning_date": "2026-09-22", "source_selection": [source]}
+    invalid = [
+        {}, {**valid, "source_selection": []}, {**valid, "planning_date": "not-a-date"},
+        {**valid, "planning_date": "2099-12-01"}, {**valid, "supplier": "unknown"},
+        {**valid, "rerun": "false"}, {**valid, "llm_config": "/private/config.json"},
+        *({**valid, "source_selection": [{**source, **override}]} for override in (
+            {"sha256": "*"}, {"normalizer_version": ""}, {"table": "calculation_runs"},
+            {"unexpected": True},
+        )),
+    ]
+    try:
+        with TestClient(create_app(engine)) as client:
+            for body in invalid:
+                response = client.post("/api/v2/calculation/runs", json=body)
+                assert response.status_code == 422, response.text
+    finally:
+        engine.dispose()

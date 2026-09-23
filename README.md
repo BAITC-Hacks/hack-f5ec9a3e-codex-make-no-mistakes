@@ -57,6 +57,54 @@ Implementation: [calculation policy](backend/src/replenishment/planning/calculat
 истории используется среднее. Tweedie — перспективный кандидат для отдельных
 групп и горизонтов, а не доказанный общий победитель. Собственные даты передаются
 в расчёт, а использованный метод возвращается для каждой позиции.
+Built within 3 hours: an end-to-end supplier order recommendation prototype with Excel ingestion, demand forecasting, order drafts, CSV export and a React interface.
+
+## Deployment
+
+Requires GNU Make, uv, Node.js 22+ and PostgreSQL 17. On the server, from the
+repository root, set a connection URL for an empty application database:
+
+```sh
+export DATABASE_URL='postgresql+psycopg://USER:PASSWORD@HOST:5432/replenishment'
+make install migrate import-data calculate build
+cd backend
+uv run --frozen uvicorn replenishment.api.app:create_app --factory --host 127.0.0.1 --port 8000
+```
+
+Keep the API running with a service manager (e.g. systemd). Configure an HTTPS
+web server to serve `frontend/dist` and proxy `/api/*` to `127.0.0.1:8000`,
+preserving the path. Use deployment credentials; the bundled Compose starts
+only a development database. For a local demo, use `make dev-setup`, then
+`make dev-api` and `make dev-ui` in separate terminals.
+
+## Development tasks
+
+Run `make help` from the repository root. Requires GNU Make, uv, Node.js 22+;
+Docker is needed for database tasks. On Windows use a POSIX shell with Make,
+or the native PowerShell commands in [backend setup](backend/README.md).
+
+```sh
+make dev-setup       # Install dependencies, start DB, migrate, import workbooks
+make dev-api         # API with reload; keep running
+make dev-ui          # Frontend; run in a second terminal
+make check           # Lint, DB-free tests, frontend build, registry guards
+make test-eval       # Evaluation contracts and tests only; no DB
+make evaluate        # Evaluate monthly three-period forecasts on original documents
+make calculate       # Persist pinned forecast/order drafts in PostgreSQL
+```
+
+`make install` installs dependencies without starting Docker. `make test` runs
+backend and frontend tests; `make test-postgres` requires an explicitly set
+`TEST_DATABASE_URL` pointing to a dedicated empty `*_test` database (creation
+instructions in the backend setup). `DATABASE_URL` defaults to local Compose;
+override it through the environment when needed. `make db-stop` preserves data.
+
+The main application implements the **v2 forecast-first contract**. Development origins are
+June–September 2025; the January–May 2026 comparison is retrospective.
+`make test-eval-strict` and `make evaluate-strict` exercise the implemented calculation contract. Reports use new immutable
+directories under `artifacts/inventory-evaluation/`. See the
+[evaluation protocol](docs/INVENTORY_EVALUATION.md). Forecast research retains its
+separate [Python 3.10 environment](experiments/README.md).
 
 Start with the [project documentation](docs/README.md), then read the
 [project context](docs/PROJECT_CONTEXT.md) and [data guide](docs/DATA_GUIDE.md).
@@ -74,6 +122,13 @@ and [Excel-to-database mapping](docs/DATA_MODEL.md).
 Текущее состояние: импорт Excel, API чтения и React-таблицы, backend расчёта закупок, сохранение версий,
 утверждение и CSV. Новое рабочее место Электрокомплект подключено к backend: импортированные товары, расчёт, версии сценариев, утверждение и CSV. Учебные примеры явно обозначены.
 Актуальная проверка и сценарий показа: [RU/EN](docs/DELIVERY_VERIFICATION.md).
+Current state: source documentation, locked audit checks, modular SQLAlchemy models, PostgreSQL migration,
+Excel ingestion, read API and React tables are implemented. The forecast-first calculation, supplier draft persistence and CSV export are the main backend path.
+See [backend setup RU/EN](backend/README.md), [architecture](backend/ARCHITECTURE.md)
+and [Excel-to-database mapping](docs/DATA_MODEL.md).
+
+Текущее состояние: документация, проверки аудита, модульные модели SQLAlchemy, миграция PostgreSQL,
+импорт Excel, API чтения и React-таблицы. Основной forecast-first расчёт, сохранение черновиков и CSV-экспорт доступны через CLI.
 
 Запуск / Run: [backend + import](backend/README.md), [frontend](frontend/README.md).
 API: [contract RU/EN](backend/API.md). UI scope: [requirements RU/EN](docs/FRONTEND_REQUIREMENTS.md).

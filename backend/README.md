@@ -2,7 +2,7 @@
 
 ## Русский
 
-Реализованы модели SQLAlchemy, миграция Alembic и тесты данных/ограничений PostgreSQL. Импорт Excel в таблицы, API, React и запуск F5 ещё предстоит реализовать. Полная команда запуска приложения из плана сдачи пока недоступна: текущий Compose запускает **только БД**.
+Реализованы модели SQLAlchemy, миграция Alembic, импорт Excel, API просмотра и React-таблицы. Расчёт заказов и запуск F5 ещё предстоит реализовать. Текущий Compose запускает **только БД**.
 
 Требуются uv и работающий Docker. Из корня репозитория:
 
@@ -13,7 +13,11 @@ uv sync --frozen
 $env:DATABASE_URL = "postgresql+psycopg://replenishment:local_dev_only@127.0.0.1:55432/replenishment"
 uv run alembic upgrade head
 uv run alembic check
+uv run python -m replenishment.cli.import_excel ../docs/data
+uv run uvicorn replenishment.api.app:create_app --factory --reload --host 127.0.0.1 --port 8000
 ```
+
+В другом терминале из `frontend`: `npm ci`, затем `npm run dev`. Откройте `http://127.0.0.1:5173`. Повторный импорт одинаковых файлов и версии пропускается. Подробности: [импорт](IMPORTING.md), [API](API.md), [интерфейс](../frontend/README.md).
 
 Python 3.12 устанавливается uv при необходимости. Для Bash замените присваивание на `export DATABASE_URL='...'`. БД доступна только на localhost:55432; опубликованные учётные данные предназначены для локальной разработки.
 
@@ -43,7 +47,9 @@ uv run pytest -q
 
 ## English
 
-Implemented: SQLAlchemy models, Alembic migration, source regression tests and PostgreSQL constraint tests. Excel ingestion, API, React and F5 startup are subsequent work. Current Compose starts **only PostgreSQL**, not the whole application.
+Implemented: SQLAlchemy models, Alembic migration, Excel ingestion, read API, React tables and integration tests. Order calculations and F5 startup remain subsequent work. Current Compose starts **only PostgreSQL**, not the whole application.
+
+The commands above migrate, import and start the API. In another terminal run `npm ci`, then `npm run dev` inside `frontend`; open `http://127.0.0.1:5173`. Reimporting identical files with the same normalizer version skips them. See [import](IMPORTING.md), [API](API.md) and [frontend](../frontend/README.md).
 
 Install uv and start Docker, then run the commands above from the repository root. uv installs Python 3.12 if needed. For Bash use `export DATABASE_URL='...'` and `export TEST_DATABASE_URL='...'` instead of PowerShell assignments. Local PostgreSQL binds localhost:55432; the published credentials are development-only.
 

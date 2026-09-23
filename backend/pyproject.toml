@@ -7,6 +7,9 @@ dependencies = [
     "sqlalchemy>=2.0,<3",
     "alembic>=1.13,<2",
     "psycopg[binary]>=3.2,<4",
+    "openpyxl>=3.1,<4",
+    "fastapi>=0.115,<1",
+    "uvicorn[standard]>=0.34,<1",
 ]
 
 [build-system]
@@ -14,7 +17,12 @@ requires = ["uv_build>=0.8,<0.9"]
 build-backend = "uv_build"
 
 [dependency-groups]
-dev = ["pytest>=8.3,<9", "ruff>=0.9,<1", "import-linter>=2.3,<3", "openpyxl>=3.1,<4"]
+dev = [
+    "pytest>=8.3,<9",
+    "ruff>=0.9,<1",
+    "import-linter>=2.3,<3",
+    "httpx>=0.28,<1",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -33,7 +41,7 @@ root_package = "replenishment"
 name = "Kernel has no domain dependencies"
 type = "forbidden"
 source_modules = ["replenishment.kernel"]
-forbidden_modules = ["replenishment.intake", "replenishment.catalog", "replenishment.demand", "replenishment.inventory", "replenishment.supply", "replenishment.schema"]
+forbidden_modules = ["replenishment.intake", "replenishment.catalog", "replenishment.demand", "replenishment.inventory", "replenishment.supply", "replenishment.schema", "replenishment.api", "replenishment.browsing", "replenishment.cli"]
 
 [[tool.importlinter.contracts]]
 name = "Domain storage modules do not import each other"

@@ -1,0 +1,28 @@
+{
+  "source_manifest_sha256": "3ede63a0aa5b055f14183d6c9018fd11f7f626ea62a7a545cb4399830c78a039",
+  "source_directory": "C:\\Users\\User\\Desktop\\hackathon-research\\artifacts\\application-baseline\\run-20260923-v2",
+  "q": 0.9,
+  "horizon": 21,
+  "minimum_origins": 6,
+  "maximum_origins": 12,
+  "quantile_method": "nearest rank ceil(q*n); rows equally weighted; both history cohorts in pool",
+  "development_rows_not_scored": 14048,
+  "retrospective_targets": 20785,
+  "simulation": "synthetic pieces only, MOQ0/multiple1/conversion1, weekly review, L14, delay0/7",
+  "initial_inventory": "same Jan1 point forecast, zero backlog and pipeline",
+  "demand_observation": "full exogenous recorded demand visible even when simulated lost sales occur",
+  "evaluation_dates": "Jan29-Aug31 after 28-day warm-up; terminal state and pipeline retained",
+  "missing_operational_truth": "availability, receipts, costs, reservations, purchase constraints",
+  "elapsed_seconds": 40.038074699999925,
+  "artifacts": {
+    "buffer-predictions.csv.gz": "fe2b7c5a88df656e0c1a273677aa47ccc51cece8cf99f3782978a9230574b08e",
+    "calibration.json": "604efb289d82f008b1814d4938b8a6d3deefc945364f963936857718e6c3f92a",
+    "evaluate_application_baseline.py": "946e8e6d981bf5622eeca5e1bb185581f9c324e73e355c75872d2bc59e4963b1",
+    "evaluate_buffer.py": "934d645e5756def38b875591282cd43abd639dbf4b16242ab6f026cfd35acbb3",
+    "gates.json": "7632b81b4e1d97ea436f0a27168ad71eb911a6e40d69e9a536347003cf54562d",
+    "metrics.json": "538e824a9b1d91636c7de6595578046c8e0399901e8db482e088b3a2689629fd",
+    "monthly-metrics.json": "3577664c15a5d974e34d989c3b61564818255cbb6817aaba6895a1799618f149",
+    "simulation-summary.json": "a5eb0a0d3293a245a1701d296df7d6ef8d2d1fc66b959d0f65f6527065713f73",
+    "simulation.csv.gz": "d519aa505df85c323370222926fba0340ef0eb0049f5253bd61436079435a7a1"
+  }
+}

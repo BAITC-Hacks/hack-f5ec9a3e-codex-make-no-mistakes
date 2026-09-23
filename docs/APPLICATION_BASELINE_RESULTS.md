@@ -65,6 +65,8 @@ rtk proxy C:/Users/User/Desktop/hackathon-replenishment/backend/.venv/Scripts/py
 
 Успешный запуск: [run-20260923-v2/manifest.json](../artifacts/application-baseline/run-20260923-v2/manifest.json). Рядом находятся `predictions.csv.gz`, `database-movements.csv.gz`, `metrics.json`, `monthly-metrics.json`, `evidence.json` и снимок кода. Они локальные и Git-ignored. Старые зарегистрированные эксперименты не изменены. Незавершённый `v1` не используется как результат.
 
+Для чтения на GitHub сохранена [компактная копия манифеста](application-baseline-manifest.json). Продолжение: [результаты проверки буфера](BUFFER_CALIBRATION_RESULTS.md).
+
 Проверки завершены:
 
 - Ruff для двух новых Python-файлов — PASS.

@@ -1,0 +1,13 @@
+{
+  "metric_groups_verified": 44,
+  "unique_forecast_policy_rows": 41570,
+  "past_only_calibration_verified": true,
+  "artifact_hashes_verified": 9,
+  "deterministic_results_after_snapshot_filename_fix": [
+    "metrics.json",
+    "monthly-metrics.json",
+    "simulation-summary.json",
+    "calibration.json",
+    "gates.json"
+  ]
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "supplier": "IEK",
+    "unit": "м",
+    "cohort": "legacy_mature",
+    "pinball_improvement_pct": 8.61741039634969,
+    "coverage_le_pct": 88.56476079346558,
+    "coverage_lt_pct": 88.44807467911319,
+    "pinball_monthly_wins": 5,
+    "origins": 8,
+    "descriptive_gain_95pct_interval": [
+      -3.072128867052258,
+      23.982221600550204
+    ],
+    "descriptive_coverage_95pct_interval": [
+      86.80555555555556,
+      89.61937716262976
+    ],
+    "retrospective_screen_pass": true,
+    "promotion": "not_evaluable_without_fresh_period"
+  },
+  {
+    "supplier": "IEK",
+    "unit": "м",
+    "cohort": "recent_history",
+    "pinball_improvement_pct": -151.36058685861227,
+    "coverage_le_pct": 100.0,
+    "coverage_lt_pct": 100.0,
+    "pinball_monthly_wins": 2,
+    "origins": 7,
+    "descriptive_gain_95pct_interval": [
+      -690.2988123551476,
+      -1.4426697896187326
+    ],
+    "descriptive_coverage_95pct_interval": [
+      100.0,
+      100.0
+    ],
+    "retrospective_screen_pass": false,
+    "promotion": "not_evaluable_without_fresh_period"
+  },
+  {
+    "supplier": "IEK",
+    "unit": "упак",
+    "cohort": "legacy_mature",
+    "pinball_improvement_pct": -11.27295011421856,
+    "coverage_le_pct": 90.85923217550274,
+    "coverage_lt_pct": 90.49360146252285,
+    "pinball_monthly_wins": 1,
+    "origins": 8,
+    "descriptive_gain_95pct_interval": [
+      -35.71399366101779,
+      19.918536537088656
+    ],
+    "descriptive_coverage_95pct_interval": [
+      86.0,
+      94.44444444444444
+    ],
+    "retrospective_screen_pass": false,
+    "promotion": "not_evaluable_without_fresh_period"
+  },
+  {
+    "supplier": "IEK",
+    "unit": "упак",
+    "cohort": "recent_history",
+    "pinball_improvement_pct": -58.7000056517347,
+    "coverage_le_pct": 92.85714285714286,
+    "coverage_lt_pct": 92.85714285714286,
+    "pinball_monthly_wins": 1,
+    "origins": 8,
+    "descriptive_gain_95pct_interval": [
+      -267.43659553345253,
+      13.682695515627257
+    ],
+    "descriptive_coverage_95pct_interval": [
+      82.3529411764706,
+      100.0
+    ],
+    "retrospective_screen_pass": false,
+    "promotion": "not_evaluable_without_fresh_period"
+  },
+  {
+    "supplier": "IEK",
+    "unit": "шт",
+    "cohort": "legacy_mature",
+    "pinball_improvement_pct": -27.805552281426227,
+    "coverage_le_pct": 90.22256438969765,
+    "coverage_lt_pct": 90.22256438969765,
+    "pinball_monthly_wins": 0,
+    "origins": 8,
+    "descriptive_gain_95pct_interval": [
+      -43.5910476654898,
+      -14.78217919306851
+    ],
+    "descriptive_coverage_95pct_interval": [
+      89.08857509627728,
+      90.77482876712328
+    ],
+    "retrospective_screen_pass": false,
+    "promotion": "not_evaluable_without_fresh_period"
+  },
+  {
+    "supplier": "IEK",
+    "unit": "шт",
+    "cohort": "recent_history",
+    "pinball_improvement_pct": -26.607744227505915,
+    "coverage_le_pct": 95.49248747913188,
+    "coverage_lt_pct": 95.49248747913188,
+    "pinball_monthly_wins": 3,
+    "origins": 8,
+    "descriptive_gain_95pct_interval": [
+      -78.77837866860324,
+      -0.07982708909927255
+    ],
+    "descriptive_coverage_95pct_interval": [
+      92.39543726235742,
+      97.5925925925926
+    ],
+    "retrospective_screen_pass": false,
+    "promotion": "not_evaluable_without_fresh_period"
+  },
+  {
+    "supplier": "Systeme electric",
+    "unit": "шт",
+    "cohort": "legacy_mature",
+    "pinball_improvement_pct": -38.328359911127464,
+    "coverage_le_pct": 89.01497957330912,
+    "coverage_lt_pct": 88.74262369496141,
+    "pinball_monthly_wins": 2,
+    "origins": 8,
+    "descriptive_gain_95pct_interval": [
+      -61.42647364131967,
+      -5.989809801179567
+    ],
+    "descriptive_coverage_95pct_interval": [
+      87.2040072859745,
+      90.53064958828911
+    ],
+    "retrospective_screen_pass": false,
+    "promotion": "not_evaluable_without_fresh_period"
+  },
+  {
+    "supplier": "Systeme electric",
+    "unit": "шт",
+    "cohort": "recent_history",
+    "pinball_improvement_pct": -28.005128517605215,
+    "coverage_le_pct": 100.0,
+    "coverage_lt_pct": 100.0,
+    "pinball_monthly_wins": 2,
+    "origins": 8,
+    "descriptive_gain_95pct_interval": [
+      -192.50850406241022,
+      70.62876461635133
+    ],
+    "descriptive_coverage_95pct_interval": [
+      100.0,
+      100.0
+    ],
+    "retrospective_screen_pass": false,
+    "promotion": "not_evaluable_without_fresh_period"
+  }
+]

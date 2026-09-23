@@ -6,6 +6,8 @@ The strongest immediate improvement is to measure the exact application policy a
 
 Follow-up: [experiment 1 results](APPLICATION_BASELINE_RESULTS.md) now verify the exact application callable against read-only PostgreSQL data at 7/21/28 days. The original research audit below predates that run; its no-database-access statement describes that audit only.
 
+Follow-up: [experiment 2 results](BUFFER_CALIBRATION_RESULTS.md) reject the tested pooled q90 buffer as a general replacement: coverage improves, but three groups' pinball loss and synthetic inventory investment worsen. Compact metrics and run manifests are published with these reports; prediction archives remain local.
+
 ## Scope and evidence
 
 This report is isolated on `codex/replenishment-research` in `C:/Users/User/Desktop/hackathon-research`, created from `0cdeb56`. Existing uncommitted work was read in place, not copied over or changed. Research evidence comes from the main checkout; application behavior comes from the requested `hackathon-replenishment` checkout. Code inspection establishes that implementation, not which process a user currently has running.

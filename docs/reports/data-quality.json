@@ -1,0 +1,1093 @@
+{
+  "generated_at": "2026-09-23T10:14:15.505124+00:00",
+  "normalizer_version": "v1",
+  "schema_revision": "0001",
+  "transaction_read_only": "on",
+  "transaction_isolation": "repeatable read",
+  "numeric_absolute_tolerance": "1E-8",
+  "failures": [],
+  "sheets": [
+    {
+      "file": "MOQ  ИЭК.xlsx",
+      "sheet": "Лист7",
+      "kind": "moq",
+      "passed": true,
+      "raw_rows_expected": 1939,
+      "raw_rows_actual": 1939,
+      "raw_rows_missing": [],
+      "raw_rows_extra": [],
+      "product_observations_equal": true,
+      "duplicate_typed_keys": {
+        "demand_movements": 0,
+        "demand_monthly_sales": 0,
+        "inventory_monthly_stock": 0,
+        "inventory_observations": 0,
+        "supply_quantity_rules": 0,
+        "supply_shipment_lines": 0,
+        "demand_report_metrics": 0,
+        "demand_seasonality_observations": 0
+      },
+      "source_warnings": {
+        "excel_errors": 15,
+        "formula_cache_missing": 0,
+        "duplicate_sku_rows": 1
+      },
+      "tables": {
+        "supply_quantity_rules": {
+          "expected": {
+            "count": 1938,
+            "null": 15,
+            "negative": 0,
+            "zero": 0,
+            "positive": 1923,
+            "sum": "20871"
+          },
+          "actual": {
+            "count": 1938,
+            "null": 15,
+            "negative": 0,
+            "zero": 0,
+            "positive": 1923,
+            "sum": "20871.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00001938",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        }
+      }
+    },
+    {
+      "file": "Динамика продаж_2025-2026.xlsx",
+      "sheet": "Лист_1",
+      "kind": "movements",
+      "passed": true,
+      "raw_rows_expected": 171605,
+      "raw_rows_actual": 171605,
+      "raw_rows_missing": [],
+      "raw_rows_extra": [],
+      "product_observations_equal": true,
+      "duplicate_typed_keys": {
+        "demand_movements": 0,
+        "demand_monthly_sales": 0,
+        "inventory_monthly_stock": 0,
+        "inventory_observations": 0,
+        "supply_quantity_rules": 0,
+        "supply_shipment_lines": 0,
+        "demand_report_metrics": 0,
+        "demand_seasonality_observations": 0
+      },
+      "source_warnings": {
+        "excel_errors": 24,
+        "formula_cache_missing": 0
+      },
+      "tables": {
+        "demand_movements": {
+          "expected": {
+            "count": 171603,
+            "null": 18,
+            "negative": 115,
+            "zero": 0,
+            "positive": 171470,
+            "sum": "3846998"
+          },
+          "actual": {
+            "count": 171603,
+            "null": 18,
+            "negative": 115,
+            "zero": 0,
+            "positive": 171470,
+            "sum": "3846998.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00171603",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        }
+      }
+    },
+    {
+      "file": "Ежемесячные остатки продукции за последние 2 года  ИЭК.xlsx",
+      "sheet": "Лист_1",
+      "kind": "stock",
+      "passed": true,
+      "raw_rows_expected": 2857,
+      "raw_rows_actual": 2857,
+      "raw_rows_missing": [],
+      "raw_rows_extra": [],
+      "product_observations_equal": true,
+      "duplicate_typed_keys": {
+        "demand_movements": 0,
+        "demand_monthly_sales": 0,
+        "inventory_monthly_stock": 0,
+        "inventory_observations": 0,
+        "supply_quantity_rules": 0,
+        "supply_shipment_lines": 0,
+        "demand_report_metrics": 0,
+        "demand_seasonality_observations": 0
+      },
+      "source_warnings": {
+        "excel_errors": 28807,
+        "formula_cache_missing": 0,
+        "duplicate_sku_rows": 0,
+        "unknown_warehouse_scope": 2853
+      },
+      "tables": {
+        "inventory_monthly_stock": {
+          "expected": {
+            "count": 94149,
+            "null": 27678,
+            "negative": 5,
+            "zero": 0,
+            "positive": 66466,
+            "sum": "19760487.5"
+          },
+          "actual": {
+            "count": 94149,
+            "null": 27678,
+            "negative": 5,
+            "zero": 0,
+            "positive": 66466,
+            "sum": "19760487.500000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00094149",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        },
+        "demand_report_metrics": {
+          "expected": {
+            "count": 2853,
+            "null": 1121,
+            "negative": 0,
+            "zero": 0,
+            "positive": 1732,
+            "sum": "592937"
+          },
+          "actual": {
+            "count": 2853,
+            "null": 1121,
+            "negative": 0,
+            "zero": 0,
+            "positive": 1732,
+            "sum": "592937.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00002853",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        }
+      }
+    },
+    {
+      "file": "Ежемесячные продажи в количественном выражении за последние 2 года.xlsx",
+      "sheet": "Лист_1",
+      "kind": "sales",
+      "passed": true,
+      "raw_rows_expected": 2466,
+      "raw_rows_actual": 2466,
+      "raw_rows_missing": [],
+      "raw_rows_extra": [],
+      "product_observations_equal": true,
+      "duplicate_typed_keys": {
+        "demand_movements": 0,
+        "demand_monthly_sales": 0,
+        "inventory_monthly_stock": 0,
+        "inventory_observations": 0,
+        "supply_quantity_rules": 0,
+        "supply_shipment_lines": 0,
+        "demand_report_metrics": 0,
+        "demand_seasonality_observations": 0
+      },
+      "source_warnings": {
+        "excel_errors": 44632,
+        "formula_cache_missing": 0,
+        "duplicate_sku_rows": 0,
+        "unknown_warehouse_scope": 2463
+      },
+      "tables": {
+        "demand_monthly_sales": {
+          "expected": {
+            "count": 81279,
+            "null": 44626,
+            "negative": 241,
+            "zero": 0,
+            "positive": 36412,
+            "sum": "6398591"
+          },
+          "actual": {
+            "count": 81279,
+            "null": 44626,
+            "negative": 241,
+            "zero": 0,
+            "positive": 36412,
+            "sum": "6398591.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00081279",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        },
+        "demand_report_metrics": {
+          "expected": {
+            "count": 2463,
+            "null": 3,
+            "negative": 5,
+            "zero": 0,
+            "positive": 2455,
+            "sum": "6398591"
+          },
+          "actual": {
+            "count": 2463,
+            "null": 3,
+            "negative": 5,
+            "zero": 0,
+            "positive": 2455,
+            "sum": "6398591.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00002463",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        }
+      }
+    },
+    {
+      "file": "Путь ИЭК 22.09.2026.xlsx",
+      "sheet": "Лист4",
+      "kind": "shipments",
+      "passed": true,
+      "raw_rows_expected": 2642,
+      "raw_rows_actual": 2642,
+      "raw_rows_missing": [],
+      "raw_rows_extra": [],
+      "product_observations_equal": true,
+      "duplicate_typed_keys": {
+        "demand_movements": 0,
+        "demand_monthly_sales": 0,
+        "inventory_monthly_stock": 0,
+        "inventory_observations": 0,
+        "supply_quantity_rules": 0,
+        "supply_shipment_lines": 0,
+        "demand_report_metrics": 0,
+        "demand_seasonality_observations": 0
+      },
+      "source_warnings": {
+        "excel_errors": 0,
+        "formula_cache_missing": 0,
+        "duplicate_sku_rows": 7
+      },
+      "tables": {
+        "supply_shipment_lines": {
+          "expected": {
+            "count": 15738,
+            "null": 15432,
+            "negative": 0,
+            "zero": 0,
+            "positive": 306,
+            "sum": "109517"
+          },
+          "actual": {
+            "count": 15738,
+            "null": 15432,
+            "negative": 0,
+            "zero": 0,
+            "positive": 306,
+            "sum": "109517.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00015738",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        }
+      }
+    },
+    {
+      "file": "Сезонность ИЭК.xlsx",
+      "sheet": "Сезонность",
+      "kind": "seasonality",
+      "passed": true,
+      "raw_rows_expected": 35,
+      "raw_rows_actual": 35,
+      "raw_rows_missing": [],
+      "raw_rows_extra": [],
+      "product_observations_equal": true,
+      "duplicate_typed_keys": {
+        "demand_movements": 0,
+        "demand_monthly_sales": 0,
+        "inventory_monthly_stock": 0,
+        "inventory_observations": 0,
+        "supply_quantity_rules": 0,
+        "supply_shipment_lines": 0,
+        "demand_report_metrics": 0,
+        "demand_seasonality_observations": 0
+      },
+      "source_warnings": {
+        "excel_errors": 0,
+        "formula_cache_missing": 0,
+        "duplicate_sku_rows": 0
+      },
+      "tables": {
+        "demand_seasonality_observations": {
+          "expected": {
+            "count": 234,
+            "null": 0,
+            "negative": 0,
+            "zero": 9,
+            "positive": 225,
+            "sum": "33638534406.65482712168474384"
+          },
+          "actual": {
+            "count": 234,
+            "null": 0,
+            "negative": 0,
+            "zero": 9,
+            "positive": 225,
+            "sum": "33638534406.654827121684"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00000234",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        }
+      }
+    },
+    {
+      "file": "MOQ SystemElectric.xlsx",
+      "sheet": "Лист_1",
+      "kind": "moq",
+      "passed": true,
+      "raw_rows_expected": 556,
+      "raw_rows_actual": 556,
+      "raw_rows_missing": [],
+      "raw_rows_extra": [],
+      "product_observations_equal": true,
+      "duplicate_typed_keys": {
+        "demand_movements": 0,
+        "demand_monthly_sales": 0,
+        "inventory_monthly_stock": 0,
+        "inventory_observations": 0,
+        "supply_quantity_rules": 0,
+        "supply_shipment_lines": 0,
+        "demand_report_metrics": 0,
+        "demand_seasonality_observations": 0
+      },
+      "source_warnings": {
+        "excel_errors": 0,
+        "formula_cache_missing": 0,
+        "duplicate_sku_rows": 0
+      },
+      "tables": {
+        "supply_quantity_rules": {
+          "expected": {
+            "count": 554,
+            "null": 0,
+            "negative": 0,
+            "zero": 0,
+            "positive": 554,
+            "sum": "14490"
+          },
+          "actual": {
+            "count": 554,
+            "null": 0,
+            "negative": 0,
+            "zero": 0,
+            "positive": 554,
+            "sum": "14490.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00000554",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        }
+      }
+    },
+    {
+      "file": "Динамика продаж_Syseme Electric_2025-2026.xlsx",
+      "sheet": "Лист_1",
+      "kind": "movements",
+      "passed": true,
+      "raw_rows_expected": 77314,
+      "raw_rows_actual": 77314,
+      "raw_rows_missing": [],
+      "raw_rows_extra": [],
+      "product_observations_equal": true,
+      "duplicate_typed_keys": {
+        "demand_movements": 0,
+        "demand_monthly_sales": 0,
+        "inventory_monthly_stock": 0,
+        "inventory_observations": 0,
+        "supply_quantity_rules": 0,
+        "supply_shipment_lines": 0,
+        "demand_report_metrics": 0,
+        "demand_seasonality_observations": 0
+      },
+      "source_warnings": {
+        "excel_errors": 19,
+        "formula_cache_missing": 0
+      },
+      "tables": {
+        "demand_movements": {
+          "expected": {
+            "count": 77312,
+            "null": 13,
+            "negative": 302,
+            "zero": 0,
+            "positive": 76997,
+            "sum": "6837478"
+          },
+          "actual": {
+            "count": 77312,
+            "null": 13,
+            "negative": 302,
+            "zero": 0,
+            "positive": 76997,
+            "sum": "6837478.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00077312",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        }
+      }
+    },
+    {
+      "file": "Ежемесячные остатки SystemElectric 2024-2026.xlsx",
+      "sheet": "Лист_1",
+      "kind": "stock",
+      "passed": true,
+      "raw_rows_expected": 702,
+      "raw_rows_actual": 702,
+      "raw_rows_missing": [],
+      "raw_rows_extra": [],
+      "product_observations_equal": true,
+      "duplicate_typed_keys": {
+        "demand_movements": 0,
+        "demand_monthly_sales": 0,
+        "inventory_monthly_stock": 0,
+        "inventory_observations": 0,
+        "supply_quantity_rules": 0,
+        "supply_shipment_lines": 0,
+        "demand_report_metrics": 0,
+        "demand_seasonality_observations": 0
+      },
+      "source_warnings": {
+        "excel_errors": 0,
+        "formula_cache_missing": 0,
+        "duplicate_sku_rows": 0,
+        "unknown_warehouse_scope": 701
+      },
+      "tables": {
+        "inventory_monthly_stock": {
+          "expected": {
+            "count": 23133,
+            "null": 5133,
+            "negative": 0,
+            "zero": 0,
+            "positive": 18000,
+            "sum": "18690701"
+          },
+          "actual": {
+            "count": 23133,
+            "null": 5133,
+            "negative": 0,
+            "zero": 0,
+            "positive": 18000,
+            "sum": "18690701.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00023133",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        }
+      }
+    },
+    {
+      "file": "Ежемесячные продажи в кол-м выражении SystemElectric 2024-2026.xlsx",
+      "sheet": "Лист_1",
+      "kind": "sales",
+      "passed": true,
+      "raw_rows_expected": 557,
+      "raw_rows_actual": 557,
+      "raw_rows_missing": [],
+      "raw_rows_extra": [],
+      "product_observations_equal": true,
+      "duplicate_typed_keys": {
+        "demand_movements": 0,
+        "demand_monthly_sales": 0,
+        "inventory_monthly_stock": 0,
+        "inventory_observations": 0,
+        "supply_quantity_rules": 0,
+        "supply_shipment_lines": 0,
+        "demand_report_metrics": 0,
+        "demand_seasonality_observations": 0
+      },
+      "source_warnings": {
+        "excel_errors": 0,
+        "formula_cache_missing": 0,
+        "duplicate_sku_rows": 0,
+        "unknown_warehouse_scope": 554
+      },
+      "tables": {
+        "demand_monthly_sales": {
+          "expected": {
+            "count": 18282,
+            "null": 7105,
+            "negative": 323,
+            "zero": 0,
+            "positive": 10854,
+            "sum": "4819965"
+          },
+          "actual": {
+            "count": 18282,
+            "null": 7105,
+            "negative": 323,
+            "zero": 0,
+            "positive": 10854,
+            "sum": "4819965.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00018282",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        },
+        "supply_quantity_rules": {
+          "expected": {
+            "count": 554,
+            "null": 0,
+            "negative": 0,
+            "zero": 26,
+            "positive": 528,
+            "sum": "14464"
+          },
+          "actual": {
+            "count": 554,
+            "null": 0,
+            "negative": 0,
+            "zero": 26,
+            "positive": 528,
+            "sum": "14464.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00000554",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        },
+        "demand_report_metrics": {
+          "expected": {
+            "count": 554,
+            "null": 0,
+            "negative": 0,
+            "zero": 0,
+            "positive": 554,
+            "sum": "4819965"
+          },
+          "actual": {
+            "count": 554,
+            "null": 0,
+            "negative": 0,
+            "zero": 0,
+            "positive": 554,
+            "sum": "4819965.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00000554",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        }
+      }
+    },
+    {
+      "file": "Ежемесячные продажи в кол-м выражении SystemElectric 2024-2026.xlsx",
+      "sheet": "Лист1",
+      "kind": "seasonality",
+      "passed": true,
+      "raw_rows_expected": 19,
+      "raw_rows_actual": 19,
+      "raw_rows_missing": [],
+      "raw_rows_extra": [],
+      "product_observations_equal": true,
+      "duplicate_typed_keys": {
+        "demand_movements": 0,
+        "demand_monthly_sales": 0,
+        "inventory_monthly_stock": 0,
+        "inventory_observations": 0,
+        "supply_quantity_rules": 0,
+        "supply_shipment_lines": 0,
+        "demand_report_metrics": 0,
+        "demand_seasonality_observations": 0
+      },
+      "source_warnings": {
+        "excel_errors": 0,
+        "formula_cache_missing": 0,
+        "duplicate_sku_rows": 0
+      },
+      "tables": {
+        "demand_seasonality_observations": {
+          "expected": {
+            "count": 159,
+            "null": 0,
+            "negative": 0,
+            "zero": 9,
+            "positive": 150,
+            "sum": "11278520047.71638937399999670"
+          },
+          "actual": {
+            "count": 159,
+            "null": 0,
+            "negative": 0,
+            "zero": 9,
+            "positive": 150,
+            "sum": "11278520047.716389373999"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00000159",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        }
+      }
+    },
+    {
+      "file": "Сезонность SystemElectric 2024-2026.xlsx",
+      "sheet": "Лист1",
+      "kind": "seasonality",
+      "passed": true,
+      "raw_rows_expected": 19,
+      "raw_rows_actual": 19,
+      "raw_rows_missing": [],
+      "raw_rows_extra": [],
+      "product_observations_equal": true,
+      "duplicate_typed_keys": {
+        "demand_movements": 0,
+        "demand_monthly_sales": 0,
+        "inventory_monthly_stock": 0,
+        "inventory_observations": 0,
+        "supply_quantity_rules": 0,
+        "supply_shipment_lines": 0,
+        "demand_report_metrics": 0,
+        "demand_seasonality_observations": 0
+      },
+      "source_warnings": {
+        "excel_errors": 0,
+        "formula_cache_missing": 0,
+        "duplicate_sku_rows": 0
+      },
+      "tables": {
+        "demand_seasonality_observations": {
+          "expected": {
+            "count": 173,
+            "null": 0,
+            "negative": 0,
+            "zero": 9,
+            "positive": 164,
+            "sum": "11278520061.64546724173739120"
+          },
+          "actual": {
+            "count": 173,
+            "null": 0,
+            "negative": 0,
+            "zero": 9,
+            "positive": 164,
+            "sum": "11278520061.645467241734"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00000173",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        }
+      }
+    },
+    {
+      "file": "Товар в пути_SystemElectric на 22.09.2026.xlsx",
+      "sheet": "TDSheet",
+      "kind": "snapshot",
+      "passed": true,
+      "raw_rows_expected": 499,
+      "raw_rows_actual": 499,
+      "raw_rows_missing": [],
+      "raw_rows_extra": [],
+      "product_observations_equal": true,
+      "duplicate_typed_keys": {
+        "demand_movements": 0,
+        "demand_monthly_sales": 0,
+        "inventory_monthly_stock": 0,
+        "inventory_observations": 0,
+        "supply_quantity_rules": 0,
+        "supply_shipment_lines": 0,
+        "demand_report_metrics": 0,
+        "demand_seasonality_observations": 0
+      },
+      "source_warnings": {
+        "excel_errors": 0,
+        "formula_cache_missing": 0,
+        "stock_identity_mismatch": 0,
+        "stock_components_differ_from_total": 493,
+        "thirteen_month_formula": 497,
+        "average_formula_not_divided_by_12": 1,
+        "duplicate_sku_rows": 0,
+        "unknown_warehouse_scope": 497
+      },
+      "tables": {
+        "demand_monthly_sales": {
+          "expected": {
+            "count": 16401,
+            "null": 1581,
+            "negative": 318,
+            "zero": 4243,
+            "positive": 10259,
+            "sum": "4830887"
+          },
+          "actual": {
+            "count": 16401,
+            "null": 1581,
+            "negative": 318,
+            "zero": 4243,
+            "positive": 10259,
+            "sum": "4830887.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00016401",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        },
+        "inventory_observations": {
+          "expected": {
+            "count": 3479,
+            "null": 0,
+            "negative": 0,
+            "zero": 2010,
+            "positive": 1469,
+            "sum": "831742"
+          },
+          "actual": {
+            "count": 3479,
+            "null": 0,
+            "negative": 0,
+            "zero": 2010,
+            "positive": 1469,
+            "sum": "831742.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00003479",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        },
+        "supply_shipment_lines": {
+          "expected": {
+            "count": 497,
+            "null": 0,
+            "negative": 0,
+            "zero": 490,
+            "positive": 7,
+            "sum": "50160"
+          },
+          "actual": {
+            "count": 497,
+            "null": 0,
+            "negative": 0,
+            "zero": 490,
+            "positive": 7,
+            "sum": "50160.000000000000"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00000497",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        },
+        "demand_report_metrics": {
+          "expected": {
+            "count": 4970,
+            "null": 996,
+            "negative": 662,
+            "zero": 289,
+            "positive": 3023,
+            "sum": "5482784.3419550237189072451"
+          },
+          "actual": {
+            "count": 4970,
+            "null": 996,
+            "negative": 662,
+            "zero": 289,
+            "positive": 3023,
+            "sum": "5482784.341955023701"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00004970",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        }
+      }
+    },
+    {
+      "file": "Товар в пути_SystemElectric на 22.09.2026.xlsx",
+      "sheet": "Лист1",
+      "kind": "seasonality",
+      "passed": true,
+      "raw_rows_expected": 19,
+      "raw_rows_actual": 19,
+      "raw_rows_missing": [],
+      "raw_rows_extra": [],
+      "product_observations_equal": true,
+      "duplicate_typed_keys": {
+        "demand_movements": 0,
+        "demand_monthly_sales": 0,
+        "inventory_monthly_stock": 0,
+        "inventory_observations": 0,
+        "supply_quantity_rules": 0,
+        "supply_shipment_lines": 0,
+        "demand_report_metrics": 0,
+        "demand_seasonality_observations": 0
+      },
+      "source_warnings": {
+        "excel_errors": 0,
+        "formula_cache_missing": 0,
+        "duplicate_sku_rows": 0
+      },
+      "tables": {
+        "demand_seasonality_observations": {
+          "expected": {
+            "count": 159,
+            "null": 0,
+            "negative": 0,
+            "zero": 9,
+            "positive": 150,
+            "sum": "11278520047.71638937399999670"
+          },
+          "actual": {
+            "count": 159,
+            "null": 0,
+            "negative": 0,
+            "zero": 9,
+            "positive": 150,
+            "sum": "11278520047.716389373999"
+          },
+          "distributions_equal": true,
+          "sums_equal": true,
+          "sum_absolute_tolerance": "0.00000159",
+          "missing": 0,
+          "extra": 0,
+          "changed": 0,
+          "examples": [],
+          "passed": true
+        }
+      }
+    }
+  ],
+  "workbooks": [
+    {
+      "file": "MOQ  ИЭК.xlsx",
+      "sha256": "4705b5bbbaa7c55541a151f146270bcbdc72a4ce28686fdb3378575733c4a446",
+      "bytes_equal": true
+    },
+    {
+      "file": "Динамика продаж_2025-2026.xlsx",
+      "sha256": "7b0100a662eba816fd2e6a477ba56ca2a7846d3489ce1083821c94333ac30e4c",
+      "bytes_equal": true
+    },
+    {
+      "file": "Ежемесячные остатки продукции за последние 2 года  ИЭК.xlsx",
+      "sha256": "ad8a8df9cbb242a3df60a147fb4011b146ca7cdd9e98c1247b1b19fd517f4a30",
+      "bytes_equal": true
+    },
+    {
+      "file": "Ежемесячные продажи в количественном выражении за последние 2 года.xlsx",
+      "sha256": "048a0af940370153511769396570259a1bb28da63709d9b974f99c45081fa255",
+      "bytes_equal": true
+    },
+    {
+      "file": "Путь ИЭК 22.09.2026.xlsx",
+      "sha256": "751fd3c2cbdfabe32f9c20c7f0289135273f007471f39101f03f9c6e1231ce7d",
+      "bytes_equal": true
+    },
+    {
+      "file": "Сезонность ИЭК.xlsx",
+      "sha256": "d4d9a8f208884c5197d0dcea0eb60d3972e9382cb3530675d0760fe9a8339635",
+      "bytes_equal": true
+    },
+    {
+      "file": "MOQ SystemElectric.xlsx",
+      "sha256": "4fc809ecf9c0a73d97f13f7a16e7dbb20425ab97a6b2d9a0f6be0bbe1a326a7b",
+      "bytes_equal": true
+    },
+    {
+      "file": "Динамика продаж_Syseme Electric_2025-2026.xlsx",
+      "sha256": "5ca3997c13f1f65d73db5141122b92deab64f1029bf9b43fd3dd7ade65151128",
+      "bytes_equal": true
+    },
+    {
+      "file": "Ежемесячные остатки SystemElectric 2024-2026.xlsx",
+      "sha256": "45d55eb244966ef9fdba1aa09c666e9dbc4c0b05c1088f4041edcd86b908c85e",
+      "bytes_equal": true
+    },
+    {
+      "file": "Ежемесячные продажи в кол-м выражении SystemElectric 2024-2026.xlsx",
+      "sha256": "f7782ab9ea5c06d68526543953c6fce7ca83a80d1c1a4e8d88fd083de415f9d0",
+      "bytes_equal": true
+    },
+    {
+      "file": "Сезонность SystemElectric 2024-2026.xlsx",
+      "sha256": "19bdbc1c2331d3643e39294f68f11f7427f625107e8b025f6663bb559af669ab",
+      "bytes_equal": true
+    },
+    {
+      "file": "Товар в пути_SystemElectric на 22.09.2026.xlsx",
+      "sha256": "17aa50b7697aba5598997b1b4bba9de3950169bc81e97fd10c4d8b0348bd9a3d",
+      "bytes_equal": true
+    }
+  ],
+  "limitations": [
+    "Openpyxl float decoding: fractional tolerance 1e-8, integer values exact; total tolerance is number of observations times 1e-8. Original workbook bytes checked exactly.",
+    "Large seasonal totals use independent XML decimal lexemes, avoiding openpyxl float loss.",
+    "Raw row membership checked; individual JSONB cell contents/formulas/formats not re-compared.",
+    "Typed numeric coordinates, SKU, monthly dates checked. Movement timestamps/documents/units, catalog attribute text, metric labels, seasonal year/month/basis and shipment dates not reconciled.",
+    "No forecast accuracy, UI/API behavior or business correctness certification; source issues remain.",
+    "Audit selected files/version only; other source versions may coexist in the database."
+  ],
+  "product_identities": {
+    "expected_unique": 3909,
+    "missing": 0
+  },
+  "database_findings": [
+    {
+      "code": "duplicate_sku",
+      "records": 2
+    },
+    {
+      "code": "excel_error",
+      "records": 1
+    },
+    {
+      "code": "inconsistent_average_formula",
+      "records": 1
+    },
+    {
+      "code": "missing_movement_quantity",
+      "records": 2
+    },
+    {
+      "code": "negative_movement",
+      "records": 2
+    },
+    {
+      "code": "nonpositive_quantity_rule",
+      "records": 1
+    },
+    {
+      "code": "numeric_rounding",
+      "records": 5
+    },
+    {
+      "code": "overlapping_seasonality_sources",
+      "records": 3
+    },
+    {
+      "code": "relative_change_not_multiplier",
+      "records": 1
+    },
+    {
+      "code": "stock_scope_overlap",
+      "records": 1
+    },
+    {
+      "code": "supplier_aggregate_only",
+      "records": 4
+    },
+    {
+      "code": "thirteen_month_total",
+      "records": 1
+    },
+    {
+      "code": "unknown_shipment_year",
+      "records": 1
+    },
+    {
+      "code": "unknown_warehouse_scope",
+      "records": 5
+    },
+    {
+      "code": "unstructured_unit_conversion",
+      "records": 1
+    }
+  ],
+  "passed": true
+}

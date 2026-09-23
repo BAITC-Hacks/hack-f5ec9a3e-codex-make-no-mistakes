@@ -18,6 +18,9 @@ and [Excel-to-database mapping](docs/DATA_MODEL.md).
 Запуск / Run: [backend + import](backend/README.md), [frontend](frontend/README.md).
 API: [contract RU/EN](backend/API.md). UI scope: [requirements RU/EN](docs/FRONTEND_REQUIREMENTS.md).
 
+Проверка импорта / Import validation: [independent data-quality report](docs/reports/data-quality.md)
+and [reproduction command](backend/IMPORTING.md#независимая-сверка--independent-reconciliation).
+
 Согласованные требования к стеку, запуску через F5 и Docker, сценариям и демонстрации:
 [план сдачи RU/EN](docs/DELIVERY_PLAN.md). Режимы запуска ещё предстоит реализовать.
 

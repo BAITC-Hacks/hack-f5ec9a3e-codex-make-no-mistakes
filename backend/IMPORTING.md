@@ -87,6 +87,27 @@ IEK: 171 603 движения, 115 отрицательных, 18 NULL. Systeme:
 и не очищают прикладную БД. Проверяются точность XML, кеши/ошибки/пустоты, все 14 шаблонов,
 конкурентный импорт, новая версия нормализатора, атомарный откат и реальный снимок Systeme.
 
+## Независимая сверка / Independent reconciliation
+
+После импорта выполните из `backend` с тем же `DATABASE_URL`:
+
+```powershell
+uv run python -m replenishment.cli.audit_data ../docs/data --output-dir ../docs/reports
+```
+
+Проверка читает PostgreSQL в транзакции только для чтения и независимо читает исходные XLSX через
+openpyxl; точные числовые значения сезонных сводок дополнительно читает из XML внутри XLSX.
+Она не исправляет файлы или БД. Результат — `data-quality.json` и `data-quality.md`.
+Ошибки переноса данных завершают команду ненулевым кодом; предупреждения о дефектах исходных
+данных отделены от ошибок импорта. Точное покрытие и ограничения перечислены в отчёте.
+
+Run the command above after importing, using the same `DATABASE_URL`. The auditor independently
+reads source XLSX through openpyxl (plus exact seasonal numeric XML values) and uses a read-only
+PostgreSQL transaction; it never repairs
+source files or database records. JSON and Markdown reports separate import correctness failures
+(nonzero exit) from source-quality warnings. Consult the report for actual coverage and limitations.
+CI runs migration, full import and this audit against a fresh isolated database and uploads the reports.
+
 ## English
 
 From `backend`, set `DATABASE_URL`, run `uv sync`, apply `uv run alembic upgrade head`, then:

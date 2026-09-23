@@ -38,9 +38,23 @@ jobs:
         run: |
           createdb -h localhost -U replenishment replenishment_api_test
           createdb -h localhost -U replenishment replenishment_import_test
+          createdb -h localhost -U replenishment replenishment_audit
       - run: uv run ruff check .
       - run: uv run lint-imports
       - run: uv run pytest -q
+      - name: Import all source workbooks and reconcile independently
+        env:
+          DATABASE_URL: postgresql+psycopg://replenishment:local_ci_only@localhost:5432/replenishment_audit
+        run: |
+          uv run alembic upgrade head
+          uv run python -m replenishment.cli.import_excel ../docs/data
+          uv run python -m replenishment.cli.audit_data ../docs/data --output-dir ../artifacts/data-audit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: data-quality-report
+          path: artifacts/data-audit/
+          if-no-files-found: warn
 
   frontend:
     runs-on: ubuntu-latest

@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.import_linter_cache/
+*.egg-info/
+.env
+node_modules/
+dist/

@@ -24,7 +24,7 @@ Expected inputs in the brief: dated sales with SKU, quantity, anonymized custome
 
 Optional features: shortage-risk prioritization, minimum order quantities and supplier terms, category trend visualization, and export/sending of orders. The brief requires responsible-employee confirmation before any supplier order is sent and anonymized customer data in calculations.
 
-Deliverables requested by the brief: a repository and README covering calculation methodology, outlier exclusion, and launch instructions. No implementation, calculation method, or technology stack has been selected in this documentation import.
+Deliverables requested by the brief: a repository and README covering calculation methodology, outlier exclusion, and launch instructions. The selected stack and implemented data foundation are now recorded in [DECISIONS.md](DECISIONS.md) and the [backend architecture](../backend/ARCHITECTURE.md). Calculation methodology and the application workflow remain subsequent work.
 
 ## Questions to resolve before implementation
 

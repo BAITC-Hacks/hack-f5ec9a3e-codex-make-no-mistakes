@@ -1,0 +1,1 @@
+"""Supplier replenishment modular monolith."""

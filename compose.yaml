@@ -1,0 +1,19 @@
+# Database foundation only. Full frontend/backend Compose is tracked in issue #8.
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: replenishment
+      POSTGRES_PASSWORD: local_dev_only
+      POSTGRES_DB: replenishment
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U replenishment -d replenishment"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+volumes:
+  pgdata:

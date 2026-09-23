@@ -1,0 +1,22 @@
+{
+  "version": "2026-09-23-v1",
+  "workbooks": 12,
+  "sheets": 14,
+  "movements": {
+    "IEK": {"rows": 171603, "positive": 171470, "negative": 115, "missing_quantity": 18, "unique_skus": 2151},
+    "Systeme electric": {"rows": 77312, "positive": 76997, "negative": 302, "missing_quantity": 13, "unique_skus": 565}
+  },
+  "warehouse_names": ["Алматы"],
+  "systeme_report": {
+    "sku_rows": 497,
+    "on_hand": 407356,
+    "reserved": 10737,
+    "free": 396619,
+    "incoming": 50160,
+    "thirteen_month_formula": "=SUM(AC3:AO3)",
+    "average_formula": "=AP3/12",
+    "demo": {"row": 258, "sku": "300200745_", "article": "ATN540126", "on_hand": 42, "reserved": 19, "free": 23, "incoming": 120}
+  },
+  "iek_moq": {"error_cells": 15, "duplicate_code": "270400035_", "duplicate_rows": [427, 1875]},
+  "unavailable": ["customer_id", "exact_stockout_intervals", "supplier_lead_time_directory", "bill_of_materials"]
+}

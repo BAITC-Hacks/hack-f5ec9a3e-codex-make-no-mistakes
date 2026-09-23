@@ -1,0 +1,41 @@
+[project]
+name = "replenishment"
+version = "0.1.0"
+description = "HackAlem supplier replenishment data foundation"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "sqlalchemy>=2.0,<3",
+    "alembic>=1.13,<2",
+    "psycopg[binary]>=3.2,<4",
+]
+
+[build-system]
+requires = ["uv_build>=0.8,<0.9"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = ["pytest>=8.3,<9", "ruff>=0.9,<1", "import-linter>=2.3,<3", "openpyxl>=3.1,<4"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["postgres: requires TEST_DATABASE_URL and an empty test database"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.importlinter]
+root_package = "replenishment"
+
+[[tool.importlinter.contracts]]
+name = "Kernel has no domain dependencies"
+type = "forbidden"
+source_modules = ["replenishment.kernel"]
+forbidden_modules = ["replenishment.intake", "replenishment.catalog", "replenishment.demand", "replenishment.inventory", "replenishment.supply", "replenishment.schema"]
+
+[[tool.importlinter.contracts]]
+name = "Domain storage modules do not import each other"
+type = "independence"
+modules = ["replenishment.intake", "replenishment.catalog", "replenishment.demand", "replenishment.inventory", "replenishment.supply"]

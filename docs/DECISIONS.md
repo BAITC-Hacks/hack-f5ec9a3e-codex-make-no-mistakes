@@ -1,0 +1,20 @@
+# Решения / Decisions
+
+Решения фиксируются добавлением новой записи; прежнее решение помечается заменённым со ссылкой на новое. Выводы аудита — наблюдения, а неизвестные значения остаются неизвестными до получения подтверждения.
+
+Decisions are updated by appending a new entry and explicitly superseding the old one. Audit findings are observations; unknowns remain unknown until supported by evidence.
+
+| ID | Дата / Date | Решение / Decision | Основание / Basis |
+| --- | --- | --- | --- |
+| D01 | 2026-09-23 | Python 3.12/FastAPI, SQLAlchemy 2/Alembic/uv, PostgreSQL 17; React 19/TypeScript/Vite. Модульный монолит с одним пакетом, БД и историей миграций. / Modular monolith with one distribution, database and migration history. | Выбор пользователя и [TenderVision](https://github.com/dimashisenov/tendervision-product/blob/main/backend/ARCHITECTURE.md) / User selection and reference architecture |
+| D02 | 2026-09-23 | Два режима: F5 (API + React, БД в Docker) и полный Compose. Демо RU, материалы RU/EN, без видео; сценарии сохраняются. / F5 and full Compose; Russian demo, bilingual materials, no video; persisted scenarios. | [Согласованный план / Approved plan](DELIVERY_PLAN.md) |
+| D03 | 2026-09-23 | Аудит v1 закреплён хешами 14 исходных файлов и исполняемыми проверками ключевых фактов. Не менять baseline ради прохождения тестов: для новых файлов создавать новую версию и описывать отличия. / Audit v1 is pinned by 14 source hashes and executable checks; changed inputs require a new baseline with a documented delta. | [Аудит / Audit](DATA_AUDIT.md), [baseline](sources/audit-baseline.json) |
+| D04 | 2026-09-23 | Разделить неизменяемое сырьё и типизированные наблюдения. Хранить оригинальные XLSX в БД, лист/строку/ячейку, формулы и кешированные значения; сохранять ошибки и NULL отдельно от нуля. / Separate immutable source evidence from typed observations, retaining complete XLSX bytes, provenance, formulas, cached values, errors and missingness. | Запрос пользователя на все данные Excel и результаты аудита / User's full Excel coverage request and audit |
+| D05 | 2026-09-23 | Идентификатор товара — поставщик + исходный строковый код 1С; артикул и имя хранятся в наблюдениях, не перезаписывают историю. / Product identity is supplier + exact 1C SKU; source articles and names remain observations. | Дубликаты и различия справочников / Duplicate and conflicting source entries |
+| D06 | 2026-09-23 | Месячные продажи, движения и текущие остатки — отдельные источники; неизвестный склад остаётся NULL. Отрицательные значения не преобразовывать автоматически; пустоты не считать нулями. / Keep monthly sales, movements and snapshots separate; unknown warehouse stays NULL; no automatic sign or blank conversion. | Расхождения источников и неясный охват / Source discrepancies and uncertain scope |
+| D07 | 2026-09-23 | Коэффициенты, итоги и готовые расчёты Excel сохраняются как наблюдения, не становятся алгоритмом приложения. Customer ID, stockout, lead time, BOM и конверсии не выдумывать. / Retain spreadsheet calculations as evidence rather than adopting them as application policy; do not invent missing inputs. | Формула 13 месяцев, неизвестные бизнес-определения / Thirteen-month formula and unresolved definitions |
+| D08 | 2026-09-23 | Текущий срез — модели, миграция и регрессионные проверки. Нормализатор всех файлов, расчёт, API, React и сохранение сценариев реализуются следующими задачами. / Current slice delivers models, migration and regression checks; full normalization, calculations, API, React and scenario persistence are subsequent work. | Разделение задач №1/№2/№3–8 / Task boundaries |
+
+Изменение границ модулей, направления зависимостей, идентичности, происхождения данных или контракта API фиксируется новой записью вместе с кодом и проверками. Внутренний рефакторинг без изменения поведения не требует отдельного согласования.
+
+Changes to module ownership, dependency direction, identity, provenance or API contracts require a new recorded decision alongside code and checks. Internal behavior-preserving refactors do not need separate approval.

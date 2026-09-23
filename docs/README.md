@@ -5,6 +5,9 @@ This folder holds the supplied hackathon materials and the team's working projec
 | Location | Contents |
 | --- | --- |
 | [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) | Brief summary, required behavior, acceptance criteria, open questions |
+| [DECISIONS.md](DECISIONS.md) | Зафиксированные решения и правила изменения / Recorded decisions and change control |
+| [DATA_MODEL.md](DATA_MODEL.md) | Покрытие всех Excel моделью БД / Mapping every Excel source to storage |
+| [Backend architecture](../backend/ARCHITECTURE.md) | Границы модулей и гарантии хранения / Module boundaries and persistence guarantees |
 | [DATA_GUIDE.md](DATA_GUIDE.md) | Workbook inventory, observed structure, import caveats |
 | [DATA_AUDIT.md](DATA_AUDIT.md) | Аудит 12 книг и 14 листов: качество данных, покрытие, ограничения / Full data audit (Russian) |
 | [DELIVERY_PLAN.md](DELIVERY_PLAN.md) | Согласованный план сдачи RU/EN: стек, F5, Docker, сценарии и демо / Approved delivery plan: stack, F5, Docker, scenarios and demo |

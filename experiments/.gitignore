@@ -1,0 +1,3 @@
+# Keep compact manifests, source snapshots and summaries in Git.
+# Forecasts and other bulk CSV archives stay local unless explicitly shared.
+runs/**/*.csv.gz

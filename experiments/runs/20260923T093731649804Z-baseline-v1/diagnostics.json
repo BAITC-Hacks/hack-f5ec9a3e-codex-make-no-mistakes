@@ -1,0 +1,90 @@
+[
+  {
+    "supplier": "IEK",
+    "unit": "шт",
+    "horizon": 7,
+    "capped_better_months": 7,
+    "month_count": 8,
+    "paired_month_bootstrap_improvement_pp_95": [
+      0.6264612821721204,
+      10.943462613075546
+    ]
+  },
+  {
+    "supplier": "IEK",
+    "unit": "м",
+    "horizon": 7,
+    "capped_better_months": 6,
+    "month_count": 8,
+    "paired_month_bootstrap_improvement_pp_95": [
+      -0.6009530010830095,
+      17.161647149231666
+    ]
+  },
+  {
+    "supplier": "IEK",
+    "unit": "упак",
+    "horizon": 7,
+    "capped_better_months": 6,
+    "month_count": 8,
+    "paired_month_bootstrap_improvement_pp_95": [
+      1.1662194230816125,
+      28.383894006300448
+    ]
+  },
+  {
+    "supplier": "IEK",
+    "unit": "шт",
+    "horizon": 28,
+    "capped_better_months": 5,
+    "month_count": 8,
+    "paired_month_bootstrap_improvement_pp_95": [
+      -0.07024622868122894,
+      4.7147857644711575
+    ]
+  },
+  {
+    "supplier": "IEK",
+    "unit": "м",
+    "horizon": 28,
+    "capped_better_months": 4,
+    "month_count": 8,
+    "paired_month_bootstrap_improvement_pp_95": [
+      -3.2059421567292294,
+      6.816531031192887
+    ]
+  },
+  {
+    "supplier": "IEK",
+    "unit": "упак",
+    "horizon": 28,
+    "capped_better_months": 7,
+    "month_count": 8,
+    "paired_month_bootstrap_improvement_pp_95": [
+      3.4755794458283633,
+      14.813113171717717
+    ]
+  },
+  {
+    "supplier": "Systeme electric",
+    "unit": "шт",
+    "horizon": 7,
+    "capped_better_months": 6,
+    "month_count": 8,
+    "paired_month_bootstrap_improvement_pp_95": [
+      -4.195146664965589,
+      44.12520901046277
+    ]
+  },
+  {
+    "supplier": "Systeme electric",
+    "unit": "шт",
+    "horizon": 28,
+    "capped_better_months": 4,
+    "month_count": 8,
+    "paired_month_bootstrap_improvement_pp_95": [
+      -5.743456094037138,
+      11.957905932768545
+    ]
+  }
+]

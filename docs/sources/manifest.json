@@ -1,0 +1,94 @@
+[
+  {
+    "archive": "Systeme electric.zip",
+    "path": "docs/data/Systeme electric/MOQ SystemElectric.xlsx",
+    "bytes": 40509,
+    "sha256": "4fc809ecf9c0a73d97f13f7a16e7dbb20425ab97a6b2d9a0f6be0bbe1a326a7b"
+  },
+  {
+    "archive": "Systeme electric.zip",
+    "path": "docs/data/Systeme electric/Динамика продаж_Syseme Electric_2025-2026.xlsx",
+    "bytes": 2978097,
+    "sha256": "5ca3997c13f1f65d73db5141122b92deab64f1029bf9b43fd3dd7ade65151128"
+  },
+  {
+    "archive": "Systeme electric.zip",
+    "path": "docs/data/Systeme electric/Ежемесячные остатки SystemElectric 2024-2026.xlsx",
+    "bytes": 152681,
+    "sha256": "45d55eb244966ef9fdba1aa09c666e9dbc4c0b05c1088f4041edcd86b908c85e"
+  },
+  {
+    "archive": "Systeme electric.zip",
+    "path": "docs/data/Systeme electric/Ежемесячные продажи в кол-м выражении SystemElectric 2024-2026.xlsx",
+    "bytes": 132864,
+    "sha256": "f7782ab9ea5c06d68526543953c6fce7ca83a80d1c1a4e8d88fd083de415f9d0"
+  },
+  {
+    "archive": "Systeme electric.zip",
+    "path": "docs/data/Systeme electric/Сезонность SystemElectric 2024-2026.xlsx",
+    "bytes": 18803,
+    "sha256": "19bdbc1c2331d3643e39294f68f11f7427f625107e8b025f6663bb559af669ab"
+  },
+  {
+    "archive": "Systeme electric.zip",
+    "path": "docs/data/Systeme electric/Товар в пути_SystemElectric на 22.09.2026.xlsx",
+    "bytes": 225618,
+    "sha256": "17aa50b7697aba5598997b1b4bba9de3950169bc81e97fd10c4d8b0348bd9a3d"
+  },
+  {
+    "archive": "Systeme electric.zip",
+    "bytes": 3037139,
+    "sha256": "10ce24d572b750e199bfe8aa9887d467f67471950804392dccc97715dd0344cc"
+  },
+  {
+    "archive": "IEK.zip",
+    "path": "docs/data/IEK/MOQ  ИЭК.xlsx",
+    "bytes": 3752477,
+    "sha256": "4705b5bbbaa7c55541a151f146270bcbdc72a4ce28686fdb3378575733c4a446"
+  },
+  {
+    "archive": "IEK.zip",
+    "path": "docs/data/IEK/Динамика продаж_2025-2026.xlsx",
+    "bytes": 6840311,
+    "sha256": "7b0100a662eba816fd2e6a477ba56ca2a7846d3489ce1083821c94333ac30e4c"
+  },
+  {
+    "archive": "IEK.zip",
+    "path": "docs/data/IEK/Ежемесячные остатки продукции за последние 2 года  ИЭК.xlsx",
+    "bytes": 438097,
+    "sha256": "ad8a8df9cbb242a3df60a147fb4011b146ca7cdd9e98c1247b1b19fd517f4a30"
+  },
+  {
+    "archive": "IEK.zip",
+    "path": "docs/data/IEK/Ежемесячные продажи в количественном выражении за последние 2 года.xlsx",
+    "bytes": 360039,
+    "sha256": "048a0af940370153511769396570259a1bb28da63709d9b974f99c45081fa255"
+  },
+  {
+    "archive": "IEK.zip",
+    "path": "docs/data/IEK/Путь ИЭК 22.09.2026.xlsx",
+    "bytes": 140796,
+    "sha256": "751fd3c2cbdfabe32f9c20c7f0289135273f007471f39101f03f9c6e1231ce7d"
+  },
+  {
+    "archive": "IEK.zip",
+    "path": "docs/data/IEK/Сезонность ИЭК.xlsx",
+    "bytes": 19723,
+    "sha256": "d4d9a8f208884c5197d0dcea0eb60d3972e9382cb3530675d0760fe9a8339635"
+  },
+  {
+    "archive": "IEK.zip",
+    "bytes": 10334256,
+    "sha256": "fed312f909943e69b17d2cc5dd577123b5fe0874064558e8f503deaf9fc50054"
+  },
+  {
+    "path": "docs/sources/HackAlem AI_ Автоматизация формирования заказов поставщикам.docx.md",
+    "bytes": 4994,
+    "sha256": "559d591a4f1d43d800221b1f6765a02ca54f082e4830cfb626d91f60e08a27cb"
+  },
+  {
+    "path": "docs/sources/HackAlem AI_ Автоматизация формирования заказов поставщикам.docx.pdf",
+    "bytes": 100847,
+    "sha256": "3b76d0ed67f0964e97138529652822a50a5ef76e0eb72eb535ffaaaf7eed0317"
+  }
+]

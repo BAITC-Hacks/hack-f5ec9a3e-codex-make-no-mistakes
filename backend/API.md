@@ -1,5 +1,10 @@
 # API данных / Source data API v1
 
+Purchasing endpoints are now documented in [PLANNING.md](PLANNING.md) and the exact
+[planning contract](../docs/PLANNING_API.md). The source endpoints below remain read-only;
+their historical statement that the application has no scenario writes applies only to this source-data slice.
+Расчёт, сценарии, утверждение и экспорт добавлены отдельными маршрутами; исходные данные не изменяются.
+
 ## Русский
 
 Запуск из `backend` с заданным `DATABASE_URL`:

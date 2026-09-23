@@ -21,3 +21,8 @@ Decisions are updated by appending a new entry and explicitly superseding the ol
 Изменение границ модулей, направления зависимостей, идентичности, происхождения данных или контракта API фиксируется новой записью вместе с кодом и проверками. Внутренний рефакторинг без изменения поведения не требует отдельного согласования.
 
 Changes to module ownership, dependency direction, identity, provenance or API contracts require a new recorded decision alongside code and checks. Internal behavior-preserving refactors do not need separate approval.
+
+
+## D12 — Purchasing branch, 2026-09-23
+
+Advance D08/D09 with pure planning, orders persistence and API composition in codex/purchasing-business-flow. Orders imports kernel only; API composes calculation and storage. Migration 0002 adds scenario/revision/approval tables. Preserve source observations. Real policies remain unconfirmed and calculable rows remain scenario_only. Manager UI is pending. See PURCHASING_WORKTREE.md for handoff and verification. / Отдельная ветка закупок: расчёт, хранение версий и утверждений, без изменения исходных наблюдений.

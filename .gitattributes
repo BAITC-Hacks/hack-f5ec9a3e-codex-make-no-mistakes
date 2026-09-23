@@ -1,0 +1,2 @@
+# Original brief bytes are pinned in docs/sources/manifest.json.
+docs/sources/*.docx.md -text

@@ -1,5 +1,24 @@
 # Архитектура / Architecture
 
+## Purchasing backend extension / Расширение backend закупок
+
+Migration `0002` adds `orders_scenarios`, immutable `orders_revisions`, and immutable
+`orders_approvals` to the 17 source tables described below. `planning` owns import-safe validated
+scenario contracts, demand adjustments and exact purchasing arithmetic; it composes the public
+`demand.cleaning` policy without changing source observations. `orders` owns only persistence and
+workflow commands, depends on `kernel`, and does not import planning or sibling source domains.
+`api/orders.py` composes server-side calculation and storage. `planning_sources.py` is a read
+composition root using the existing metadata projections, not sibling ORM imports.
+
+Controller integration registers metadata in `schema.py` and routers before the source-table alias.
+Inputs/results and source references are pinned per revision; stale writes/approvals/exports are rejected.
+All calculable v0 rows are scenario-only while business policies remain unconfirmed. The manager interface
+is deferred by user request. See [backend methodology](PLANNING.md) and [contract](../docs/PLANNING_API.md).
+
+Миграция `0002` добавляет три таблицы сценариев к 17 таблицам источников. Чистый `planning` считает,
+`orders` хранит версии и утверждения, API связывает их. Источники неизменяемы; интерфейс менеджера отложен.
+Ниже сохранено описание исходного слоя v1; фразы о будущем расчёте относятся к состоянию до этого расширения.
+
 ## Русский
 
 Модульный монолит по принципам TenderVision: один Python-пакет `replenishment`, PostgreSQL 17, одна история Alembic. Реализованы **17 таблиц**, миграция `0001`, импорт Excel, API чтения и React-интерфейс. Расчёт заказов остаётся следующим этапом.
@@ -75,3 +94,11 @@ Storage guarantees:
 - Composite foreign keys reject shipment lines linked to another supplier's product. Duplicate source rows remain evidence without duplicating SKU identities.
 
 See [Excel mapping](../docs/DATA_MODEL.md) and [decisions](../docs/DECISIONS.md). No microservices, queues or extra databases are needed for this slice.
+
+Issue #3 adds a pure Decimal policy in `demand/cleaning.py` for derived regular-demand
+estimates and document-level bulk candidates. It preserves original quantities in
+its returned explanations and writes neither observations nor database state.
+Research runners use the same policy at each historical cutoff; see the
+[cleaning protocol](../docs/DEMAND_CLEANING.md). Storage tables and API contracts
+remain unchanged. / Очистка возвращает объяснимые производные значения отдельно
+от неизменяемого сырья; схема БД и API не меняются.

@@ -41,9 +41,15 @@ root_package = "replenishment"
 name = "Kernel has no domain dependencies"
 type = "forbidden"
 source_modules = ["replenishment.kernel"]
-forbidden_modules = ["replenishment.intake", "replenishment.catalog", "replenishment.demand", "replenishment.inventory", "replenishment.supply", "replenishment.schema", "replenishment.api", "replenishment.browsing", "replenishment.cli"]
+forbidden_modules = ["replenishment.intake", "replenishment.catalog", "replenishment.demand", "replenishment.inventory", "replenishment.supply", "replenishment.orders", "replenishment.planning", "replenishment.planning_sources", "replenishment.schema", "replenishment.api", "replenishment.browsing", "replenishment.cli"]
 
 [[tool.importlinter.contracts]]
 name = "Domain storage modules do not import each other"
 type = "independence"
-modules = ["replenishment.intake", "replenishment.catalog", "replenishment.demand", "replenishment.inventory", "replenishment.supply"]
+modules = ["replenishment.intake", "replenishment.catalog", "replenishment.demand", "replenishment.inventory", "replenishment.supply", "replenishment.orders"]
+
+[[tool.importlinter.contracts]]
+name = "Order storage does not depend on calculation or HTTP"
+type = "forbidden"
+source_modules = ["replenishment.orders"]
+forbidden_modules = ["replenishment.planning", "replenishment.planning_sources", "replenishment.api"]

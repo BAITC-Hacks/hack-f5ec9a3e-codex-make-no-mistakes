@@ -3,6 +3,8 @@ Hackathon team repository for Codex, make no mistakes
 
 HackAlem AI case: supplier order recommendations for Elektrokomplekt LLP (ekt.kz).
 
+Built within 3 hours: an end-to-end supplier order recommendation prototype with Excel ingestion, demand forecasting, order drafts, CSV export and a React interface.
+
 ## Deployment
 
 Requires GNU Make, uv, Node.js 22+ and PostgreSQL 17. On the server, from the

@@ -3,6 +3,34 @@ Hackathon team repository for Codex, make no mistakes
 
 HackAlem AI case: supplier order recommendations for Elektrokomplekt LLP (ekt.kz).
 
+## Development tasks
+
+Run `make help` from the repository root. Requires GNU Make, uv, Node.js 22+;
+Docker is needed for database tasks. On Windows use a POSIX shell with Make,
+or the native PowerShell commands in [backend setup](backend/README.md).
+
+```sh
+make dev-setup       # Install dependencies, start DB, migrate, import workbooks
+make dev-api         # API with reload; keep running
+make dev-ui          # Frontend; run in a second terminal
+make check           # Lint, DB-free tests, frontend build, registry guards
+make test-eval       # Evaluation contracts and tests only; no DB
+make evaluate        # Generate a 2024 readiness report
+```
+
+`make install` installs dependencies without starting Docker. `make test` runs
+backend and frontend tests; `make test-postgres` requires an explicitly set
+`TEST_DATABASE_URL` pointing to a dedicated empty `*_test` database (creation
+instructions in the backend setup). `DATABASE_URL` defaults to local Compose;
+override it through the environment when needed. `make db-stop` preserves data.
+
+Evaluation currently reports **NOT EVALUATED**; absent-app tests skip normally.
+`make test-eval-strict` and `make evaluate-strict` require the calculation app
+and fail until their acceptance conditions are met. Reports use new immutable
+directories under `artifacts/inventory-evaluation/`. See the
+[evaluation protocol](docs/INVENTORY_EVALUATION.md). Forecast research retains its
+separate [Python 3.10 environment](experiments/README.md).
+
 Start with the [project documentation](docs/README.md), then read the
 [project context](docs/PROJECT_CONTEXT.md) and [data guide](docs/DATA_GUIDE.md).
 The original brief and all 12 extracted supplier workbooks are included in `docs/`.

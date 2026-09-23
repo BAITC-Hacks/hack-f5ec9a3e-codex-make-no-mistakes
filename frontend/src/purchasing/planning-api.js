@@ -1,8 +1,9 @@
 import {buildDemoRow,products,validateOptions,daysBetween} from './replenishment-demo.js';
+import {apiError} from './api.js';
 
 export function planningPayload(rows,options){
   return {
-    planning_date:options.planningDate,review_days:Number(options.horizon)-rows[0].lead,
+    planning_date:options.planningDate,forecast_end:options.forecastEnd,forecast_method:'auto',review_days:7,
     exclude_bulk:options.excludeBulk,compensate_stockouts:options.recoverStockouts,
     rows:rows.map(row=>({
       row_id:row.sku,sku:row.sku,name:row.name,supplier:row.supplier,category:row.category,
@@ -47,7 +48,7 @@ export async function calculatePlan(options,edits={},signal,items=products){
     const group=rows.filter(r=>r.lead===lead);
     const response=await fetch('/api/v1/planning/calculate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(planningPayload(group,options)),signal});
     const payload=await response.json().catch(()=>null);
-    if(!response.ok)throw new Error(typeof payload?.detail==='string'?payload.detail:Array.isArray(payload?.detail)?payload.detail.map(e=>e.msg).join(';'):`API расчёта недоступен (${response.status}). Проверьте backend.`);
+    if(!response.ok)throw new Error(apiError(payload?.detail,response.status));
     if(!Array.isArray(payload?.rows))throw new Error('API вернул некорректный результат расчёта.');
     return group.map(row=>{const result=payload.rows.find(r=>r.row_id===row.sku);if(!result)throw new Error(`В ответе API нет SKU ${row.sku}`);return mapResult(row,result,options);});
   }));

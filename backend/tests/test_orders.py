@@ -1,5 +1,7 @@
 """Order API validation and conservative database failure handling."""
 
+from datetime import date, timedelta
+
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -49,6 +51,26 @@ def test_preview_requires_no_database_and_preserves_decimal_strings(offline_clie
     assert response.json()["rows"][0]["recommended_quantity"] == "18"
     cases = offline_client.get("/api/v1/planning/demo-cases")
     assert cases.status_code == 200 and cases.json()
+
+
+def test_auto_forecast_flows_through_custom_period_to_purchase_quantity(offline_client):
+    payload = planning_input()
+    payload.update(forecast_method="auto", forecast_end="2026-11-08")
+    row = payload["rows"][0]
+    row.pop("daily_demand")
+    row.update(history_start="2026-07-29", history_end="2026-09-22")
+    row["sales"] = [
+        {"day": str(date(2026, 7, 29) + timedelta(days=index)), "quantity": "10", "document": str(index)}
+        for index in range(56)
+    ]
+    response = offline_client.post("/api/v1/planning/calculate", json=payload)
+    assert response.status_code == 200, response.text
+    result = response.json()["rows"][0]
+    assert result["forecast_method"] == "weekly_ewma"
+    assert result["coverage_end"] == "2026-11-09"
+    assert result["forecast_demand"] == "470"
+    assert result["recommended_quantity"] == "470"
+    assert len(result["daily_balances"]) == 47
 
 
 def test_database_errors_do_not_leak_credentials(offline_client):

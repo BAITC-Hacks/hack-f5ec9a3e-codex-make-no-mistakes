@@ -96,6 +96,10 @@ def test_csv_upload_persists_domains_exports_and_replays_atomically(import_engin
     assert planning_row["incoming"][0]["quantity"] == "5.000000000000"
     exported = client.get(f"/api/v1/sources/export/monthly-sales.csv?workbook_id={workbook_id}")
     assert exported.status_code == 200 and "00123" in exported.text and "12.500000000000" in exported.text
+    filtered = client.get(f"/api/v1/sources/export/monthly-sales.csv?workbook_id={workbook_id}&q=absent-sku")
+    assert filtered.status_code == 200 and len(filtered.text.splitlines()) == 1
+    invalid_filter = client.get(f"/api/v1/sources/export/findings.csv?supplier_id={workbook_id}")
+    assert invalid_filter.status_code == 422
     assert client.post(url, content=content).json()["results"][0]["status"] == "skipped"
     bad = content.replace(b",3,", b",invalid,")
     assert upload_sources(import_engine, bad, "IEK-invalid.csv", None)["results"][0]["status"] == "failed"

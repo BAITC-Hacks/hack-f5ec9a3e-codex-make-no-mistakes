@@ -7,5 +7,5 @@ test('fixtures retain dated evidence and API horizon constraints',()=>{
  expect(row.deliveries.reduce((sum,d)=>sum+d.quantity,0)).toBe(row.incomingTotal);
  expect(row.quantity).toBeUndefined();
  expect(validateOptions({...defaults,horizon:47,forecastEnd:addDays(defaults.planningDate,46)})).toBe('');
- expect(validateOptions({...defaults,horizon:2,forecastEnd:addDays(defaults.planningDate,1)})).toContain('API');
+ expect(validateOptions({...defaults,horizon:2,forecastEnd:addDays(defaults.planningDate,1)})).toBe('');
 });

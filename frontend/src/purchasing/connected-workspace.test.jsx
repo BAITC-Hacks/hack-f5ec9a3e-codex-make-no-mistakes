@@ -33,6 +33,13 @@ test('server revisions, decimal overrides, approval conflict, export and reload 
   await waitFor(()=>expect(screen.getByLabelText('Синтетический пример').disabled).toBe(false));
   fireEvent.change(screen.getByLabelText('Синтетический пример'),{target:{value:'baseline'}});
   await screen.findByLabelText('Заказать REAL-001');
+  expect(requests.find(r=>r.url.endsWith('/planning/calculate')).body.forecast_method).toBe('auto');
+  fireEvent.click(screen.getByText('Период прогноза'));
+  fireEvent.change(screen.getByLabelText('Прогноз по дату включительно'),{target:{value:'2026-11-08'}});
+  expect(screen.getByLabelText('Количество дней').value).toBe('47');
+  fireEvent.click(screen.getByRole('button',{name:'Рассчитать потребность'}));
+  await waitFor(()=>expect(requests.some(r=>r.url.endsWith('/planning/calculate')&&r.body.forecast_end==='2026-11-08')).toBe(true));
+  await waitFor(()=>expect(screen.getByRole('button',{name:'Рассчитать потребность'}).disabled).toBe(false));
   fireEvent.change(screen.getByLabelText('Заказать REAL-001'),{target:{value:'24.125000000001'}});
   expect(screen.getByRole('button',{name:'Проверить и утвердить'}).disabled).toBe(true);
   fireEvent.change(screen.getByLabelText('Причина корректировки REAL-001'),{target:{value:'Reviewed exact quantity'}});

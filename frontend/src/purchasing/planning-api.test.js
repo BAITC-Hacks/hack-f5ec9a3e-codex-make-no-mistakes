@@ -5,9 +5,9 @@ afterEach(()=>vi.unstubAllGlobals());
 test('existing contract gets raw dated evidence, no browser daily forecast, and exact custom coverage',async()=>{
   const options={...defaults,horizon:47,forecastEnd:addDays(defaults.planningDate,46)};
   const row=buildDemoRow(products[0],options),body=planningPayload([row],options);
-  expect(body.forecast_end).toBeUndefined();
-  expect(body.forecast_method).toBeUndefined();
-  expect(body.review_days).toBe(40);
+  expect(body.forecast_end).toBe('2026-11-08');
+  expect(body.forecast_method).toBe('auto');
+  expect(body.review_days).toBe(7);
   expect(body.rows[0].daily_demand).toBeUndefined();
   expect(body.rows[0].sales[0]).toHaveProperty('customer_id');
   expect(body.rows[0].stockout_days.length).toBeGreaterThan(0);

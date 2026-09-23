@@ -101,11 +101,8 @@ def describe_tables(metadata):
     return result
 
 
-def read_table(connection, metadata, key, *, page, page_size, sort, direction, q, filters):
-    joined, columns = projection(metadata, key)
-    sort = sort or "id"
-    if sort not in columns:
-        raise ValueError(f"Unsupported sort column: {sort}")
+def filter_conditions(columns, key, filters, q):
+    """Apply the same filters to paginated browsing and CSV exports."""
     conditions = []
     for name, value in filters.items():
         if value is None:
@@ -124,6 +121,15 @@ def read_table(connection, metadata, key, *, page, page_size, sort, direction, q
         needle = q.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
         conditions.append(or_(*(cast(col, String).ilike(f"%{needle}%", escape="\\")
                                 for col in searchable)))
+    return conditions
+
+
+def read_table(connection, metadata, key, *, page, page_size, sort, direction, q, filters):
+    joined, columns = projection(metadata, key)
+    sort = sort or "id"
+    if sort not in columns:
+        raise ValueError(f"Unsupported sort column: {sort}")
+    conditions = filter_conditions(columns, key, filters, q)
     order = columns[sort].desc() if direction == "desc" else columns[sort].asc()
     statement = select(*(col.label(name) for name, col in columns.items())).select_from(joined)
     statement = statement.where(*conditions).order_by(order.nulls_last(), columns["id"].asc())

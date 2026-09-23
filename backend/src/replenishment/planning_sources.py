@@ -219,5 +219,7 @@ def prepare_source_input(connection, metadata, request):
             "history_start": history_start if sales else None, "history_end": history_end if sales else None,
             "sales": sales, "incoming": incoming, "basis": "observed", "notes": notes, "sources": sources,
         })
-    scenario = PlanningRequest.model_validate({"planning_date": request.planning_date, "rows": rows})
+    scenario = PlanningRequest.model_validate({
+        "planning_date": request.planning_date, "forecast_method": "auto", "rows": rows,
+    })
     return {"input": scenario.model_dump(mode="json"), "usage": usage}

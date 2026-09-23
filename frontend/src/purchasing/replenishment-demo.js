@@ -21,8 +21,6 @@ export function validateOptions(options){
   if(options.forecastEnd<options.planningDate)return 'Конец прогноза должен быть не раньше даты расчёта.';
   if(!Number.isInteger(Number(options.horizon))||Number(options.horizon)<1||Number(options.horizon)>730)return 'Горизонт прогноза: от 1 до 730 целых дней.';
   if(daysBetween(options.planningDate,options.forecastEnd)+1!==Number(options.horizon))return 'Проверьте даты и длительность прогноза.';
-  const selected=products.filter(p=>options.category==='Все категории'||p.category===options.category);
-  if(selected.some(p=>Number(options.horizon)-p.lead<1||Number(options.horizon)-p.lead>365))return 'Период должен включать срок поставки и от 1 до 365 дней покрытия после неё (ограничение API).';
   if(options.historyStart>options.historyEnd)return 'Начало истории должно быть не позже её окончания.';
   if(options.historyStart<historyBounds.start||options.historyEnd>historyBounds.end)return 'Демо-история доступна с 23.09.2025 по 22.09.2026.';
   if(options.historyEnd>=options.planningDate)return 'История продаж должна заканчиваться раньше даты расчёта.';

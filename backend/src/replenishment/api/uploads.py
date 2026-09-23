@@ -14,7 +14,7 @@ from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 from starlette.concurrency import run_in_threadpool
 
-from replenishment.browsing.tables import TABLES, json_value, projection
+from replenishment.browsing.tables import TABLES, filter_conditions, json_value, projection
 from replenishment.cli.import_excel import import_workbook
 from replenishment.intake.adapters.csv import CSV_COLUMNS
 
@@ -119,13 +119,18 @@ def create_uploads_router(engine, metadata):
                         headers={"Content-Disposition": 'attachment; filename="import-template.csv"'})
 
     @router.get("/export/{table}.csv")
-    def export(table: str, workbook_id: UUID | None = None):
+    def export(table: str, workbook_id: UUID | None = None, supplier_id: UUID | None = None,
+               q: str | None = Query(default=None, max_length=200)):
         if table not in TABLES or table in {"catalog", "suppliers", "warehouses", "workbooks"}:
             raise HTTPException(422, "Choose a source observation table")
         joined, columns = projection(metadata, table)
         statement = select(*(c.label(name) for name, c in columns.items())).select_from(joined)
-        if workbook_id:
-            statement = statement.where(columns["workbook_id"] == workbook_id)
+        try:
+            conditions = filter_conditions(columns, table,
+                                           {"workbook_id": workbook_id, "supplier_id": supplier_id}, q)
+        except ValueError as error:
+            raise HTTPException(422, str(error)) from error
+        statement = statement.where(*conditions).order_by(columns["id"])
 
         def rows():
             output = StringIO()

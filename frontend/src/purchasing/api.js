@@ -1,3 +1,15 @@
+export function apiError(detail,status,statusText='') {
+  if(Array.isArray(detail)) {
+    const extra=detail.filter(item=>item.type==='extra_forbidden');
+    if(extra.length) {
+      const fields=[...new Set(extra.map(item=>(item.loc||[]).filter(part=>part!=='body').join('.')))];
+      return `Сервер не поддерживает параметры расчёта: ${fields.join(', ')}. Версия сервера устарела — перезапустите backend и повторите расчёт.`;
+    }
+    return [...new Set(detail.map(item=>`${(item.loc||[]).filter(part=>part!=='body').join('.')}: ${item.msg}`))].join('; ');
+  }
+  return typeof detail==='string'?detail:`Не удалось выполнить запрос (${status}${statusText?` · ${statusText}`:''}).`;
+}
+
 export async function api(path, body, method) {
   const response = await fetch(`/api/v1${path}`, {
     method: method || (body === undefined ? 'GET' : 'POST'),
@@ -6,8 +18,7 @@ export async function api(path, body, method) {
   if (!response.ok) {
     let detail;
     try { detail = (await response.json()).detail; } catch { /* Retain the HTTP status. */ }
-    const message = Array.isArray(detail) ? detail.map(item => `${(item.loc||[]).join('.')}: ${item.msg}`).join('; ') : detail;
-    throw new Error(`${response.status}: ${message||response.statusText}`);
+    throw new Error(`${response.status}: ${apiError(detail,response.status,response.statusText)}`);
   }
   return response.json();
 }

@@ -1,0 +1,110 @@
+[
+  {
+    "supplier": "IEK",
+    "unit": "м",
+    "model": "mean28",
+    "n": 857,
+    "wape": 76.42940667284242,
+    "bias": 2.370575103646221,
+    "underforecast": 37.02941578459809
+  },
+  {
+    "supplier": "IEK",
+    "unit": "м",
+    "model": "selected_2025",
+    "n": 857,
+    "wape": 64.97655737354712,
+    "bias": -22.721542621878648,
+    "underforecast": 43.84904999771291
+  },
+  {
+    "supplier": "IEK",
+    "unit": "м",
+    "model": "weekly_ewma",
+    "n": 857,
+    "wape": 70.07040087030697,
+    "bias": 0.4845062139506376,
+    "underforecast": 34.79294732817815
+  },
+  {
+    "supplier": "IEK",
+    "unit": "упак",
+    "model": "mean28",
+    "n": 547,
+    "wape": 53.72317849563782,
+    "bias": 2.31077576043386,
+    "underforecast": 25.70620136760198
+  },
+  {
+    "supplier": "IEK",
+    "unit": "упак",
+    "model": "selected_2025",
+    "n": 547,
+    "wape": 42.56674054791298,
+    "bias": -12.258386938834152,
+    "underforecast": 27.41256374337356
+  },
+  {
+    "supplier": "IEK",
+    "unit": "упак",
+    "model": "weekly_ewma",
+    "n": 547,
+    "wape": 51.300545604368075,
+    "bias": 3.398139220131639,
+    "underforecast": 23.951203192118207
+  },
+  {
+    "supplier": "IEK",
+    "unit": "шт",
+    "model": "mean28",
+    "n": 14288,
+    "wape": 46.65249407609247,
+    "bias": 1.1878559041516885,
+    "underforecast": 22.73231908597039
+  },
+  {
+    "supplier": "IEK",
+    "unit": "шт",
+    "model": "selected_2025",
+    "n": 14288,
+    "wape": 40.24535324694369,
+    "bias": -10.435776529467516,
+    "underforecast": 25.340564888205456
+  },
+  {
+    "supplier": "IEK",
+    "unit": "шт",
+    "model": "weekly_ewma",
+    "n": 14288,
+    "wape": 43.11776446577657,
+    "bias": 0.5940328791877532,
+    "underforecast": 21.261865793294298
+  },
+  {
+    "supplier": "Systeme electric",
+    "unit": "шт",
+    "model": "mean28",
+    "n": 4406,
+    "wape": 42.645523584983096,
+    "bias": -4.3837095753030395,
+    "underforecast": 23.514616580143066
+  },
+  {
+    "supplier": "Systeme electric",
+    "unit": "шт",
+    "model": "selected_2025",
+    "n": 4406,
+    "wape": 42.760023058356175,
+    "bias": -25.285339428098734,
+    "underforecast": 34.02268124322749
+  },
+  {
+    "supplier": "Systeme electric",
+    "unit": "шт",
+    "model": "weekly_ewma",
+    "n": 4406,
+    "wape": 43.09376212144917,
+    "bias": 1.2740522707588402,
+    "underforecast": 20.90985492534516
+  }
+]

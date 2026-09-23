@@ -1,0 +1,38 @@
+[
+  {
+    "path": "C:\\Users\\User\\Desktop\\hackathon-replenishment\\backend\\src\\replenishment\\calculation\\contracts.py",
+    "sha256": "a568904cc7f0c519da5a49135f1418fefe2a296f32868dccc17261781dc4b5f0"
+  },
+  {
+    "path": "C:\\Users\\User\\Desktop\\hackathon-replenishment\\backend\\src\\replenishment\\calculation\\engine.py",
+    "sha256": "39be361b40b655cdfc37c52fdd5d90d5bc65ac2d53d48c7c8d2b244991dc71b9"
+  },
+  {
+    "path": "C:\\Users\\User\\Desktop\\hackathon-replenishment\\backend\\src\\replenishment\\calculation\\reading.py",
+    "sha256": "54cd6105d04a48883a087aaee978c45272b556ed5f254ac3e812f0f9c99cf3ff"
+  },
+  {
+    "path": "C:\\Users\\User\\Desktop\\hackathon-replenishment\\backend\\src\\replenishment\\calculation\\__init__.py",
+    "sha256": "646b50570642c06b41a5553740c8c8a7e1620a2c9857ad35d258e96c1abf3fc4"
+  },
+  {
+    "path": "C:\\Users\\User\\Desktop\\hackathon-replenishment\\frontend\\src\\Calculation.tsx",
+    "sha256": "7347d34f48fa116f7f65c837bf059cadbbed321f21a7a435d62915c2de1b7a09"
+  },
+  {
+    "path": "C:\\Users\\User\\Desktop\\hackathon-replenishment\\backend\\src\\replenishment\\api\\app.py",
+    "sha256": "07d2a3a72f3b548d02dceb73204e60cb9929cc5dc5ae62156aeb01947bcef0b4"
+  },
+  {
+    "path": "C:\\Users\\User\\Desktop\\hackathon\\backend\\src\\replenishment\\evaluation\\runner.py",
+    "sha256": "6502b7d2262e6a08f80bf3f8ea224e866649443bba1fe9d88dda9bde2846a3c9"
+  },
+  {
+    "path": "C:\\Users\\User\\Desktop\\hackathon\\backend\\src\\replenishment\\planning\\calculator.py",
+    "sha256": "cdb6bb1ec7df78caa4a63ee6a2e8b01d4f3ac91ee9c1d45369ca2ce32e4fb60f"
+  },
+  {
+    "path": "C:\\Users\\User\\Desktop\\hackathon\\experiments\\comparison.csv",
+    "sha256": "0adf84aa4358c8331f6d7b5c000a070e1fd49a8f586bc5ae18420c2e3696e83f"
+  }
+]

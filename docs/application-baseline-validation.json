@@ -1,0 +1,79 @@
+{
+  "verified_metric_groups": 528,
+  "artifact_hashes_verified": 5,
+  "source": "independent streaming forecast-error sums from predictions.csv.gz",
+  "omission_counts": [
+    {
+      "supplier": "IEK",
+      "unit": "м",
+      "cohort": "legacy_mature",
+      "n": 857,
+      "native_omitted": 203,
+      "actual_on_omitted": 1222.0,
+      "cap_binds": 307
+    },
+    {
+      "supplier": "IEK",
+      "unit": "м",
+      "cohort": "recent_history",
+      "n": 15,
+      "native_omitted": 3,
+      "actual_on_omitted": 1.0,
+      "cap_binds": 0
+    },
+    {
+      "supplier": "IEK",
+      "unit": "упак",
+      "cohort": "legacy_mature",
+      "n": 547,
+      "native_omitted": 159,
+      "actual_on_omitted": 62.0,
+      "cap_binds": 123
+    },
+    {
+      "supplier": "IEK",
+      "unit": "упак",
+      "cohort": "recent_history",
+      "n": 14,
+      "native_omitted": 3,
+      "actual_on_omitted": 0.0,
+      "cap_binds": 0
+    },
+    {
+      "supplier": "IEK",
+      "unit": "шт",
+      "cohort": "legacy_mature",
+      "n": 14288,
+      "native_omitted": 5489,
+      "actual_on_omitted": 5831.0,
+      "cap_binds": 3080
+    },
+    {
+      "supplier": "IEK",
+      "unit": "шт",
+      "cohort": "recent_history",
+      "n": 599,
+      "native_omitted": 163,
+      "actual_on_omitted": 61.0,
+      "cap_binds": 15
+    },
+    {
+      "supplier": "Systeme electric",
+      "unit": "шт",
+      "cohort": "legacy_mature",
+      "n": 4406,
+      "native_omitted": 1387,
+      "actual_on_omitted": 3267.0,
+      "cap_binds": 1273
+    },
+    {
+      "supplier": "Systeme electric",
+      "unit": "шт",
+      "cohort": "recent_history",
+      "n": 59,
+      "native_omitted": 18,
+      "actual_on_omitted": 1.0,
+      "cap_binds": 2
+    }
+  ]
+}

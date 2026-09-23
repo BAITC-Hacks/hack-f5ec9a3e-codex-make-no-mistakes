@@ -12,7 +12,7 @@ See [delivery planning contract](DELIVERY_PLANNING.md).
 
 ## Purchasing backend extension / Расширение backend закупок
 
-Migration `0002` adds `orders_scenarios`, immutable `orders_revisions`, and immutable
+Migration `0004` adds `orders_scenarios`, immutable `orders_revisions`, and immutable
 `orders_approvals` to the 17 source tables described below. `planning` owns import-safe validated
 scenario contracts, demand adjustments and exact purchasing arithmetic; it composes the public
 `demand.cleaning` policy without changing source observations. `orders` owns only persistence and
@@ -25,7 +25,7 @@ Inputs/results and source references are pinned per revision; stale writes/appro
 All calculable v0 rows are scenario-only while business policies remain unconfirmed. The main manager interface
 now calls these APIs. See [backend methodology](PLANNING.md) and [contract](../docs/PLANNING_API.md).
 
-Миграция `0002` добавляет три таблицы сценариев к 17 таблицам источников. Чистый `planning` считает,
+Миграция `0004` добавляет три таблицы сценариев к 17 таблицам источников. Чистый `planning` считает,
 `orders` хранит версии и утверждения, API связывает их. Источники неизменяемы; основной интерфейс подключён.
 Ниже сохранено описание исходного слоя v1; фразы о будущем расчёте относятся к состоянию до этого расширения.
 

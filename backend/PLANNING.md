@@ -29,7 +29,7 @@ uv run alembic check
 uv run uvicorn replenishment.api.app:create_app --factory --reload --host 127.0.0.1 --port 8000
 ```
 
-Миграция `0002` добавляет три таблицы сценариев и не изменяет исходные данные. Для подготовки сценария из Excel сначала выполните [импорт](IMPORTING.md). Для синтетических примеров импорт не нужен. Интерактивный контракт доступен по `http://127.0.0.1:8000/docs`.
+Миграция `0004` добавляет три таблицы сценариев и не изменяет исходные данные. Для подготовки сценария из Excel сначала выполните [импорт](IMPORTING.md). Для синтетических примеров импорт не нужен. Интерактивный контракт доступен по `http://127.0.0.1:8000/docs`.
 
 1. `GET /api/v1/planning/demo-cases`: возьмите `input` примера.
 2. `POST /api/v1/planning/calculate`: передайте этот `input`, получите расчёт без записи в БД.
@@ -66,7 +66,7 @@ The backend implements source preparation, explained calculation, saved revision
 
 Run the commands above from `backend`. The CLI requires no database and generates seven labelled synthetic cases. `baseline` orders 100, `more-transit` orders 70, and `early-shortage` orders zero while reporting a 30-unit early shortfall. The JSON mode includes validated inputs and results.
 
-Start the existing Compose PostgreSQL service, set DATABASE_URL, apply migration 0002, then launch Uvicorn. Migration 0002 adds three workflow tables without changing source records. Imported workbooks are needed only for source preparation; synthetic scenarios work without importing Excel. `/docs` exposes the interactive API. [PLANNING_API.md](../docs/PLANNING_API.md) specifies every field and endpoint.
+Start the existing Compose PostgreSQL service, set DATABASE_URL, apply migrations through 0004, then launch Uvicorn. Migration 0004 adds three workflow tables without changing source records. Imported workbooks are needed only for source preparation; synthetic scenarios work without importing Excel. `/docs` exposes the interactive API. [PLANNING_API.md](../docs/PLANNING_API.md) specifies every field and endpoint.
 
 Use preview → create → optional update/override → approve → export. Each update appends an immutable calculation revision and invalidates current approval; previous approvals remain in history. Stale operations receive 409. Scenario approval requires explicit acknowledgement; blocked rows cannot be overridden or approved. CSV contains both suggested and approved values, the reason, revision, basis and source references. Approval names are local-demo attribution, not authenticated identities.
 

@@ -159,3 +159,18 @@ ORDERING_TEST_DATABASE_URL=postgresql+psycopg://USER:PASSWORD@localhost:5432/rep
 CI creates this database independently of existing integration databases. The test covers seed replay,
 atomic errors, approval attribution, edit/approval concurrency, permanent locking, upgrade/downgrade,
 recreation and Alembic schema drift. Test cleanup drops only its isolated test schema.
+# Legacy scenario database after branch merge
+
+Fresh databases and databases from the forecast branch use `uv run alembic upgrade head`
+through revision `0004`. If your database instead has revision `0002` with `orders_*`
+tables and no `calculation_*` tables, run from `backend/` with `DATABASE_URL` configured:
+
+```sh
+uv run python -m replenishment.cli.reconcile_legacy_scenarios
+uv run alembic check
+```
+
+The repair validates the exact legacy table set, adds only the missing calculation and
+employee-order tables, validates schema parity, and records revision `0004` in one
+transaction. Existing sources and scenarios remain intact. It rejects other schemas.
+

@@ -2,6 +2,8 @@
 
 Inventory from read-only inspection on 2026-09-23. The original workbook files are unchanged. This is a structural overview, not a full data-quality audit.
 
+The subsequent full [data audit (Russian)](DATA_AUDIT.md) covers all 12 workbooks and 14 sheets, with actual row counts, join coverage, inconsistencies, and a suggested demo scenario. Its findings supersede the preliminary availability questions below.
+
 ## Workbook inventory
 
 Paths are relative to `docs/data/`. Dimensions are worksheet-reported rows × columns, including headers and possible blank/formatted cells.
@@ -31,11 +33,11 @@ See [workbook-inventory.json](sources/workbook-inventory.json) for exact source 
 - **Monthly reports:** columns run from January 2024 through September 2026. Some reports also contain `Итого` totals and multiple header rows. Unpivot month columns, keeping totals out of the time series. Confirm how blanks and the partial September period should be treated.
 - **Stock:** IEK's first three header rows label monthly quantities as `нач. остаток` (opening balance). Monthly snapshots cannot establish the exact duration of stockouts or today's available stock.
 - **MOQ:** IEK labels its quantity `Мин. разр. к отгр.`; Systeme Electric uses `Кратность`. Confirm the distinction between shipment minimum and order multiple before rounding recommendations.
-- **Transit:** IEK has SKU/article/name columns followed by six shipment columns whose headers include anticipated arrival dates. Some product names explicitly distinguish purchasing cable in coils from stocking it in meters. Systeme Electric's transit workbook is a wider report with a `СКЛАДЫ` section and an additional worksheet; inspect its full layout before designing an importer.
+- **Transit:** IEK has SKU/article/name columns followed by six shipment columns whose headers include anticipated arrival dates. Some product names explicitly distinguish purchasing cable in coils from stocking it in meters. Systeme Electric's `TDSheet` contains 497 SKU rows, category codes (E), calculated growth/seasonality changes (AR:AS), stock/reserved/free stock (AX:AZ), and transit (BC). Warehouse scope needs confirmation: AT:AW do not generally sum to AX. The apparent 12-month sum in AP actually spans 13 months in the inspected formula.
 - **Seasonality:** separate worksheets have year/month summary layouts rather than transaction headers. Confirm their units and calculation definitions before applying any factors to SKU quantities. Supplementary sheets also exist inside two Systeme Electric workbooks; do not silently ignore them or assume they are duplicates.
 
 ## Inputs still requiring confirmation
 
-The files clearly provide sales movements, monthly sales and stock reports, MOQ/multiple information, seasonality reports, and transit reports. Initial inspection has not established a dedicated supplier lead-time directory, anonymized customer mapping, category directory, growth forecast, exact stockout intervals, or 1C bill of materials. A current warehouse-level available-stock snapshot also remains to be identified.
+The files provide sales movements, monthly sales and stock reports, MOQ/multiple information, seasonality reports, and transit reports. Full inspection found category codes, historical growth calculations, and stock/reserved/free-stock fields for Systeme Electric in its transit workbook. Their business definitions, snapshot date, and warehouse scope require confirmation; there is no equivalent current snapshot identified for IEK. A dedicated lead-time directory, anonymized customer mapping, exact stockout intervals, independent growth forecast, and 1C bill of materials were not found in the 14 sheets.
 
-These are open questions about source coverage, not claims that every possible field or worksheet has been exhaustively inspected. Resolve them before treating the supplied data as sufficient for every requirement in the brief.
+See the full audit for measured coverage and limitations. Resolve the remaining business-definition questions before treating the supplied data as sufficient for every requirement in the brief.

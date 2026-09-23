@@ -6,6 +6,8 @@ This folder holds the supplied hackathon materials and the team's working projec
 | --- | --- |
 | [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) | Brief summary, required behavior, acceptance criteria, open questions |
 | [DATA_GUIDE.md](DATA_GUIDE.md) | Workbook inventory, observed structure, import caveats |
+| [DATA_AUDIT.md](DATA_AUDIT.md) | Аудит 12 книг и 14 листов: качество данных, покрытие, ограничения / Full data audit (Russian) |
+| [DELIVERY_PLAN.md](DELIVERY_PLAN.md) | Согласованный план сдачи RU/EN: стек, F5, Docker, сценарии и демо / Approved delivery plan: stack, F5, Docker, scenarios and demo |
 | [sources/](sources/) | Original PDF and Markdown brief, provenance manifest, workbook metadata |
 | [data/IEK/](data/IEK/) | Six workbooks extracted from `IEK.zip` |
 | [data/Systeme electric/](data/Systeme%20electric/) | Six workbooks extracted from `Systeme electric.zip` |

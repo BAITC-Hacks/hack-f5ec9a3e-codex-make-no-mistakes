@@ -3,6 +3,24 @@ Hackathon team repository for Codex, make no mistakes
 
 HackAlem AI case: supplier order recommendations for Elektrokomplekt LLP (ekt.kz).
 
+## Deployment
+
+Requires GNU Make, uv, Node.js 22+ and PostgreSQL 17. On the server, from the
+repository root, set a connection URL for an empty application database:
+
+```sh
+export DATABASE_URL='postgresql+psycopg://USER:PASSWORD@HOST:5432/replenishment'
+make install migrate import-data calculate build
+cd backend
+uv run --frozen uvicorn replenishment.api.app:create_app --factory --host 127.0.0.1 --port 8000
+```
+
+Keep the API running with a service manager (e.g. systemd). Configure an HTTPS
+web server to serve `frontend/dist` and proxy `/api/*` to `127.0.0.1:8000`,
+preserving the path. Use deployment credentials; the bundled Compose starts
+only a development database. For a local demo, use `make dev-setup`, then
+`make dev-api` and `make dev-ui` in separate terminals.
+
 ## Development tasks
 
 Run `make help` from the repository root. Requires GNU Make, uv, Node.js 22+;

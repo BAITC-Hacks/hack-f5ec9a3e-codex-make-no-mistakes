@@ -138,3 +138,26 @@ source deduplication, reservation reconciliation, receipt timing and exact CSV/A
 Русский: сохранено 3 017 рядов, 9 051 результатов прогноза, 371 оценочный черновик Systeme.
 Остальные 2 646 строк блокируются явно; повторный запрос использует тот же завершённый запуск.
 Проверки не доказывают экономию запасов или восстановление потерянного спроса.
+
+## Historical leftovers evidence check
+
+Run `backend/.venv/bin/python scripts/evaluate.py --output /tmp/evaluation.json`.
+The report adds `leftovers_comparison`; CLI prints the same status, counts and missing-input
+summary. Default inputs reuse the pinned sales and stock workbook hashes and normalizer.
+A custom `--batch` has no historical stock evidence; it is excluded rather than silently
+joined to unrelated local workbooks.
+
+Periods are January–April and May–August 2026 (current month plus three).
+IEK opening balances align January/May and May/September boundaries. Systeme opening
+and closing interpretations are separate exploratory coverage checks, never verified results.
+All matches require supplier and exact SKU; missing/conflicting cells remain unknown, explicit
+zero remains zero. Unknown units and unverified warehouse/available-stock scope block comparison.
+
+**Leftover reduction: not measured.** Current inputs do not establish historical purchasing
+policy, orders/open deliveries (including verified absence), or supported arrival timing.
+This change checks coverage only; it does not reconstruct purchases from stock deltas or replay
+deliveries. The JSON records the future measurement contract: compare company ending stock
+with starting available stock plus supported recommended arrivals minus the same recorded sales,
+per product and compatible unit. Report unmet recorded sales alongside reduction; any unmet sales
+forbids an improvement claim. A zero company ending balance has no percentage denominator.
+Monthly balances cannot establish exact stockout duration or lost demand.

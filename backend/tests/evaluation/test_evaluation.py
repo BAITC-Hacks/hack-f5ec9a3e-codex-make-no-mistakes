@@ -1,212 +1,259 @@
-import csv
+"""Hand-calculated checks against the production monthly evaluator."""
+
 import hashlib
 import json
-import re
+import subprocess
+import sys
 from copy import deepcopy
 from decimal import Decimal
 
 import pytest
+from replenishment.calculation.evaluation import _metric, evaluate, evaluate_origins, promotion_gate
 
-from evaluation.cases import ROOT, assemble, read_cases
-from evaluation.checks import check, example, response
-from evaluation.contracts import load_app, quantity, validate_requests, validate_results
-from evaluation.metrics import replay
-from evaluation.report import scorecard, summarize, write_artifacts
-from evaluation.runner import execute
+from evaluation.cases import ROOT, read_batch
+from evaluation.test_app import batch
 
 
-def test_tiny_checks():
-    check()
+def row(supplier="a", series="one", horizon=1, actual=10, prediction=12, scale=10, unit=None):
+    return {
+        "supplier": supplier,
+        "series_id": series,
+        "horizon": horizon,
+        "unit": unit,
+        "actual": actual,
+        "predictions": {"recent_level": prediction},
+        "training_scale": Decimal(scale),
+    }
 
 
-def records():
-    source = example()["history"][0]["sources"][0]
-    return [
+def test_normalized_error_balances_observations_horizons_products_and_suppliers():
+    # a/one: horizon means 1 and 3 => 2; a/two: 4 => supplier a: 3.
+    # Supplier b: 1. Equal supplier weighting => (3 + 1) / 2 = 2.
+    rows = [
+        row(prediction=20),
+        row(prediction=20),
+        row(horizon=2, prediction=40),
+        row(series="two", prediction=50),
+        row(supplier="b", prediction=20),
+    ]
+    result = _metric(rows, "recent_level")
+    assert result["primary_error"] == 2
+    assert result["supplier_error"] == {"a": 3, "b": 1}
+    assert result["supplier_horizon_error"] == {"a:1": 2.5, "a:2": 3, "b:1": 1}
+
+
+def test_bias_cancels_within_supplier_but_not_between_suppliers():
+    rows = [row(actual=10, prediction=8), row(actual=20, prediction=24)]
+    result = _metric(rows, "recent_level")
+    assert result["primary_error"] == pytest.approx(0.3)
+    assert result["absolute_normalized_bias"] == pytest.approx(0.1)
+    assert result["underforecast"] == pytest.approx(0.1)
+    assert _metric([row(prediction=8), row(prediction=12)], "recent_level")["absolute_normalized_bias"] == 0
+    split = _metric([row(prediction=8), row(supplier="b", prediction=12)], "recent_level")
+    assert split["absolute_normalized_bias"] == pytest.approx(0.2)
+    for prediction, under in [(8, 0.2), (12, 0)]:
+        result = _metric([row(prediction=prediction)], "recent_level")
+        assert result["absolute_normalized_bias"] == pytest.approx(0.2)
+        assert result["underforecast"] == pytest.approx(under)
+    scaled = _metric([row(actual=100, prediction=80, scale=100)], "recent_level")
+    assert scaled["underforecast"] == pytest.approx(0.2)
+
+
+def test_zero_sales_valid_and_zero_scale_explicitly_excluded():
+    result = _metric(
+        [row(actual=0, prediction=4), row(series="zero", actual=0, prediction=4, scale=0)], "recent_level"
+    )
+    assert result["evaluated"] == 2 and result["coverage"] == 1
+    assert result["normalized_evaluated"] == 1 and result["zero_scale"] == 1
+    assert result["zero_scale_series"] == ["a:zero"]
+    assert result["primary_error"] == result["absolute_normalized_bias"] == 0.4
+    assert result["underforecast"] == 0
+    zero = _metric([row(actual=0, prediction=0, scale=0, unit="pcs")], "recent_level")
+    assert zero["primary_error"] is zero["absolute_normalized_bias"] is zero["underforecast"] is None
+    assert zero["wape"] is None
+
+
+def test_wape_only_averages_known_supplier_unit_groups():
+    rows = [
+        row(actual=10, prediction=8, unit="pcs"),
+        row(actual=20, prediction=24, unit="pcs"),
+        row(actual=100, prediction=150, unit="kg"),
+        row(supplier="b", actual=10, prediction=20, unit="pcs"),
+        row(actual=100000, prediction=0),
+    ]
+    result = _metric(rows, "recent_level")
+    assert result["wape_by_unit"] == {"a:pcs": 0.2, "a:kg": 0.5, "b:pcs": 1}
+    assert result["wape"] == pytest.approx(17 / 30)
+    assert _metric([rows[-1]], "recent_level")["wape"] is None
+
+
+def test_coverage_missing_actuals_and_absent_training_history():
+    series = batch()["series"][0]
+    result = evaluate_origins([series], ["2025-02-01"])
+    assert len(result["rows"]) == 3
+    assert result["metrics"]["recent_level"]["coverage"] == 1
+    missing = deepcopy(series)
+    missing["history"] = [h for h in missing["history"] if h["month"] != "2025-04-01"]
+    result = evaluate_origins([missing], ["2025-02-01"])
+    assert len(result["rows"]) == 3
+    assert result["metrics"]["recent_level"]["evaluated"] == 2
+    assert result["metrics"]["recent_level"]["coverage"] == pytest.approx(2 / 3)
+    assert result["excluded"] == [
         {
-            "supplier": "example",
-            "sku": "0001_",
-            "unit": "шт",
-            "month": f"2024-{m:02}",
-            "quantity": q,
-            "source": source,
+            "series_id": series["series_id"],
+            "origin": "2025-02-01",
+            "target_month": "2025-04-01",
+            "reason": "missing_actual",
         }
-        for m, q in ((1, Decimal(10)), (2, Decimal(0)), (3, None), (4, Decimal(-2)), (5, Decimal(4)))
     ]
+    untrained = {**series, "series_id": "new", "history": series["history"][1:]}
+    combined = evaluate_origins([missing, untrained], ["2025-02-01"])
+    assert combined["rows"] == result["rows"]  # No-history series never enter the current target ledger.
+    assert combined["metrics"] == result["metrics"]
+    assert combined["excluded"][-1] == {
+        "series_id": "new",
+        "origin": "2025-02-01",
+        "reason": "no_training_history",
+    }
+    empty = evaluate_origins([untrained], ["2025-02-01"])
+    assert empty["rows"] == [] and empty["metrics"]["recent_level"]["coverage"] == 0
 
 
-def test_cases_preserve_zero_missing_conflict_and_no_target_leakage():
-    cases = assemble(records(), 2024)
-    assert len(cases) == 11
-    first = next(c for c in cases if c["target_month"] == "2024-02")
-    assert first["forecast_eligible"] and first["actual"] == "0"
-    assert len(first["request"]["history"]) == 1
-    validate_requests([first["request"]])
-    assert all(h["month"] < first["target_month"] for h in first["request"]["history"])
-    assert "actual" not in first["request"]
-    assert any("blank_observation" in r for c in cases for r in c["eligibility_reasons"])
-    assert any("negative_observation" in r for c in cases for r in c["eligibility_reasons"])
-    assert any("missing_observation" in r for c in cases for r in c["eligibility_reasons"])
-    changed = records() + [{**records()[1], "quantity": Decimal(20)}]
-    conflict = next(c for c in assemble(changed, 2024) if c["target_month"] == "2024-02")
-    assert "conflicting_observation:2024-02" in conflict["eligibility_reasons"]
-    unknown = [{**r, "unit": None} for r in records()]
-    assert all(not c["forecast_eligible"] for c in assemble(unknown, 2024))
-    decimal_zero = records()
-    decimal_zero[0]["quantity"] = Decimal("0E-12")
-    decimal_zero[1]["quantity"] = Decimal("0E-12")
-    zero_case = next(c for c in assemble(decimal_zero, 2024) if c["target_month"] == "2024-02")
-    validate_requests([zero_case["request"]])
-    assert quantity(zero_case["actual"]) == 0
+@pytest.mark.parametrize(
+    ("change", "reason"),
+    [
+        ({"primary_error": 97.01}, "development_improvement_below_3_percent"),
+        ({"absolute_normalized_bias": 0.21}, "absolute_normalized_bias_worse"),
+        ({"coverage": 0.99}, "coverage_reduced"),
+        ({"evaluated": 9}, "evaluated_coverage_reduced"),
+        ({"supplier_horizon_error": {}}, "supplier_horizon_coverage_reduced:a:1"),
+        ({"supplier_horizon_error": {"a:1": 105.01}}, "supplier_horizon_degradation:a:1"),
+        ({"primary_error": None}, "missing_or_zero_development_error"),
+        ({"absolute_normalized_bias": None}, "missing_bias"),
+    ],
+)
+def test_promotion_boundaries(change, reason):
+    champion = {
+        "primary_error": 100,
+        "absolute_normalized_bias": 0.2,
+        "coverage": 1,
+        "evaluated": 10,
+        "supplier_horizon_error": {"a:1": 100},
+    }
+    challenger = {**champion, "primary_error": 97, "supplier_horizon_error": {"a:1": 105}}
+    assert promotion_gate(champion, challenger) == {"promote": True, "improvement": 0.03, "reasons": []}
+    rejected = promotion_gate(champion, {**challenger, **change})
+    assert not rejected["promote"] and rejected["reasons"] == [reason]
+    assert not promotion_gate({**champion, "primary_error": 0}, challenger)["promote"]
 
 
-def test_receipts_carry_forward_and_missing_continuity_ends_sequence():
-    periods = [
-        {"month": "2024-02", "demand": "2"},
-        {"month": "2024-03", "demand": "8"},
-        {"month": "2024-04", "demand": None},
-        {"month": "2024-05", "demand": "99"},
+def test_future_actuals_change_scores_without_changing_forecasts_or_frozen_selection():
+    series = batch()["series"]
+    original = evaluate(series, ["2025-02-01"], ["2025-03-01"])
+    changed = deepcopy(series)
+    changed[0]["history"].append({"month": "2025-06-01", "quantity": "9999", "evidence": []})
+    later = evaluate(changed, ["2025-02-01"], ["2025-03-01"])
+    assert later["development"]["rows"] == original["development"]["rows"]
+    assert later["development"]["metrics"] == original["development"]["metrics"]
+    assert (
+        later["selection_frozen"] == original["selection_frozen"] == original["development"]["selected_model"]
+    )
+    assert later["retrospective"]["metrics"] != original["retrospective"]["metrics"]
+    assert [r["predictions"] for r in later["retrospective"]["rows"]] == [
+        r["predictions"] for r in original["retrospective"]["rows"]
     ]
-    receipts = [
-        {"id": "r", "month": "2024-03", "quantity": "4"},
-        {"id": "pending", "month": "2024-05", "quantity": "7"},
-    ]
-    result = replay("10", periods, receipts)
-    assert result["evaluated"] == 2 and result["skipped"] == 2
-    assert result["final_stock"] == "4"  # 10 + 4 - 2 - 8; no reset to the original 10.
-    assert result["pending_receipts"] == ["pending"]
-
-
-def test_contract_rejects_nested_fields_order_without_stock_and_duplicates():
-    request = example()
-    bad = deepcopy(request)
-    bad["history"][0]["actual"] = "12"
-    with pytest.raises(ValueError):
-        validate_requests([bad])
-    with pytest.raises(ValueError):
-        validate_requests([request, request])
-    with pytest.raises(ValueError):
-        validate_results([request], [{**response(request), "recommended_quantity": "10"}])
-
-
-def test_app_import_errors_are_not_absence(monkeypatch):
-    def broken(name):
-        raise ModuleNotFoundError("Missing internal dependency", name="missing_dependency")
-
-    monkeypatch.setattr("evaluation.contracts.importlib.import_module", broken)
-    with pytest.raises(ModuleNotFoundError):
-        load_app()
-
-
-def test_execution_benchmark_and_failure_classification():
-    cases = assemble(records(), 2024)
-    calls = []
-
-    def app(batch):
-        calls.append(deepcopy(batch))
-        return [response(r, "0") for r in batch]
-
-    reliability, timing, rows = execute(cases, app)
-    assert len(calls) == 22 and all(batch == calls[0] for batch in calls)
-    assert timing["sample_count"] == 20 and timing["warmup_count"] == 1
-    assert rows == 1 and not any(reliability.values())
-    summary = summarize(cases, True, reliability)
-    assert summary["coverage"]["evaluated"] == 1
-    assert summary["quality"][0]["percentage_status"] == "undefined_zero_actual"
-    assert summarize(cases, True, execute(cases, lambda batch: [])[0])["status"] == "FAIL"
-
-    def broken(batch):
-        raise RuntimeError("broken app")
-
-    assert execute(cases, broken)[0]["calculation_errors"] == 1
+    assert later["retrospective_selected"] == later["retrospective"]["metrics"][later["selection_frozen"]]
 
 
 @pytest.fixture(scope="module")
-def real_data():
-    return read_cases()
+def real_batch():
+    return read_batch()
 
 
-def test_real_selection_deterministic_sources_unchanged_and_units_not_invented(real_data):
-    cases, sources, resources = real_data
-    repeated, _, _ = read_cases()
-    assert cases == repeated
-    assert {c["supplier"] for c in cases} == {"iek", "systeme"}
-    assert len(cases) == len({(c["supplier"], c["sku"]) for c in cases}) * 11
-    assert len({c["case_id"] for c in cases}) == len(cases)
-    assert all(c["unit"] is None and "unknown_unit" in c["eligibility_reasons"] for c in cases)
-    assert all(quantity(c["actual"]) >= 0 for c in cases if c["actual"] is not None)
-    assert resources["rows_inspected"] > 3000
-    assert resources["excluded_sheets"]
-    for source in sources:
+def test_workbook_loading_deterministic_and_source_hashes_unchanged(real_batch):
+    assert read_batch() == real_batch
+    assert {s["supplier"] for s in real_batch["series"]} == {"iek", "systeme"}
+    assert len({s["series_id"] for s in real_batch["series"]}) == len(real_batch["series"])
+    assert all(s["unit"] is None for s in real_batch["series"])
+    assert all(h["month"] < "2026-09-01" for s in real_batch["series"] for h in s["history"])
+    for source in real_batch["source_selection"]:
         assert hashlib.sha256((ROOT / source["path"]).read_bytes()).hexdigest() == source["sha256"]
 
 
-def test_json_csv_html_cli_agree_and_run_is_immutable(tmp_path, real_data):
-    cases = deepcopy(real_data[0])
-    reliability, perf, rows = execute(cases, None)
-    summary = summarize(cases, False, reliability)
-    summary.update(
-        run_id="test",
-        resources={**real_data[2], "rows_supplied": rows, "cpu_seconds": 0, "peak_process_memory_bytes": 0},
-        performance={"app": perf, "harness": {"input_preparation_seconds": 0}},
-    )
-    output = tmp_path / "run"
-    write_artifacts(output, {"protocol": summary["contract_version"]}, summary, cases)
-    result = json.loads((output / "results.json").read_text())
-    with (output / "cases.csv").open() as stream:
-        ledger = list(csv.DictReader(stream))
-    report = (output / "report.html").read_text()
-    embedded = json.loads(
-        re.search(r'<script id="results" type="application/json">(.*?)</script>', report)[1]
-    )
-    assert embedded == result == summary
-    assert len(ledger) == result["coverage"]["candidate"]
-    assert sum(r["status"] == "skipped" for r in ledger) == result["coverage"]["skipped"]
-    assert {r["case_id"] for r in ledger} == {c["case_id"] for c in cases}
-    assert all(json.loads(row["skip_reasons"]) for row in ledger)
-    assert summary["status"] == "NOT EVALUATED" and len(scorecard(summary)) == 5
-    assert "src=" not in report and "href=" not in report
-    with pytest.raises(FileExistsError):
-        write_artifacts(output, {}, summary, cases)
-
-
-def test_source_corruption_fails(tmp_path, real_data):
-    sources = real_data[1]
-    manifest = tmp_path / "docs/sources/manifest.json"
-    manifest.parent.mkdir(parents=True)
-    manifest.write_text(json.dumps(sources))
-    for source in sources:
-        path = tmp_path / source["path"]
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_bytes(b"corrupt")
+def test_source_corruption_fails(tmp_path):
+    manifest = json.loads((ROOT / "docs/sources/manifest.json").read_text())
+    target = tmp_path / "docs/sources/manifest.json"
+    target.parent.mkdir(parents=True)
+    target.write_text(json.dumps(manifest))
+    for source in manifest:
+        if "Ежемесячные продажи" in source.get("path", ""):
+            path = tmp_path / source["path"]
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(b"corrupt")
     with pytest.raises(ValueError, match="hash/size mismatch"):
-        read_cases(root=tmp_path)
+        read_batch(root=tmp_path)
 
 
-@pytest.mark.parametrize("present", [False, True])
-def test_strict_cli_fails_without_executed_real_cases(tmp_path, monkeypatch, capsys, present):
-    from evaluation import runner
-
-    def unavailable(batch):
-        return [
-            {**response(r), "status": "unsupported", "forecast": None, "reason": "not_supported"}
-            for r in batch
-        ]
-
-    monkeypatch.setattr(runner, "load_app", lambda: unavailable if present else None)
-    monkeypatch.setattr(
-        runner,
-        "read_cases",
-        lambda year: (
-            assemble(records(), year),
-            [],
-            {
-                "source_bytes_opened": 0,
-                "rows_inspected": 0,
-            },
-        ),
+def test_current_cli_printed_metrics_agree_with_json(tmp_path):
+    source, output = tmp_path / "batch.json", tmp_path / "report.json"
+    source.write_text(json.dumps(batch()))
+    command = [
+        sys.executable,
+        str(ROOT / "scripts/evaluate.py"),
+        "--batch",
+        str(source),
+        "--output",
+        str(output),
+        "--development-origin",
+        "2025-02-01",
+        "--retrospective-origin",
+        "2025-03-01",
+    ]
+    completed = subprocess.run(command, capture_output=True, text=True, check=True)
+    printed = json.loads(completed.stdout)
+    report = json.loads(output.read_text())
+    selected = report["selection_frozen"]
+    assert selected is not None
+    assert printed == {
+        "protocol": report["protocol"],
+        "series": report["series_count"],
+        "leftovers_comparison": {
+            key: report["leftovers_comparison"][key]
+            for key in ("status", "message", "eligible_count", "excluded_count", "missing_input_counts")
+        },
+        "selected_model": selected,
+        "development_primary_error": report["development"]["metrics"][selected]["primary_error"],
+        "retrospective_primary_error": report["retrospective_selected"]["primary_error"],
+        "development_runtime_seconds": report["development"]["runtime_seconds"],
+    }
+    assert printed["leftovers_comparison"]["message"] == "Leftover reduction: not measured."
+    assert report["leftovers_comparison"]["eligible_cases"] == []
+    assert all(
+        case["leftover_reduction_percent"] is None
+        for case in report["leftovers_comparison"]["excluded_cases"]
     )
-    monkeypatch.setattr(runner, "provenance", lambda command, sources: {"code_sha256": {}})
-    output = tmp_path / "strict"
-    assert runner.main(["--require-app", "--output", str(output)]) == 1
-    assert len(capsys.readouterr().out.splitlines()) == 5
-    assert json.loads((output / "results.json").read_text())["status"] == "NOT EVALUATED"
+    assert report["protocol"] == "monthly-forecast-evaluation-v2"
+    assert report["selection_frozen_before_retrospective"] is True
+    before = output.read_bytes()
+    repeated = subprocess.run(command, capture_output=True, text=True)
+    assert repeated.returncode != 0 and "FileExistsError" in repeated.stderr
+    assert output.read_bytes() == before
+
+
+def test_retrospective_winner_cannot_replace_development_selection():
+    series = batch()["series"]
+    series[0]["history"] = [
+        {"month": f"2025-{month:02}-01", "quantity": str(quantity), "evidence": []}
+        for month, quantity in enumerate([30, 100, 10, 0, 2, 30, 10, 10, 2, 2, 10, 0], 1)
+    ]
+    result = evaluate(series, ["2025-04-01"], ["2025-09-01"])
+    assert result["development"]["selected_model"] == "recent_level"
+    assert result["retrospective"]["selected_model"] == "ewma_adjusted"
+    assert result["selection_frozen"] == "recent_level"
+    assert result["retrospective_selected"] == result["retrospective"]["metrics"]["recent_level"]
+
+
+def test_coverage_requires_both_actual_and_model_prediction():
+    result = _metric([row(), row(actual=None), row(prediction=None)], "recent_level")
+    assert result["evaluated"] == result["normalized_evaluated"] == 1
+    assert result["coverage"] == pytest.approx(1 / 3)

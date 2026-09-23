@@ -62,8 +62,8 @@ test-eval: ## Check evaluation contracts and tests (no database)
 	cd backend && uv run --frozen python ../scripts/check_eval_contract.py
 	cd backend && uv run --frozen pytest -q tests/evaluation
 
-test-eval-strict: ## Run evaluation acceptance tests, requiring the calculation app
-	cd backend && uv run --frozen pytest -q tests/evaluation --require-app
+test-eval-strict: ## Run V2 calculation acceptance tests
+	cd backend && uv run --frozen pytest -q tests/evaluation/test_app.py
 
 test-registry: ## Check forecast experiment registry rejection rules
 	cd backend && uv run --frozen python ../scripts/check_experiment_registry.py

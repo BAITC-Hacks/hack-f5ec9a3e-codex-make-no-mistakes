@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT / "backend/src"))
 sys.path.insert(0, str(ROOT / "backend/tests"))
 
 from evaluation.cases import read_batch  # noqa: E402
-
+from evaluation.leftovers import leftovers_comparison  # noqa: E402
 from replenishment.calculation.contracts import validate_batch  # noqa: E402
 from replenishment.calculation.evaluation import evaluate  # noqa: E402
 
@@ -29,6 +29,8 @@ def main(argv: list[str] | None = None) -> int:
     development = args.development_origin or [f"2025-{month:02}-01" for month in range(6, 10)]
     retrospective = args.retrospective_origin or [f"2026-{month:02}-01" for month in range(1, 6)]
     report = evaluate(batch["series"], development, retrospective)
+    stocks = read_batch(kind="monthly_stock") if args.batch is None else None
+    report["leftovers_comparison"] = leftovers_comparison(batch, stocks)
     report.update(
         protocol="monthly-forecast-evaluation-v2",
         planning_date=batch["planning_date"],
@@ -51,6 +53,16 @@ def main(argv: list[str] | None = None) -> int:
             {
                 "protocol": report["protocol"],
                 "series": report["series_count"],
+                "leftovers_comparison": {
+                    key: report["leftovers_comparison"][key]
+                    for key in (
+                        "status",
+                        "message",
+                        "eligible_count",
+                        "excluded_count",
+                        "missing_input_counts",
+                    )
+                },
                 "selected_model": selected,
                 "development_primary_error": development_metrics.get("primary_error"),
                 "retrospective_primary_error": report.get("retrospective_selected", {}).get("primary_error")

@@ -1,17 +1,82 @@
-# Интерфейс данных / Data viewer
+# Контур закупок — frontend
 
-## Русский
+Основная страница перенесена из локального прототипа «Контур закупок».
+Все шесть файлов интерфейса сохранены без изменений: HTML, CSS, обычный
+JavaScript и локальная SVG-иконка. Внешние CDN не используются.
 
-React 19 + TypeScript + Vite. Компактная таблица на нативном HTML: без дополнительной библиотеки компонентов.
+## Структура
 
-После установки Node.js 22+ выполните `npm ci`, затем `npm run dev` в `frontend`. API должен работать на `127.0.0.1:8000`; Vite проксирует `/api` на него. Проверка: `npm test` и `npm run build`.
+```text
+frontend/
+  index.html
+  public/
+    app.js
+    features.js
+    styles.css
+    features.css
+    favicon.svg
+```
 
-Интерфейс читает таблицы PostgreSQL через API. Поиск, сортировка и пагинация выполняются сервером. Наблюдения разных книг и версий не объединяются; их можно отфильтровать. Подробности строки показывают источник, хеш, версию и исходные ячейки, включая формулы и ошибки Excel. NULL, ноль и пустая строка отображаются раздельно. Это просмотр данных: расчёт заказов, редактирование, сценарии и экспорт ещё не реализованы.
+`public/` сохраняет абсолютные адреса ресурсов (`/app.js`, `/styles.css` и т. д.)
+при разработке и сборке. Скрипты должны оставаться обычными `defer`-скриптами
+в порядке `app.js`, затем `features.js`: они используют общие переменные,
+а запуск интерфейса находится в конце `features.js`.
 
-## English
+## Запуск и проверка
 
-React 19 + TypeScript + Vite with a compact semantic HTML table, without a component framework.
+Требуется Node.js 22+. Из папки `frontend`:
 
-With Node.js 22+ installed, run `npm ci` and `npm run dev` inside `frontend`. Start the API on `127.0.0.1:8000`; Vite proxies `/api` to it. Validate with `npm test` and `npm run build`.
+```sh
+npm ci
+npm run dev
+```
 
-Search, sorting and pagination run on the server. Workbook/version observations stay separate. The evidence drawer exposes provenance, hashes, normalization versions and raw cells including formulas and Excel errors. NULL, zero and empty string remain distinct. Ordering calculations, editing, scenarios and export are outside this read-only viewer.
+Страница доступна по адресу `http://127.0.0.1:5173`. Сборка и проверки:
+
+```sh
+node --check public/app.js
+node --check public/features.js
+npm test
+npm run build
+```
+
+Готовые статические файлы находятся в `dist/`. Существующие настройки Vite,
+зависимости и команды Makefile/CI сохранены. Исходники прежнего React viewer
+в `src/` сохранены, но основная страница их больше не подключает. `npm test`
+проверяет именно прежний viewer; это не проверка нового интерфейса закупок.
+
+## Подключение API
+
+**Перенос frontend не включает интеграцию с backend репозитория.** Сейчас
+`backend/` предоставляет только читающий API `/api/v1/*`, описанный в
+[`backend/API.md`](../backend/API.md). Интерфейсу закупок нужен другой контракт:
+
+| Метод | Адрес | Назначение |
+| --- | --- | --- |
+| GET | `/api/bootstrap` | Начальный расчёт, настройки, источники и сводка |
+| POST | `/api/calculate` | Пересчёт с новыми настройками |
+| GET | `/api/products/{id}` | История товара и обоснование расчёта |
+| GET, POST | `/api/suppliers` | Условия поставщиков |
+| GET | `/api/analytics/categories` | Тренды выбранной категории |
+| GET, POST | `/api/orders` | Список заказов и создание черновика |
+| POST | `/api/orders/{id}/approve` | Утверждение заказа |
+| GET | `/api/orders/{id}/export` | Внутренний CSV |
+| GET | `/api/orders/{id}/exports` | ZIP с файлами поставщиков |
+| POST | `/api/orders/{id}/prepare-exports` | Подготовка файлов поставщиков |
+| POST | `/api/orders/{id}/deliveries/{job_id}/retry` | Подтверждённый повтор отправки |
+
+Начальная загрузка ожидает поля `id`, `as_of`, `rows`, `categories`, `settings`,
+`summary`, `sources`, а дополнительные разделы используют `supplier_profiles`,
+`delivery` и `category_options`. Точные запросы и используемые поля ответов
+сохранены в `public/app.js` и `public/features.js`.
+
+Vite по-прежнему проксирует `/api` на `http://127.0.0.1:8000`. До реализации
+совместимого контракта или отдельного адаптера backend ответит 404 на
+`/api/bootstrap`, и интерфейс покажет ошибку загрузки расчёта. Одной смены
+адресов на `/api/v1/*` недостаточно: backend пока не рассчитывает и не утверждает
+заказы. Локальный Python backend исходного прототипа в репозиторий не переносился.
+
+При подключении совместимого сервиса frontend и API должны быть доступны
+через один origin. Прокси должен учитывать проверки `Host`/`Origin` сервиса,
+в том числе для POST-запросов. Для production выдавайте содержимое `dist/`
+из корня сайта вместе с соответствующим `/api`.

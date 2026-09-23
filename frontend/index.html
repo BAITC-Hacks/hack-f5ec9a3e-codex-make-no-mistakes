@@ -1,1 +1,39 @@
-<!doctype html><html lang="ru"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="theme-color" content="#182e28"/><title>Поставка · Данные закупок</title></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Локальный сервис расчёта пополнения склада Электрокомплект">
+  <title>Контур закупок · Электрокомплект</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/features.css">
+  <script src="/app.js" defer></script>
+  <script src="/features.js" defer></script>
+</head>
+<body>
+<aside class="sidebar">
+  <a href="#recommendations" class="brand"><span class="brand-mark">к<span>·</span></span><span>контур<span class="brand-sub">ЗАКУПКИ</span></span></a>
+  <div class="workspace"><span class="workspace-icon">ЭК</span><div>Электрокомплект<small>Планирование закупок</small></div></div>
+  <div class="nav-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+  <nav aria-label="Основное меню">
+    <button class="nav-item active" data-view="recommendations"><span data-icon="layers"></span>Пополнение<span id="nav-count" class="nav-count"></span></button>
+    <button class="nav-item" data-view="orders"><span data-icon="file"></span>Заказы поставщикам</button>
+    <button class="nav-item" data-view="trends"><span data-icon="trend"></span>Тренды по категориям</button>
+    <button class="nav-item" data-view="suppliers"><span data-icon="truck"></span>Условия поставщиков</button>
+    <button class="nav-item" data-view="data"><span data-icon="database"></span>Источники данных</button>
+    <button class="nav-item" data-view="method"><span data-icon="book"></span>Как считается заказ</button>
+  </nav>
+  <div class="sidebar-bottom"><div class="local-status"><span></span>Локальное рабочее место</div><p>Данные хранятся на компьютере</p><div class="person"><span class="avatar">МЗ</span><div>Менеджер закупа<small>Рабочее пространство</small></div></div></div>
+</aside>
+<main>
+  <header class="topbar"><div class="breadcrumb">Рабочее пространство <span>/</span> <strong id="crumb">Пополнение склада</strong></div><div class="topbar-meta"><span data-icon="shield"></span>Локальные данные <span class="divider"></span><span id="asof">Загрузка…</span></div></header>
+  <div id="content"><div class="loading-state"><span class="spinner"></span>Загружаем продажи и рассчитываем потребность…</div></div>
+  <footer class="page-footer"><span>Электрокомплект · Контур закупок</span><span>Рассылка заказов — только после подтверждения сотрудником</span></footer>
+</main>
+<div id="overlay" class="overlay" hidden></div>
+<aside id="drawer" class="drawer" aria-modal="true" role="dialog" aria-label="Обоснование расчёта" hidden></aside>
+<dialog id="modal"></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

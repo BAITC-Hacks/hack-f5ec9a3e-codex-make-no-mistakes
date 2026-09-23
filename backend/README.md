@@ -2,7 +2,9 @@
 
 ## Русский
 
-Реализованы модели SQLAlchemy, миграция Alembic, импорт Excel, API просмотра и React-таблицы. Расчёт заказов и запуск F5 ещё предстоит реализовать. Текущий Compose запускает **только БД**.
+Реализованы модели, миграции, импорт Excel, API просмотра и React-таблицы, а также backend расчёта закупок,
+версий сценариев, утверждения и CSV. См. [методику и запуск RU/EN](PLANNING.md).
+Основной интерфейс менеджера подключён. Актуальные проверки: [RU/EN](../docs/DELIVERY_VERIFICATION.md).
 
 Требуются uv и работающий Docker. Из корня репозитория:
 
@@ -47,7 +49,9 @@ uv run pytest -q
 
 ## English
 
-Implemented: SQLAlchemy models, Alembic migration, Excel ingestion, read API, React tables and integration tests. Order calculations and F5 startup remain subsequent work. Current Compose starts **only PostgreSQL**, not the whole application.
+Implemented: source ingestion/read API/React tables and backend purchasing calculations, persisted scenario
+revisions, approval and CSV export. See [methodology and startup](PLANNING.md).
+The main manager interface is connected; see [current verification](../docs/DELIVERY_VERIFICATION.md).
 
 The commands above migrate, import and start the API. In another terminal run `npm ci`, then `npm run dev` inside `frontend`; open `http://127.0.0.1:5173`. Reimporting identical files with the same normalizer version skips them. See [import](IMPORTING.md), [API](API.md) and [frontend](../frontend/README.md).
 

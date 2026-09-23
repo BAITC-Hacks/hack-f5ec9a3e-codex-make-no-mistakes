@@ -21,6 +21,15 @@
 - Исходный сценарий и подготовленные варианты для демонстрации требований брифа.
 - Проверка и редактирование количества менеджером, явное утверждение и экспорт утверждённых значений. Отправка поставщику без подтверждения запрещена.
 
+### Два понятных примера для живого показа
+
+Главная мысль демонстрации: изменили входные данные → получили понятное изменение рекомендации → увидели объяснение каждой строки. Следующие примеры — план проверки, а не подтверждение готовности алгоритма.
+
+1. **Больше товара в пути — меньше нужно докупить.** Учебный пример: потребность с запасом — 220 шт., свободный остаток — 50 шт., ожидаемое вовремя поступление — 70 шт. Рекомендация: 100 шт. Меняем только поступление на 100 шт. и пересчитываем: рекомендация должна стать 70 шт. Для этого примера предполагаем отсутствие ограничений на минимальный заказ и кратность; учитываем только поставки, которые успеют покрыть потребность выбранного склада.
+2. **Разовая огромная продажа не должна раздувать обычную закупку.** Сохраняем исходный расчёт, добавляем в копию истории одну явно помеченную синтетическую крупную продажу и пересчитываем. Показываем спрос до обработки и после неё, рекомендацию до и после изменения и объяснение обработки всплеска. Ожидаем, что разовая покупка не станет новой нормой регулярного спроса. До проверки фиксируем размер добавленной продажи и допустимое изменение рекомендации; фактическое отклонение показываем даже при провале проверки. При отсутствии ID клиентов этот пример не доказывает выявление концентрации продаж у одного покупателя.
+
+После каждого примера менеджер может проверить расчёт, изменить количество и утвердить заказ. Эти два примера дополняют остальные обязательные сценарии брифа.
+
 ### Стек и запуск
 
 Основной стек выбран по [TenderVision](https://github.com/dimashisenov/tendervision-product/blob/main/README.md): Python 3.12, FastAPI, SQLAlchemy 2, Alembic, uv; PostgreSQL 17; React 19, TypeScript и Vite. Проверки: pytest и Ruff для Python; Vitest, TypeScript и oxlint для frontend. Это выбор технологий, а не требование копировать предметную архитектуру TenderVision.
@@ -62,6 +71,15 @@ The live demonstration is in Russian. The README, instructions, methodology, lim
 - Restore the original data; preserve source files unchanged.
 - A baseline scenario and prepared variants demonstrating the brief requirements.
 - Manager review and quantity editing, explicit approval and export of approved values. Sending orders without confirmation is prohibited.
+
+### Two plain-language examples for the live demo
+
+The main demonstration message: change an input → obtain an understandable change in the recommendation → see the explanation for each row. These examples are planned checks, not claims that the algorithm already passes them.
+
+1. **More incoming stock means less to purchase.** Illustrative inputs: demand including buffer is 220 units, free stock is 50, and eligible incoming stock is 70. The recommendation is 100 units. Change only incoming stock to 100 and recalculate: the recommendation should become 70. This example assumes no minimum-order or pack-multiple constraints; count only shipments arriving in time to cover demand at the selected warehouse.
+2. **A one-off huge sale should not inflate regular purchasing.** Save the baseline calculation, inject one clearly labeled synthetic bulk sale into a copy of the history, and recalculate. Show demand before and after outlier handling, the recommendation before and after the change, and an explanation of how the spike was handled. A one-off purchase should not become the new regular-demand baseline. Fix the injected quantity and acceptable recommendation change before the check; show the actual deviation even if the check fails. Without customer IDs, this example does not establish detection of sales concentrated in one customer.
+
+After each example, the manager can inspect the calculation, adjust the quantity, and approve the order. These two examples supplement the other mandatory brief scenarios.
 
 ### Stack and startup
 

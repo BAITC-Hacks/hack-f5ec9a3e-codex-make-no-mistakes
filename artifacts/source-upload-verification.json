@@ -1,0 +1,1941 @@
+{
+  "archives": [
+    {
+      "archive": "IEK (1).zip",
+      "seconds": 231.16,
+      "results": [
+        {
+          "path": "IEK (1).zip\\IEK\\MOQ  ИЭК.xlsx",
+          "sha256": "4705b5bbbaa7c55541a151f146270bcbdc72a4ce28686fdb3378575733c4a446",
+          "status": "imported",
+          "workbook_id": "4050ab1e-bac6-4a64-a1fb-8b2fdb5290e8",
+          "normalizer_version": "v1",
+          "counts": {
+            "raw_rows": 1939,
+            "product_observations": 1938,
+            "quantity_rules": 1938,
+            "sheets": 1
+          },
+          "findings": 2,
+          "warnings": [
+            {
+              "code": "excel_error",
+              "description": "Ошибка Excel сохранена; типизированное число NULL / Excel error retained, numeric NULL",
+              "evidence": {
+                "sheet": "Лист7",
+                "normalizer_version": "v1",
+                "count": 15,
+                "examples": [
+                  {
+                    "row": 78,
+                    "column": "E",
+                    "details": "#N/A"
+                  },
+                  {
+                    "row": 86,
+                    "column": "E",
+                    "details": "#N/A"
+                  },
+                  {
+                    "row": 89,
+                    "column": "E",
+                    "details": "#N/A"
+                  },
+                  {
+                    "row": 95,
+                    "column": "E",
+                    "details": "#N/A"
+                  },
+                  {
+                    "row": 106,
+                    "column": "E",
+                    "details": "#N/A"
+                  },
+                  {
+                    "row": 377,
+                    "column": "E",
+                    "details": "#N/A"
+                  },
+                  {
+                    "row": 414,
+                    "column": "E",
+                    "details": "#N/A"
+                  },
+                  {
+                    "row": 415,
+                    "column": "E",
+                    "details": "#N/A"
+                  },
+                  {
+                    "row": 1222,
+                    "column": "E",
+                    "details": "#N/A"
+                  },
+                  {
+                    "row": 1223,
+                    "column": "E",
+                    "details": "#N/A"
+                  },
+                  {
+                    "row": 1280,
+                    "column": "E",
+                    "details": "#N/A"
+                  },
+                  {
+                    "row": 1316,
+                    "column": "E",
+                    "details": "#N/A"
+                  },
+                  {
+                    "row": 1510,
+                    "column": "E",
+                    "details": "#N/A"
+                  },
+                  {
+                    "row": 1795,
+                    "column": "E",
+                    "details": "#N/A"
+                  },
+                  {
+                    "row": 1810,
+                    "column": "E",
+                    "details": "#N/A"
+                  }
+                ]
+              }
+            },
+            {
+              "code": "duplicate_sku",
+              "description": "Дубликат SKU сохранён отдельно / Duplicate SKU retained separately",
+              "evidence": {
+                "sheet": "Лист7",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": 1875,
+                    "column": "B",
+                    "details": {
+                      "sku": "270400035_",
+                      "first_row": 427
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": "IEK (1).zip\\IEK\\Динамика продаж_2025-2026.xlsx",
+          "sha256": "7b0100a662eba816fd2e6a477ba56ca2a7846d3489ce1083821c94333ac30e4c",
+          "status": "imported",
+          "workbook_id": "5658b309-4def-4e63-b8b9-622c20c48bba",
+          "normalizer_version": "v1",
+          "counts": {
+            "raw_rows": 171605,
+            "product_observations": 171603,
+            "movements": 171603,
+            "sheets": 1
+          },
+          "findings": 2,
+          "warnings": [
+            {
+              "code": "negative_movement",
+              "description": "Отрицательное движение сохранено / Negative movement retained",
+              "evidence": {
+                "sheet": "Лист_1",
+                "normalizer_version": "v1",
+                "count": 115,
+                "examples": [
+                  {
+                    "row": 2,
+                    "column": "H",
+                    "details": "-10.000000000000"
+                  },
+                  {
+                    "row": 3,
+                    "column": "H",
+                    "details": "-5.000000000000"
+                  },
+                  {
+                    "row": 4,
+                    "column": "H",
+                    "details": "-18.000000000000"
+                  },
+                  {
+                    "row": 5,
+                    "column": "H",
+                    "details": "-10.000000000000"
+                  },
+                  {
+                    "row": 6,
+                    "column": "H",
+                    "details": "-8.000000000000"
+                  },
+                  {
+                    "row": 7,
+                    "column": "H",
+                    "details": "-2.000000000000"
+                  },
+                  {
+                    "row": 8,
+                    "column": "H",
+                    "details": "-5.000000000000"
+                  },
+                  {
+                    "row": 9,
+                    "column": "H",
+                    "details": "-3.000000000000"
+                  },
+                  {
+                    "row": 10,
+                    "column": "H",
+                    "details": "-5.000000000000"
+                  },
+                  {
+                    "row": 11,
+                    "column": "H",
+                    "details": "-5.000000000000"
+                  },
+                  {
+                    "row": 12,
+                    "column": "H",
+                    "details": "-4.000000000000"
+                  },
+                  {
+                    "row": 13,
+                    "column": "H",
+                    "details": "-5.000000000000"
+                  },
+                  {
+                    "row": 14,
+                    "column": "H",
+                    "details": "-5.000000000000"
+                  },
+                  {
+                    "row": 15,
+                    "column": "H",
+                    "details": "-5.000000000000"
+                  },
+                  {
+                    "row": 16,
+                    "column": "H",
+                    "details": "-4.000000000000"
+                  },
+                  {
+                    "row": 17,
+                    "column": "H",
+                    "details": "-5.000000000000"
+                  },
+                  {
+                    "row": 18,
+                    "column": "H",
+                    "details": "-5.000000000000"
+                  },
+                  {
+                    "row": 19,
+                    "column": "H",
+                    "details": "-2.000000000000"
+                  },
+                  {
+                    "row": 20,
+                    "column": "H",
+                    "details": "-3.000000000000"
+                  },
+                  {
+                    "row": 21,
+                    "column": "H",
+                    "details": "-1.000000000000"
+                  }
+                ]
+              }
+            },
+            {
+              "code": "missing_movement_quantity",
+              "description": "Количество отсутствует, не ноль / Missing quantity is not zero",
+              "evidence": {
+                "sheet": "Лист_1",
+                "normalizer_version": "v1",
+                "count": 18,
+                "examples": [
+                  {
+                    "row": 92793,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 134550,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 134945,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 135185,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 135586,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 135589,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 135591,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 135646,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 135647,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 135738,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 135748,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 135915,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 135916,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 135917,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 135918,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 135919,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 135921,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 136125,
+                    "column": "H",
+                    "details": null
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": "IEK (1).zip\\IEK\\Ежемесячные остатки продукции за последние 2 года  ИЭК.xlsx",
+          "sha256": "ad8a8df9cbb242a3df60a147fb4011b146ca7cdd9e98c1247b1b19fd517f4a30",
+          "status": "imported",
+          "workbook_id": "5121f7df-a90a-4c8a-9142-d843c202ebeb",
+          "normalizer_version": "v1",
+          "counts": {
+            "raw_rows": 2857,
+            "product_observations": 2853,
+            "monthly_stock": 94149,
+            "report_metrics": 2853,
+            "sheets": 1
+          },
+          "findings": 1,
+          "warnings": [
+            {
+              "code": "unknown_warehouse_scope",
+              "description": "Складской охват отчёта неизвестен / Report warehouse scope unknown",
+              "evidence": {
+                "sheet": "Лист_1",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": null,
+                    "column": null,
+                    "details": null
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": "IEK (1).zip\\IEK\\Ежемесячные продажи в количественном выражении за последние 2 года.xlsx",
+          "sha256": "048a0af940370153511769396570259a1bb28da63709d9b974f99c45081fa255",
+          "status": "imported",
+          "workbook_id": "b9043c67-1a13-4377-9dcd-e03cd137430e",
+          "normalizer_version": "v1",
+          "counts": {
+            "raw_rows": 2466,
+            "product_observations": 2463,
+            "monthly_sales": 81279,
+            "report_metrics": 2463,
+            "sheets": 1
+          },
+          "findings": 1,
+          "warnings": [
+            {
+              "code": "unknown_warehouse_scope",
+              "description": "Складской охват отчёта неизвестен / Report warehouse scope unknown",
+              "evidence": {
+                "sheet": "Лист_1",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": null,
+                    "column": null,
+                    "details": null
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": "IEK (1).zip\\IEK\\Путь ИЭК 22.09.2026.xlsx",
+          "sha256": "751fd3c2cbdfabe32f9c20c7f0289135273f007471f39101f03f9c6e1231ce7d",
+          "status": "imported",
+          "workbook_id": "ffdcbb93-b125-4723-826f-9077d2f9b764",
+          "normalizer_version": "v1",
+          "counts": {
+            "shipments": 6,
+            "raw_rows": 2642,
+            "product_observations": 2623,
+            "shipment_lines": 15738,
+            "sheets": 1
+          },
+          "findings": 2,
+          "warnings": [
+            {
+              "code": "duplicate_sku",
+              "description": "Дубликат SKU сохранён отдельно / Duplicate SKU retained separately",
+              "evidence": {
+                "sheet": "Лист4",
+                "normalizer_version": "v1",
+                "count": 7,
+                "examples": [
+                  {
+                    "row": 1110,
+                    "column": "A",
+                    "details": {
+                      "sku": "220400107_",
+                      "first_row": 1103
+                    }
+                  },
+                  {
+                    "row": 1111,
+                    "column": "A",
+                    "details": {
+                      "sku": "220400108_",
+                      "first_row": 1104
+                    }
+                  },
+                  {
+                    "row": 1112,
+                    "column": "A",
+                    "details": {
+                      "sku": "220400109_",
+                      "first_row": 1105
+                    }
+                  },
+                  {
+                    "row": 1113,
+                    "column": "A",
+                    "details": {
+                      "sku": "220400110_",
+                      "first_row": 1106
+                    }
+                  },
+                  {
+                    "row": 1114,
+                    "column": "A",
+                    "details": {
+                      "sku": "220400111_",
+                      "first_row": 1107
+                    }
+                  },
+                  {
+                    "row": 1115,
+                    "column": "A",
+                    "details": {
+                      "sku": "220400112_",
+                      "first_row": 1108
+                    }
+                  },
+                  {
+                    "row": 1116,
+                    "column": "A",
+                    "details": {
+                      "sku": "220400113_",
+                      "first_row": 1109
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "code": "unstructured_unit_conversion",
+              "description": "Перевод бухт/метров без правил / Unstructured coil/metre conversion",
+              "evidence": {
+                "sheet": "Лист4",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": null,
+                    "column": null,
+                    "details": null
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": "IEK (1).zip\\IEK\\Сезонность ИЭК.xlsx",
+          "sha256": "d4d9a8f208884c5197d0dcea0eb60d3972e9382cb3530675d0760fe9a8339635",
+          "status": "imported",
+          "workbook_id": "ad432333-7ec7-4509-90c5-e156043251e2",
+          "normalizer_version": "v1",
+          "counts": {
+            "raw_rows": 35,
+            "product_observations": 0,
+            "seasonality": 234,
+            "sheets": 1
+          },
+          "findings": 2,
+          "warnings": [
+            {
+              "code": "numeric_rounding",
+              "description": "Округлено до 12 знаков / Rounded to 12 decimals; original retained",
+              "evidence": {
+                "sheet": "Сезонность",
+                "normalizer_version": "v1",
+                "count": 145,
+                "examples": [
+                  {
+                    "row": 11,
+                    "column": "D",
+                    "details": "0.89823369764537564"
+                  },
+                  {
+                    "row": 11,
+                    "column": "E",
+                    "details": "0.074852808137114632"
+                  },
+                  {
+                    "row": 11,
+                    "column": "G",
+                    "details": "0.77829935325192368"
+                  },
+                  {
+                    "row": 11,
+                    "column": "H",
+                    "details": "0.064858279437660316"
+                  },
+                  {
+                    "row": 11,
+                    "column": "J",
+                    "details": "0.82509249852280753"
+                  },
+                  {
+                    "row": 11,
+                    "column": "K",
+                    "details": "0.091676944280311951"
+                  },
+                  {
+                    "row": 11,
+                    "column": "L",
+                    "details": "0.79160313713599129"
+                  },
+                  {
+                    "row": 12,
+                    "column": "D",
+                    "details": "0.88447263690891276"
+                  },
+                  {
+                    "row": 12,
+                    "column": "E",
+                    "details": "0.073706053075742725"
+                  },
+                  {
+                    "row": 12,
+                    "column": "G",
+                    "details": "0.77755675313358696"
+                  },
+                  {
+                    "row": 12,
+                    "column": "H",
+                    "details": "0.06479639609446558"
+                  },
+                  {
+                    "row": 12,
+                    "column": "J",
+                    "details": "0.84964788019638271"
+                  },
+                  {
+                    "row": 12,
+                    "column": "K",
+                    "details": "0.094405320021820296"
+                  },
+                  {
+                    "row": 12,
+                    "column": "L",
+                    "details": "0.80335963481445727"
+                  },
+                  {
+                    "row": 13,
+                    "column": "D",
+                    "details": "0.76659324369926574"
+                  },
+                  {
+                    "row": 13,
+                    "column": "E",
+                    "details": "0.063882770308272149"
+                  },
+                  {
+                    "row": 13,
+                    "column": "G",
+                    "details": "0.73463058805554493"
+                  },
+                  {
+                    "row": 13,
+                    "column": "H",
+                    "details": "0.061219215671295416"
+                  },
+                  {
+                    "row": 13,
+                    "column": "J",
+                    "details": "0.86188376950578227"
+                  },
+                  {
+                    "row": 13,
+                    "column": "K",
+                    "details": "0.095764863278420251"
+                  }
+                ]
+              }
+            },
+            {
+              "code": "supplier_aggregate_only",
+              "description": "Сезонность по поставщику, не SKU / Supplier seasonality, not SKU",
+              "evidence": {
+                "sheet": "Сезонность",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": null,
+                    "column": null,
+                    "details": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "archive": "Systeme electric (1).zip",
+      "seconds": 141.39,
+      "results": [
+        {
+          "path": "Systeme electric (1).zip\\Systeme electric\\MOQ SystemElectric.xlsx",
+          "sha256": "4fc809ecf9c0a73d97f13f7a16e7dbb20425ab97a6b2d9a0f6be0bbe1a326a7b",
+          "status": "imported",
+          "workbook_id": "7cff900f-28c7-4cc4-a1b9-c0864367bdbb",
+          "normalizer_version": "v1",
+          "counts": {
+            "raw_rows": 556,
+            "product_observations": 554,
+            "quantity_rules": 554,
+            "sheets": 1
+          },
+          "findings": 0,
+          "warnings": []
+        },
+        {
+          "path": "Systeme electric (1).zip\\Systeme electric\\Динамика продаж_Syseme Electric_2025-2026.xlsx",
+          "sha256": "5ca3997c13f1f65d73db5141122b92deab64f1029bf9b43fd3dd7ade65151128",
+          "status": "imported",
+          "workbook_id": "8bfc9887-bec9-424b-b8a2-317a27595f84",
+          "normalizer_version": "v1",
+          "counts": {
+            "raw_rows": 77314,
+            "product_observations": 77312,
+            "movements": 77312,
+            "sheets": 1
+          },
+          "findings": 2,
+          "warnings": [
+            {
+              "code": "negative_movement",
+              "description": "Отрицательное движение сохранено / Negative movement retained",
+              "evidence": {
+                "sheet": "Лист_1",
+                "normalizer_version": "v1",
+                "count": 302,
+                "examples": [
+                  {
+                    "row": 2,
+                    "column": "H",
+                    "details": "-10.000000000000"
+                  },
+                  {
+                    "row": 3,
+                    "column": "H",
+                    "details": "-2.000000000000"
+                  },
+                  {
+                    "row": 4,
+                    "column": "H",
+                    "details": "-10.000000000000"
+                  },
+                  {
+                    "row": 5,
+                    "column": "H",
+                    "details": "-2.000000000000"
+                  },
+                  {
+                    "row": 6,
+                    "column": "H",
+                    "details": "-5.000000000000"
+                  },
+                  {
+                    "row": 7,
+                    "column": "H",
+                    "details": "-30.000000000000"
+                  },
+                  {
+                    "row": 8,
+                    "column": "H",
+                    "details": "-20.000000000000"
+                  },
+                  {
+                    "row": 9,
+                    "column": "H",
+                    "details": "-10.000000000000"
+                  },
+                  {
+                    "row": 10,
+                    "column": "H",
+                    "details": "-5.000000000000"
+                  },
+                  {
+                    "row": 11,
+                    "column": "H",
+                    "details": "-20.000000000000"
+                  },
+                  {
+                    "row": 12,
+                    "column": "H",
+                    "details": "-20.000000000000"
+                  },
+                  {
+                    "row": 13,
+                    "column": "H",
+                    "details": "-10.000000000000"
+                  },
+                  {
+                    "row": 14,
+                    "column": "H",
+                    "details": "-9.000000000000"
+                  },
+                  {
+                    "row": 15,
+                    "column": "H",
+                    "details": "-6.000000000000"
+                  },
+                  {
+                    "row": 16,
+                    "column": "H",
+                    "details": "-9.000000000000"
+                  },
+                  {
+                    "row": 17,
+                    "column": "H",
+                    "details": "-4.000000000000"
+                  },
+                  {
+                    "row": 18,
+                    "column": "H",
+                    "details": "-17.000000000000"
+                  },
+                  {
+                    "row": 19,
+                    "column": "H",
+                    "details": "-5.000000000000"
+                  },
+                  {
+                    "row": 20,
+                    "column": "H",
+                    "details": "-15.000000000000"
+                  },
+                  {
+                    "row": 21,
+                    "column": "H",
+                    "details": "-30.000000000000"
+                  }
+                ]
+              }
+            },
+            {
+              "code": "missing_movement_quantity",
+              "description": "Количество отсутствует, не ноль / Missing quantity is not zero",
+              "evidence": {
+                "sheet": "Лист_1",
+                "normalizer_version": "v1",
+                "count": 13,
+                "examples": [
+                  {
+                    "row": 25635,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 26654,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 37544,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 44365,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 54984,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 58979,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 60385,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 60386,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 60415,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 60874,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 61130,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 61131,
+                    "column": "H",
+                    "details": null
+                  },
+                  {
+                    "row": 61264,
+                    "column": "H",
+                    "details": null
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": "Systeme electric (1).zip\\Systeme electric\\Ежемесячные остатки SystemElectric 2024-2026.xlsx",
+          "sha256": "45d55eb244966ef9fdba1aa09c666e9dbc4c0b05c1088f4041edcd86b908c85e",
+          "status": "imported",
+          "workbook_id": "85589177-ed02-4f27-9fdc-73cb98cb964c",
+          "normalizer_version": "v1",
+          "counts": {
+            "raw_rows": 702,
+            "product_observations": 701,
+            "monthly_stock": 23133,
+            "sheets": 1
+          },
+          "findings": 1,
+          "warnings": [
+            {
+              "code": "unknown_warehouse_scope",
+              "description": "Складской охват отчёта неизвестен / Report warehouse scope unknown",
+              "evidence": {
+                "sheet": "Лист_1",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": null,
+                    "column": null,
+                    "details": null
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": "Systeme electric (1).zip\\Systeme electric\\Ежемесячные продажи в кол-м выражении SystemElectric 2024-2026.xlsx",
+          "sha256": "f7782ab9ea5c06d68526543953c6fce7ca83a80d1c1a4e8d88fd083de415f9d0",
+          "status": "imported",
+          "workbook_id": "99bfa387-49b8-4f8f-b61c-78c1a375fc00",
+          "normalizer_version": "v1",
+          "counts": {
+            "raw_rows": 576,
+            "product_observations": 554,
+            "monthly_sales": 18282,
+            "quantity_rules": 554,
+            "report_metrics": 554,
+            "sheets": 2,
+            "seasonality": 159
+          },
+          "findings": 5,
+          "warnings": [
+            {
+              "code": "nonpositive_quantity_rule",
+              "description": "Неположительная кратность / Nonpositive quantity rule",
+              "evidence": {
+                "sheet": "Лист_1",
+                "normalizer_version": "v1",
+                "count": 26,
+                "examples": [
+                  {
+                    "row": 3,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 4,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 5,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 6,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 7,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 8,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 13,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 14,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 15,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 355,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 356,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 357,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 358,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 359,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 360,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 361,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 362,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 375,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 376,
+                    "column": "D",
+                    "details": null
+                  },
+                  {
+                    "row": 377,
+                    "column": "D",
+                    "details": null
+                  }
+                ]
+              }
+            },
+            {
+              "code": "unknown_warehouse_scope",
+              "description": "Складской охват отчёта неизвестен / Report warehouse scope unknown",
+              "evidence": {
+                "sheet": "Лист_1",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": null,
+                    "column": null,
+                    "details": null
+                  }
+                ]
+              }
+            },
+            {
+              "code": "numeric_rounding",
+              "description": "Округлено до 12 знаков / Rounded to 12 decimals; original retained",
+              "evidence": {
+                "sheet": "Лист1",
+                "normalizer_version": "v1",
+                "count": 68,
+                "examples": [
+                  {
+                    "row": 11,
+                    "column": "D",
+                    "details": "0.37164423323186774"
+                  },
+                  {
+                    "row": 11,
+                    "column": "E",
+                    "details": "0.030970352769322314"
+                  },
+                  {
+                    "row": 11,
+                    "column": "G",
+                    "details": "0.82005912833429884"
+                  },
+                  {
+                    "row": 11,
+                    "column": "H",
+                    "details": "0.068338260694524894"
+                  },
+                  {
+                    "row": 11,
+                    "column": "J",
+                    "details": "0.86627907693600192"
+                  },
+                  {
+                    "row": 11,
+                    "column": "K",
+                    "details": "0.096253230770666873"
+                  },
+                  {
+                    "row": 12,
+                    "column": "D",
+                    "details": "0.33838910363180363"
+                  },
+                  {
+                    "row": 12,
+                    "column": "E",
+                    "details": "0.028199091969316973"
+                  },
+                  {
+                    "row": 12,
+                    "column": "G",
+                    "details": "0.9541914918042389"
+                  },
+                  {
+                    "row": 12,
+                    "column": "H",
+                    "details": "0.079515957650353242"
+                  },
+                  {
+                    "row": 12,
+                    "column": "J",
+                    "details": "0.96162378852029617"
+                  },
+                  {
+                    "row": 12,
+                    "column": "K",
+                    "details": "0.10684708761336624"
+                  },
+                  {
+                    "row": 13,
+                    "column": "D",
+                    "details": "0.66705718069056119"
+                  },
+                  {
+                    "row": 13,
+                    "column": "E",
+                    "details": "0.055588098390880109"
+                  },
+                  {
+                    "row": 13,
+                    "column": "G",
+                    "details": "0.84417453023322364"
+                  },
+                  {
+                    "row": 13,
+                    "column": "H",
+                    "details": "0.070347877519435303"
+                  },
+                  {
+                    "row": 13,
+                    "column": "J",
+                    "details": "0.84007464557774858"
+                  },
+                  {
+                    "row": 13,
+                    "column": "K",
+                    "details": "0.093341627286416512"
+                  },
+                  {
+                    "row": 14,
+                    "column": "D",
+                    "details": "0.94097816415423408"
+                  },
+                  {
+                    "row": 14,
+                    "column": "E",
+                    "details": "0.07841484701285284"
+                  }
+                ]
+              }
+            },
+            {
+              "code": "supplier_aggregate_only",
+              "description": "Сезонность по поставщику, не SKU / Supplier seasonality, not SKU",
+              "evidence": {
+                "sheet": "Лист1",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": null,
+                    "column": null,
+                    "details": null
+                  }
+                ]
+              }
+            },
+            {
+              "code": "overlapping_seasonality_sources",
+              "description": "Сводки перекрываются / Summaries overlap; do not sum",
+              "evidence": {
+                "sheet": "Лист1",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": null,
+                    "column": null,
+                    "details": null
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": "Systeme electric (1).zip\\Systeme electric\\Сезонность SystemElectric 2024-2026.xlsx",
+          "sha256": "19bdbc1c2331d3643e39294f68f11f7427f625107e8b025f6663bb559af669ab",
+          "status": "imported",
+          "workbook_id": "64945105-7221-406c-bc2e-505ef6f063e7",
+          "normalizer_version": "v1",
+          "counts": {
+            "raw_rows": 19,
+            "product_observations": 0,
+            "seasonality": 173,
+            "sheets": 1
+          },
+          "findings": 3,
+          "warnings": [
+            {
+              "code": "numeric_rounding",
+              "description": "Округлено до 12 знаков / Rounded to 12 decimals; original retained",
+              "evidence": {
+                "sheet": "Лист1",
+                "normalizer_version": "v1",
+                "count": 82,
+                "examples": [
+                  {
+                    "row": 11,
+                    "column": "D",
+                    "details": "0.37164423323186774"
+                  },
+                  {
+                    "row": 11,
+                    "column": "E",
+                    "details": "0.030970352769322314"
+                  },
+                  {
+                    "row": 11,
+                    "column": "G",
+                    "details": "0.82005912833429884"
+                  },
+                  {
+                    "row": 11,
+                    "column": "H",
+                    "details": "0.068338260694524894"
+                  },
+                  {
+                    "row": 11,
+                    "column": "J",
+                    "details": "0.86627907693600192"
+                  },
+                  {
+                    "row": 11,
+                    "column": "K",
+                    "details": "0.096253230770666873"
+                  },
+                  {
+                    "row": 11,
+                    "column": "L",
+                    "details": "0.84316910263515044"
+                  },
+                  {
+                    "row": 12,
+                    "column": "D",
+                    "details": "0.33838910363180363"
+                  },
+                  {
+                    "row": 12,
+                    "column": "E",
+                    "details": "0.028199091969316973"
+                  },
+                  {
+                    "row": 12,
+                    "column": "G",
+                    "details": "0.9541914918042389"
+                  },
+                  {
+                    "row": 12,
+                    "column": "H",
+                    "details": "0.079515957650353242"
+                  },
+                  {
+                    "row": 12,
+                    "column": "J",
+                    "details": "0.96162378852029617"
+                  },
+                  {
+                    "row": 12,
+                    "column": "K",
+                    "details": "0.10684708761336624"
+                  },
+                  {
+                    "row": 12,
+                    "column": "L",
+                    "details": "0.95790764016226748"
+                  },
+                  {
+                    "row": 13,
+                    "column": "D",
+                    "details": "0.66705718069056119"
+                  },
+                  {
+                    "row": 13,
+                    "column": "E",
+                    "details": "0.055588098390880109"
+                  },
+                  {
+                    "row": 13,
+                    "column": "G",
+                    "details": "0.84417453023322364"
+                  },
+                  {
+                    "row": 13,
+                    "column": "H",
+                    "details": "0.070347877519435303"
+                  },
+                  {
+                    "row": 13,
+                    "column": "J",
+                    "details": "0.84007464557774858"
+                  },
+                  {
+                    "row": 13,
+                    "column": "K",
+                    "details": "0.093341627286416512"
+                  }
+                ]
+              }
+            },
+            {
+              "code": "supplier_aggregate_only",
+              "description": "Сезонность по поставщику, не SKU / Supplier seasonality, not SKU",
+              "evidence": {
+                "sheet": "Лист1",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": null,
+                    "column": null,
+                    "details": null
+                  }
+                ]
+              }
+            },
+            {
+              "code": "overlapping_seasonality_sources",
+              "description": "Сводки перекрываются / Summaries overlap; do not sum",
+              "evidence": {
+                "sheet": "Лист1",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": null,
+                    "column": null,
+                    "details": null
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "path": "Systeme electric (1).zip\\Systeme electric\\Товар в пути_SystemElectric на 22.09.2026.xlsx",
+          "sha256": "17aa50b7697aba5598997b1b4bba9de3950169bc81e97fd10c4d8b0348bd9a3d",
+          "status": "imported",
+          "workbook_id": "11467310-1e56-42ea-874e-653c8d952d1c",
+          "normalizer_version": "v1",
+          "counts": {
+            "shipments": 1,
+            "raw_rows": 518,
+            "product_observations": 497,
+            "monthly_sales": 16401,
+            "shipment_lines": 497,
+            "stock": 3479,
+            "report_metrics": 4970,
+            "sheets": 2,
+            "seasonality": 159
+          },
+          "findings": 10,
+          "warnings": [
+            {
+              "code": "numeric_rounding",
+              "description": "Округлено до 12 знаков / Rounded to 12 decimals; original retained",
+              "evidence": {
+                "sheet": "TDSheet",
+                "normalizer_version": "v1",
+                "count": 1660,
+                "examples": [
+                  {
+                    "row": 3,
+                    "column": "F",
+                    "details": "1050.6099999999999"
+                  },
+                  {
+                    "row": 3,
+                    "column": "T",
+                    "details": "438.91666666666669"
+                  },
+                  {
+                    "row": 3,
+                    "column": "AQ",
+                    "details": "314.41666666666669"
+                  },
+                  {
+                    "row": 3,
+                    "column": "AR",
+                    "details": "-0.40852390852390852"
+                  },
+                  {
+                    "row": 3,
+                    "column": "AS",
+                    "details": "0.42515592515592515"
+                  },
+                  {
+                    "row": 3,
+                    "column": "BA",
+                    "details": "3.7338987543069173"
+                  },
+                  {
+                    "row": 6,
+                    "column": "F",
+                    "details": "1286.1500000000001"
+                  },
+                  {
+                    "row": 6,
+                    "column": "T",
+                    "details": "43.166666666666664"
+                  },
+                  {
+                    "row": 6,
+                    "column": "AQ",
+                    "details": "33.083333333333336"
+                  },
+                  {
+                    "row": 6,
+                    "column": "AR",
+                    "details": "-0.34677419354838712"
+                  },
+                  {
+                    "row": 6,
+                    "column": "AS",
+                    "details": "-0.33064516129032262"
+                  },
+                  {
+                    "row": 6,
+                    "column": "BA",
+                    "details": "2.8413098236775816"
+                  },
+                  {
+                    "row": 7,
+                    "column": "T",
+                    "details": "78.583333333333329"
+                  },
+                  {
+                    "row": 7,
+                    "column": "AR",
+                    "details": "-0.62127659574468086"
+                  },
+                  {
+                    "row": 7,
+                    "column": "AS",
+                    "details": "0.22127659574468095"
+                  },
+                  {
+                    "row": 7,
+                    "column": "BA",
+                    "details": "4.8828828828828827"
+                  },
+                  {
+                    "row": 8,
+                    "column": "T",
+                    "details": "11.083333333333334"
+                  },
+                  {
+                    "row": 8,
+                    "column": "AQ",
+                    "details": "7.416666666666667"
+                  },
+                  {
+                    "row": 8,
+                    "column": "BA",
+                    "details": "9.0337078651685392"
+                  },
+                  {
+                    "row": 9,
+                    "column": "T",
+                    "details": "29.916666666666668"
+                  }
+                ]
+              }
+            },
+            {
+              "code": "thirteen_month_total",
+              "description": "Формула: 13 месяцев вместо 12 / Formula: 13 months instead of 12",
+              "evidence": {
+                "sheet": "TDSheet",
+                "normalizer_version": "v1",
+                "count": 497,
+                "examples": [
+                  {
+                    "row": 3,
+                    "column": "AP",
+                    "details": "=SUM(AC3:AO3)"
+                  },
+                  {
+                    "row": 4,
+                    "column": "AP",
+                    "details": "=SUM(AC4:AO4)"
+                  },
+                  {
+                    "row": 5,
+                    "column": "AP",
+                    "details": "=SUM(AC5:AO5)"
+                  },
+                  {
+                    "row": 6,
+                    "column": "AP",
+                    "details": "=SUM(AC6:AO6)"
+                  },
+                  {
+                    "row": 7,
+                    "column": "AP",
+                    "details": "=SUM(AC7:AO7)"
+                  },
+                  {
+                    "row": 8,
+                    "column": "AP",
+                    "details": "=SUM(AC8:AO8)"
+                  },
+                  {
+                    "row": 9,
+                    "column": "AP",
+                    "details": "=SUM(AC9:AO9)"
+                  },
+                  {
+                    "row": 10,
+                    "column": "AP",
+                    "details": "=SUM(AC10:AO10)"
+                  },
+                  {
+                    "row": 11,
+                    "column": "AP",
+                    "details": "=SUM(AC11:AO11)"
+                  },
+                  {
+                    "row": 12,
+                    "column": "AP",
+                    "details": "=SUM(AC12:AO12)"
+                  },
+                  {
+                    "row": 13,
+                    "column": "AP",
+                    "details": "=SUM(AC13:AO13)"
+                  },
+                  {
+                    "row": 14,
+                    "column": "AP",
+                    "details": "=SUM(AC14:AO14)"
+                  },
+                  {
+                    "row": 15,
+                    "column": "AP",
+                    "details": "=SUM(AC15:AO15)"
+                  },
+                  {
+                    "row": 16,
+                    "column": "AP",
+                    "details": "=SUM(AC16:AO16)"
+                  },
+                  {
+                    "row": 17,
+                    "column": "AP",
+                    "details": "=SUM(AC17:AO17)"
+                  },
+                  {
+                    "row": 18,
+                    "column": "AP",
+                    "details": "=SUM(AC18:AO18)"
+                  },
+                  {
+                    "row": 19,
+                    "column": "AP",
+                    "details": "=SUM(AC19:AO19)"
+                  },
+                  {
+                    "row": 20,
+                    "column": "AP",
+                    "details": "=SUM(AC20:AO20)"
+                  },
+                  {
+                    "row": 21,
+                    "column": "AP",
+                    "details": "=SUM(AC21:AO21)"
+                  },
+                  {
+                    "row": 22,
+                    "column": "AP",
+                    "details": "=SUM(AC22:AO22)"
+                  }
+                ]
+              }
+            },
+            {
+              "code": "stock_scope_overlap",
+              "description": "Компоненты не равны AX / Components differ from AX; scope unknown",
+              "evidence": {
+                "sheet": "TDSheet",
+                "normalizer_version": "v1",
+                "count": 493,
+                "examples": [
+                  {
+                    "row": 3,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 4,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 5,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 6,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 7,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 8,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 9,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 10,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 11,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 12,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 13,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 14,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 15,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 16,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 17,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 18,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 19,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 20,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 21,
+                    "column": "AT:AX",
+                    "details": null
+                  },
+                  {
+                    "row": 22,
+                    "column": "AT:AX",
+                    "details": null
+                  }
+                ]
+              }
+            },
+            {
+              "code": "inconsistent_average_formula",
+              "description": "Нетипичный делитель среднего / Inconsistent average divisor",
+              "evidence": {
+                "sheet": "TDSheet",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": 485,
+                    "column": "AQ",
+                    "details": "=AP485/5"
+                  }
+                ]
+              }
+            },
+            {
+              "code": "unknown_warehouse_scope",
+              "description": "Складской охват отчёта неизвестен / Report warehouse scope unknown",
+              "evidence": {
+                "sheet": "TDSheet",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": null,
+                    "column": null,
+                    "details": null
+                  }
+                ]
+              }
+            },
+            {
+              "code": "unknown_shipment_year",
+              "description": "В дате поставки отсутствует год / Shipment header omits year",
+              "evidence": {
+                "sheet": "TDSheet",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": 2,
+                    "column": "BC",
+                    "details": null
+                  }
+                ]
+              }
+            },
+            {
+              "code": "relative_change_not_multiplier",
+              "description": "Изменения, не множители / Relative changes, not multipliers",
+              "evidence": {
+                "sheet": "TDSheet",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": 2,
+                    "column": "AR:AS",
+                    "details": null
+                  }
+                ]
+              }
+            },
+            {
+              "code": "numeric_rounding",
+              "description": "Округлено до 12 знаков / Rounded to 12 decimals; original retained",
+              "evidence": {
+                "sheet": "Лист1",
+                "normalizer_version": "v1",
+                "count": 68,
+                "examples": [
+                  {
+                    "row": 11,
+                    "column": "D",
+                    "details": "0.37164423323186774"
+                  },
+                  {
+                    "row": 11,
+                    "column": "E",
+                    "details": "0.030970352769322314"
+                  },
+                  {
+                    "row": 11,
+                    "column": "G",
+                    "details": "0.82005912833429884"
+                  },
+                  {
+                    "row": 11,
+                    "column": "H",
+                    "details": "0.068338260694524894"
+                  },
+                  {
+                    "row": 11,
+                    "column": "J",
+                    "details": "0.86627907693600192"
+                  },
+                  {
+                    "row": 11,
+                    "column": "K",
+                    "details": "0.096253230770666873"
+                  },
+                  {
+                    "row": 12,
+                    "column": "D",
+                    "details": "0.33838910363180363"
+                  },
+                  {
+                    "row": 12,
+                    "column": "E",
+                    "details": "0.028199091969316973"
+                  },
+                  {
+                    "row": 12,
+                    "column": "G",
+                    "details": "0.9541914918042389"
+                  },
+                  {
+                    "row": 12,
+                    "column": "H",
+                    "details": "0.079515957650353242"
+                  },
+                  {
+                    "row": 12,
+                    "column": "J",
+                    "details": "0.96162378852029617"
+                  },
+                  {
+                    "row": 12,
+                    "column": "K",
+                    "details": "0.10684708761336624"
+                  },
+                  {
+                    "row": 13,
+                    "column": "D",
+                    "details": "0.66705718069056119"
+                  },
+                  {
+                    "row": 13,
+                    "column": "E",
+                    "details": "0.055588098390880109"
+                  },
+                  {
+                    "row": 13,
+                    "column": "G",
+                    "details": "0.84417453023322364"
+                  },
+                  {
+                    "row": 13,
+                    "column": "H",
+                    "details": "0.070347877519435303"
+                  },
+                  {
+                    "row": 13,
+                    "column": "J",
+                    "details": "0.84007464557774858"
+                  },
+                  {
+                    "row": 13,
+                    "column": "K",
+                    "details": "0.093341627286416512"
+                  },
+                  {
+                    "row": 14,
+                    "column": "D",
+                    "details": "0.94097816415423408"
+                  },
+                  {
+                    "row": 14,
+                    "column": "E",
+                    "details": "0.07841484701285284"
+                  }
+                ]
+              }
+            },
+            {
+              "code": "supplier_aggregate_only",
+              "description": "Сезонность по поставщику, не SKU / Supplier seasonality, not SKU",
+              "evidence": {
+                "sheet": "Лист1",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": null,
+                    "column": null,
+                    "details": null
+                  }
+                ]
+              }
+            },
+            {
+              "code": "overlapping_seasonality_sources",
+              "description": "Сводки перекрываются / Summaries overlap; do not sum",
+              "evidence": {
+                "sheet": "Лист1",
+                "normalizer_version": "v1",
+                "count": 1,
+                "examples": [
+                  {
+                    "row": null,
+                    "column": null,
+                    "details": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "intake_workbooks": 12,
+    "catalog_products": 3909,
+    "demand_movements": 248915,
+    "demand_monthly_sales": 115962,
+    "inventory_monthly_stock": 117282,
+    "supply_shipment_lines": 16235
+  }
+}

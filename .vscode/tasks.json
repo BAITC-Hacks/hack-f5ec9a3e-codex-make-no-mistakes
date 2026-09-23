@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "EKT: database",
+      "type": "shell",
+      "command": "docker compose up -d --wait db",
+      "problemMatcher": []
+    },
+    {
+      "label": "EKT: frontend",
+      "type": "shell",
+      "command": "npm run dev -- --strictPort",
+      "options": {"cwd": "${workspaceFolder}/frontend"},
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "vite",
+        "pattern": {"regexp": "^$"},
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "VITE|vite",
+          "endsPattern": "Local:.*5173"
+        }
+      }
+    }
+  ]
+}

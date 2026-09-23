@@ -1,0 +1,825 @@
+﻿supplier,unit,horizon,model,feature,gain
+IEK,м,7,tweedie_full,sku_id,2537865.152294159
+IEK,м,7,tweedie_full,age,23639.730318069458
+IEK,м,7,tweedie_full,days_since_sale,6768.468223571777
+IEK,м,7,tweedie_full,month_sin,7642.000312805176
+IEK,м,7,tweedie_full,month_cos,11232.06865119934
+IEK,м,7,tweedie_full,weekday,710.0625152587891
+IEK,м,7,tweedie_full,month_day,19222.893096923828
+IEK,м,7,tweedie_full,mean_7,11769.661804199219
+IEK,м,7,tweedie_full,active_fraction_7,2504.5145988464355
+IEK,м,7,tweedie_full,mean_14,13039.7845993042
+IEK,м,7,tweedie_full,active_fraction_14,15603.542182922363
+IEK,м,7,tweedie_full,mean_28,13112.212295532227
+IEK,м,7,tweedie_full,active_fraction_28,3805.9033184051514
+IEK,м,7,tweedie_full,mean_56,13602.0073928833
+IEK,м,7,tweedie_full,active_fraction_56,27983.08670425415
+IEK,м,7,tweedie_full,mean_84,73215.8862323761
+IEK,м,7,tweedie_full,active_fraction_84,19371.414783477783
+IEK,м,7,tweedie_full,week_lag_1,0.0
+IEK,м,7,tweedie_full,week_lag_2,8319.009174346924
+IEK,м,7,tweedie_full,week_lag_3,8341.850910186768
+IEK,м,7,tweedie_full,week_lag_4,6009.710424423218
+IEK,м,7,tweedie_full,week_lag_5,4444.803340911865
+IEK,м,7,tweedie_full,week_lag_6,6305.26540184021
+IEK,м,7,tweedie_full,week_lag_7,11117.734397888184
+IEK,м,7,tweedie_full,week_lag_8,14147.668563842773
+IEK,м,7,tweedie_full,max_56,5436.67094039917
+IEK,м,7,tweedie_full,std_56,4193.540542602539
+IEK,м,7,tweedie_full,positive_size_56,8266.751728057861
+IEK,м,7,tweedie_full,recent_ratio,5701.247381210327
+IEK,м,7,tweedie_no_sku,age,24599.33594894409
+IEK,м,7,tweedie_no_sku,days_since_sale,21817.026399612427
+IEK,м,7,tweedie_no_sku,month_sin,16005.564762115479
+IEK,м,7,tweedie_no_sku,month_cos,19510.978979110718
+IEK,м,7,tweedie_no_sku,weekday,1712.8926849365234
+IEK,м,7,tweedie_no_sku,month_day,20958.559827804565
+IEK,м,7,tweedie_no_sku,mean_7,12847.100578308105
+IEK,м,7,tweedie_no_sku,active_fraction_7,2348.604684829712
+IEK,м,7,tweedie_no_sku,mean_14,24840.914665222168
+IEK,м,7,tweedie_no_sku,active_fraction_14,13054.67966079712
+IEK,м,7,tweedie_no_sku,mean_28,17465.693744659424
+IEK,м,7,tweedie_no_sku,active_fraction_28,4773.632076263428
+IEK,м,7,tweedie_no_sku,mean_56,1194577.779724121
+IEK,м,7,tweedie_no_sku,active_fraction_56,33418.06652069092
+IEK,м,7,tweedie_no_sku,mean_84,1111358.1789016724
+IEK,м,7,tweedie_no_sku,active_fraction_84,50020.32532501221
+IEK,м,7,tweedie_no_sku,week_lag_1,0.0
+IEK,м,7,tweedie_no_sku,week_lag_2,9221.557188034058
+IEK,м,7,tweedie_no_sku,week_lag_3,8359.539289474487
+IEK,м,7,tweedie_no_sku,week_lag_4,10202.210020065308
+IEK,м,7,tweedie_no_sku,week_lag_5,11107.446430206299
+IEK,м,7,tweedie_no_sku,week_lag_6,10222.143537521362
+IEK,м,7,tweedie_no_sku,week_lag_7,12286.31842803955
+IEK,м,7,tweedie_no_sku,week_lag_8,26707.301498413086
+IEK,м,7,tweedie_no_sku,max_56,4286.703277587891
+IEK,м,7,tweedie_no_sku,std_56,7171.673263549805
+IEK,м,7,tweedie_no_sku,positive_size_56,58785.46943473816
+IEK,м,7,tweedie_no_sku,recent_ratio,11420.676845550537
+IEK,м,7,tweedie_no_calendar,sku_id,2534284.5325336456
+IEK,м,7,tweedie_no_calendar,age,36746.42337036133
+IEK,м,7,tweedie_no_calendar,days_since_sale,8524.005577087402
+IEK,м,7,tweedie_no_calendar,mean_7,12516.103843688965
+IEK,м,7,tweedie_no_calendar,active_fraction_7,2422.928497314453
+IEK,м,7,tweedie_no_calendar,mean_14,14350.406112670898
+IEK,м,7,tweedie_no_calendar,active_fraction_14,17057.83420562744
+IEK,м,7,tweedie_no_calendar,mean_28,10332.569034576416
+IEK,м,7,tweedie_no_calendar,active_fraction_28,5365.797830581665
+IEK,м,7,tweedie_no_calendar,mean_56,13097.123260498047
+IEK,м,7,tweedie_no_calendar,active_fraction_56,27892.970947265625
+IEK,м,7,tweedie_no_calendar,mean_84,57286.16184616089
+IEK,м,7,tweedie_no_calendar,active_fraction_84,21572.76434135437
+IEK,м,7,tweedie_no_calendar,week_lag_1,0.0
+IEK,м,7,tweedie_no_calendar,week_lag_2,8757.744510650635
+IEK,м,7,tweedie_no_calendar,week_lag_3,7701.1851444244385
+IEK,м,7,tweedie_no_calendar,week_lag_4,5701.192771911621
+IEK,м,7,tweedie_no_calendar,week_lag_5,7389.259878158569
+IEK,м,7,tweedie_no_calendar,week_lag_6,7013.358497619629
+IEK,м,7,tweedie_no_calendar,week_lag_7,10812.675811767578
+IEK,м,7,tweedie_no_calendar,week_lag_8,15269.205089569092
+IEK,м,7,tweedie_no_calendar,max_56,4535.064994812012
+IEK,м,7,tweedie_no_calendar,std_56,4328.890213012695
+IEK,м,7,tweedie_no_calendar,positive_size_56,10461.124393463135
+IEK,м,7,tweedie_no_calendar,recent_ratio,9391.498901367188
+IEK,м,7,tweedie_no_week_lags,sku_id,2552335.8485717773
+IEK,м,7,tweedie_no_week_lags,age,26253.34023284912
+IEK,м,7,tweedie_no_week_lags,days_since_sale,7131.41911315918
+IEK,м,7,tweedie_no_week_lags,month_sin,9358.260595321655
+IEK,м,7,tweedie_no_week_lags,month_cos,12401.599910736084
+IEK,м,7,tweedie_no_week_lags,weekday,1242.2640075683594
+IEK,м,7,tweedie_no_week_lags,month_day,19551.3678855896
+IEK,м,7,tweedie_no_week_lags,mean_7,16908.612060546875
+IEK,м,7,tweedie_no_week_lags,active_fraction_7,3784.408950805664
+IEK,м,7,tweedie_no_week_lags,mean_14,14594.791984558105
+IEK,м,7,tweedie_no_week_lags,active_fraction_14,15512.98861694336
+IEK,м,7,tweedie_no_week_lags,mean_28,11405.932544708252
+IEK,м,7,tweedie_no_week_lags,active_fraction_28,4569.627830505371
+IEK,м,7,tweedie_no_week_lags,mean_56,15276.562660217285
+IEK,м,7,tweedie_no_week_lags,active_fraction_56,34038.038106918335
+IEK,м,7,tweedie_no_week_lags,mean_84,60963.25215148926
+IEK,м,7,tweedie_no_week_lags,active_fraction_84,24214.673803329468
+IEK,м,7,tweedie_no_week_lags,max_56,8066.3829345703125
+IEK,м,7,tweedie_no_week_lags,std_56,4150.239234924316
+IEK,м,7,tweedie_no_week_lags,positive_size_56,11868.868022918701
+IEK,м,7,tweedie_no_week_lags,recent_ratio,11440.838802337646
+IEK,м,28,tweedie_full,sku_id,4798499.023853302
+IEK,м,28,tweedie_full,age,63659.11135673523
+IEK,м,28,tweedie_full,days_since_sale,10516.280975341797
+IEK,м,28,tweedie_full,month_sin,16468.167278289795
+IEK,м,28,tweedie_full,month_cos,25162.31672859192
+IEK,м,28,tweedie_full,weekday,22.348499298095703
+IEK,м,28,tweedie_full,month_day,290.10750579833984
+IEK,м,28,tweedie_full,mean_7,1341.7135734558105
+IEK,м,28,tweedie_full,active_fraction_7,0.0
+IEK,м,28,tweedie_full,mean_14,3508.386724472046
+IEK,м,28,tweedie_full,active_fraction_14,4425.5805015563965
+IEK,м,28,tweedie_full,mean_28,16900.913887023926
+IEK,м,28,tweedie_full,active_fraction_28,5997.651062011719
+IEK,м,28,tweedie_full,mean_56,35790.09532165527
+IEK,м,28,tweedie_full,active_fraction_56,32337.357177734375
+IEK,м,28,tweedie_full,mean_84,155518.91483688354
+IEK,м,28,tweedie_full,active_fraction_84,19893.969425201416
+IEK,м,28,tweedie_full,week_lag_1,0.0
+IEK,м,28,tweedie_full,week_lag_2,482.26849365234375
+IEK,м,28,tweedie_full,week_lag_3,519.4271945953369
+IEK,м,28,tweedie_full,week_lag_4,1005.1552066802979
+IEK,м,28,tweedie_full,week_lag_5,340.63160133361816
+IEK,м,28,tweedie_full,week_lag_6,695.8200912475586
+IEK,м,28,tweedie_full,week_lag_7,412.3077926635742
+IEK,м,28,tweedie_full,week_lag_8,6179.525203704834
+IEK,м,28,tweedie_full,max_56,10611.163152694702
+IEK,м,28,tweedie_full,std_56,10319.736167907715
+IEK,м,28,tweedie_full,positive_size_56,16293.572034835815
+IEK,м,28,tweedie_full,recent_ratio,9758.408697128296
+IEK,м,28,tweedie_no_sku,age,42383.34329032898
+IEK,м,28,tweedie_no_sku,days_since_sale,36383.333684921265
+IEK,м,28,tweedie_no_sku,month_sin,22272.762214660645
+IEK,м,28,tweedie_no_sku,month_cos,43439.338916778564
+IEK,м,28,tweedie_no_sku,weekday,119.83759880065918
+IEK,м,28,tweedie_no_sku,month_day,1309.0186004638672
+IEK,м,28,tweedie_no_sku,mean_7,5108.387744903564
+IEK,м,28,tweedie_no_sku,active_fraction_7,144.9692039489746
+IEK,м,28,tweedie_no_sku,mean_14,22730.409259796143
+IEK,м,28,tweedie_no_sku,active_fraction_14,3039.5229873657227
+IEK,м,28,tweedie_no_sku,mean_28,48820.44987487793
+IEK,м,28,tweedie_no_sku,active_fraction_28,8937.749988555908
+IEK,м,28,tweedie_no_sku,mean_56,473057.30375671387
+IEK,м,28,tweedie_no_sku,active_fraction_56,29488.097764968872
+IEK,м,28,tweedie_no_sku,mean_84,4008967.894390106
+IEK,м,28,tweedie_no_sku,active_fraction_84,73938.9557800293
+IEK,м,28,tweedie_no_sku,week_lag_1,0.0
+IEK,м,28,tweedie_no_sku,week_lag_2,1200.5719947814941
+IEK,м,28,tweedie_no_sku,week_lag_3,2862.160318374634
+IEK,м,28,tweedie_no_sku,week_lag_4,3462.1497764587402
+IEK,м,28,tweedie_no_sku,week_lag_5,3294.70841217041
+IEK,м,28,tweedie_no_sku,week_lag_6,6303.466979980469
+IEK,м,28,tweedie_no_sku,week_lag_7,5724.028985977173
+IEK,м,28,tweedie_no_sku,week_lag_8,17462.698608398438
+IEK,м,28,tweedie_no_sku,max_56,16263.112901687622
+IEK,м,28,tweedie_no_sku,std_56,7862.382102966309
+IEK,м,28,tweedie_no_sku,positive_size_56,58232.753231048584
+IEK,м,28,tweedie_no_sku,recent_ratio,14586.07410621643
+IEK,м,28,tweedie_no_calendar,sku_id,4781988.194450378
+IEK,м,28,tweedie_no_calendar,age,94532.13876533508
+IEK,м,28,tweedie_no_calendar,days_since_sale,11922.016441345215
+IEK,м,28,tweedie_no_calendar,mean_7,1081.136375427246
+IEK,м,28,tweedie_no_calendar,active_fraction_7,0.0
+IEK,м,28,tweedie_no_calendar,mean_14,3899.8492584228516
+IEK,м,28,tweedie_no_calendar,active_fraction_14,4752.38801574707
+IEK,м,28,tweedie_no_calendar,mean_28,24694.846754074097
+IEK,м,28,tweedie_no_calendar,active_fraction_28,6896.055961608887
+IEK,м,28,tweedie_no_calendar,mean_56,36248.974100112915
+IEK,м,28,tweedie_no_calendar,active_fraction_56,40810.351110458374
+IEK,м,28,tweedie_no_calendar,mean_84,158473.202003479
+IEK,м,28,tweedie_no_calendar,active_fraction_84,18340.242000579834
+IEK,м,28,tweedie_no_calendar,week_lag_1,0.0
+IEK,м,28,tweedie_no_calendar,week_lag_2,124.69100189208984
+IEK,м,28,tweedie_no_calendar,week_lag_3,1099.8741931915283
+IEK,м,28,tweedie_no_calendar,week_lag_4,382.4496955871582
+IEK,м,28,tweedie_no_calendar,week_lag_5,881.1115875244141
+IEK,м,28,tweedie_no_calendar,week_lag_6,661.0433044433594
+IEK,м,28,tweedie_no_calendar,week_lag_7,544.3511009216309
+IEK,м,28,tweedie_no_calendar,week_lag_8,6241.957294464111
+IEK,м,28,tweedie_no_calendar,max_56,10789.337240219116
+IEK,м,28,tweedie_no_calendar,std_56,9074.335838317871
+IEK,м,28,tweedie_no_calendar,positive_size_56,15912.760433197021
+IEK,м,28,tweedie_no_calendar,recent_ratio,8899.228694915771
+IEK,м,28,tweedie_no_week_lags,sku_id,4800536.808994293
+IEK,м,28,tweedie_no_week_lags,age,68321.35699081421
+IEK,м,28,tweedie_no_week_lags,days_since_sale,10863.114206314087
+IEK,м,28,tweedie_no_week_lags,month_sin,16098.90460395813
+IEK,м,28,tweedie_no_week_lags,month_cos,24365.067569732666
+IEK,м,28,tweedie_no_week_lags,weekday,0.0
+IEK,м,28,tweedie_no_week_lags,month_day,437.55989837646484
+IEK,м,28,tweedie_no_week_lags,mean_7,1845.0313720703125
+IEK,м,28,tweedie_no_week_lags,active_fraction_7,386.80970764160156
+IEK,м,28,tweedie_no_week_lags,mean_14,4232.659320831299
+IEK,м,28,tweedie_no_week_lags,active_fraction_14,3903.343402862549
+IEK,м,28,tweedie_no_week_lags,mean_28,18587.98010635376
+IEK,м,28,tweedie_no_week_lags,active_fraction_28,6398.207103729248
+IEK,м,28,tweedie_no_week_lags,mean_56,34542.029428482056
+IEK,м,28,tweedie_no_week_lags,active_fraction_56,30961.325569152832
+IEK,м,28,tweedie_no_week_lags,mean_84,161171.1645412445
+IEK,м,28,tweedie_no_week_lags,active_fraction_84,19606.528535842896
+IEK,м,28,tweedie_no_week_lags,max_56,12133.04702758789
+IEK,м,28,tweedie_no_week_lags,std_56,7898.489013671875
+IEK,м,28,tweedie_no_week_lags,positive_size_56,18000.909421920776
+IEK,м,28,tweedie_no_week_lags,recent_ratio,10837.834623336792
+IEK,упак,7,tweedie_full,sku_id,458167.33765363693
+IEK,упак,7,tweedie_full,age,7961.5572872161865
+IEK,упак,7,tweedie_full,days_since_sale,6169.097752571106
+IEK,упак,7,tweedie_full,month_sin,2609.5655426979065
+IEK,упак,7,tweedie_full,month_cos,4954.470120429993
+IEK,упак,7,tweedie_full,weekday,1701.5085496902466
+IEK,упак,7,tweedie_full,month_day,5000.397510051727
+IEK,упак,7,tweedie_full,mean_7,2077.2845306396484
+IEK,упак,7,tweedie_full,active_fraction_7,3340.7172889709473
+IEK,упак,7,tweedie_full,mean_14,2951.946487426758
+IEK,упак,7,tweedie_full,active_fraction_14,1557.4090957641602
+IEK,упак,7,tweedie_full,mean_28,1790.6865530014038
+IEK,упак,7,tweedie_full,active_fraction_28,2753.5948944091797
+IEK,упак,7,tweedie_full,mean_56,1248.6505126953125
+IEK,упак,7,tweedie_full,active_fraction_56,1218.3361911773682
+IEK,упак,7,tweedie_full,mean_84,14680.030325889587
+IEK,упак,7,tweedie_full,active_fraction_84,164311.11603164673
+IEK,упак,7,tweedie_full,week_lag_1,0.0
+IEK,упак,7,tweedie_full,week_lag_2,2836.075831413269
+IEK,упак,7,tweedie_full,week_lag_3,550.8601665496826
+IEK,упак,7,tweedie_full,week_lag_4,3525.6965622901917
+IEK,упак,7,tweedie_full,week_lag_5,2263.368118286133
+IEK,упак,7,tweedie_full,week_lag_6,2906.3970623016357
+IEK,упак,7,tweedie_full,week_lag_7,2158.066294670105
+IEK,упак,7,tweedie_full,week_lag_8,3323.1587200164795
+IEK,упак,7,tweedie_full,max_56,1127.8553376197815
+IEK,упак,7,tweedie_full,std_56,1365.4065132141113
+IEK,упак,7,tweedie_full,positive_size_56,3529.3555870056152
+IEK,упак,7,tweedie_full,recent_ratio,3243.74498462677
+IEK,упак,7,tweedie_no_sku,age,11423.6805934906
+IEK,упак,7,tweedie_no_sku,days_since_sale,13096.373167037964
+IEK,упак,7,tweedie_no_sku,month_sin,2805.1156487464905
+IEK,упак,7,tweedie_no_sku,month_cos,5694.20548915863
+IEK,упак,7,tweedie_no_sku,weekday,1768.219021320343
+IEK,упак,7,tweedie_no_sku,month_day,7211.881663799286
+IEK,упак,7,tweedie_no_sku,mean_7,3468.0494747161865
+IEK,упак,7,tweedie_no_sku,active_fraction_7,3673.800175666809
+IEK,упак,7,tweedie_no_sku,mean_14,1947.3266954421997
+IEK,упак,7,tweedie_no_sku,active_fraction_14,1280.5421295166016
+IEK,упак,7,tweedie_no_sku,mean_28,3130.977212905884
+IEK,упак,7,tweedie_no_sku,active_fraction_28,3398.5293197631836
+IEK,упак,7,tweedie_no_sku,mean_56,2948.300108909607
+IEK,упак,7,tweedie_no_sku,active_fraction_56,5310.407455444336
+IEK,упак,7,tweedie_no_sku,mean_84,75522.27859449387
+IEK,упак,7,tweedie_no_sku,active_fraction_84,483487.8512811661
+IEK,упак,7,tweedie_no_sku,week_lag_1,0.0
+IEK,упак,7,tweedie_no_sku,week_lag_2,2827.194773197174
+IEK,упак,7,tweedie_no_sku,week_lag_3,1268.3011331558228
+IEK,упак,7,tweedie_no_sku,week_lag_4,5638.480707645416
+IEK,упак,7,tweedie_no_sku,week_lag_5,3410.6925077438354
+IEK,упак,7,tweedie_no_sku,week_lag_6,6329.362299919128
+IEK,упак,7,tweedie_no_sku,week_lag_7,2821.5736808776855
+IEK,упак,7,tweedie_no_sku,week_lag_8,12181.86745929718
+IEK,упак,7,tweedie_no_sku,max_56,2027.1843180656433
+IEK,упак,7,tweedie_no_sku,std_56,1472.4619960784912
+IEK,упак,7,tweedie_no_sku,positive_size_56,23464.715051651
+IEK,упак,7,tweedie_no_sku,recent_ratio,2388.860731601715
+IEK,упак,7,tweedie_no_calendar,sku_id,459869.7014718056
+IEK,упак,7,tweedie_no_calendar,age,12123.800372123718
+IEK,упак,7,tweedie_no_calendar,days_since_sale,5637.24880027771
+IEK,упак,7,tweedie_no_calendar,mean_7,2027.0072584152222
+IEK,упак,7,tweedie_no_calendar,active_fraction_7,4002.232421875
+IEK,упак,7,tweedie_no_calendar,mean_14,3174.2262802124023
+IEK,упак,7,tweedie_no_calendar,active_fraction_14,1704.5132694244385
+IEK,упак,7,tweedie_no_calendar,mean_28,2742.168083190918
+IEK,упак,7,tweedie_no_calendar,active_fraction_28,2633.3220171928406
+IEK,упак,7,tweedie_no_calendar,mean_56,1654.982889175415
+IEK,упак,7,tweedie_no_calendar,active_fraction_56,1120.831283569336
+IEK,упак,7,tweedie_no_calendar,mean_84,16674.59618663788
+IEK,упак,7,tweedie_no_calendar,active_fraction_84,163783.2693157196
+IEK,упак,7,tweedie_no_calendar,week_lag_1,0.0
+IEK,упак,7,tweedie_no_calendar,week_lag_2,3174.5443868637085
+IEK,упак,7,tweedie_no_calendar,week_lag_3,658.3511757850647
+IEK,упак,7,tweedie_no_calendar,week_lag_4,3975.721278190613
+IEK,упак,7,tweedie_no_calendar,week_lag_5,2575.1564149856567
+IEK,упак,7,tweedie_no_calendar,week_lag_6,3094.125175476074
+IEK,упак,7,tweedie_no_calendar,week_lag_7,1813.316297531128
+IEK,упак,7,tweedie_no_calendar,week_lag_8,4388.871108055115
+IEK,упак,7,tweedie_no_calendar,max_56,1351.7405500411987
+IEK,упак,7,tweedie_no_calendar,std_56,1876.0031909942627
+IEK,упак,7,tweedie_no_calendar,positive_size_56,3443.6435117721558
+IEK,упак,7,tweedie_no_calendar,recent_ratio,3435.362560749054
+IEK,упак,7,tweedie_no_week_lags,sku_id,434751.7895255089
+IEK,упак,7,tweedie_no_week_lags,age,9912.728078365326
+IEK,упак,7,tweedie_no_week_lags,days_since_sale,5802.075016975403
+IEK,упак,7,tweedie_no_week_lags,month_sin,3044.786461830139
+IEK,упак,7,tweedie_no_week_lags,month_cos,5091.834356784821
+IEK,упак,7,tweedie_no_week_lags,weekday,1913.6838774681091
+IEK,упак,7,tweedie_no_week_lags,month_day,5087.278600215912
+IEK,упак,7,tweedie_no_week_lags,mean_7,1673.1151294708252
+IEK,упак,7,tweedie_no_week_lags,active_fraction_7,3311.2462406158447
+IEK,упак,7,tweedie_no_week_lags,mean_14,4559.053787231445
+IEK,упак,7,tweedie_no_week_lags,active_fraction_14,1540.0381889343262
+IEK,упак,7,tweedie_no_week_lags,mean_28,2310.4316177368164
+IEK,упак,7,tweedie_no_week_lags,active_fraction_28,3935.2660036087036
+IEK,упак,7,tweedie_no_week_lags,mean_56,1474.3163051605225
+IEK,упак,7,tweedie_no_week_lags,active_fraction_56,1679.194372177124
+IEK,упак,7,tweedie_no_week_lags,mean_84,16725.56249332428
+IEK,упак,7,tweedie_no_week_lags,active_fraction_84,191728.42707252502
+IEK,упак,7,tweedie_no_week_lags,max_56,1159.8169212341309
+IEK,упак,7,tweedie_no_week_lags,std_56,1604.3225955963135
+IEK,упак,7,tweedie_no_week_lags,positive_size_56,4893.708099365234
+IEK,упак,7,tweedie_no_week_lags,recent_ratio,4084.6460905075073
+IEK,упак,28,tweedie_full,sku_id,1187258.1240019798
+IEK,упак,28,tweedie_full,age,14936.714299201965
+IEK,упак,28,tweedie_full,days_since_sale,2917.354390144348
+IEK,упак,28,tweedie_full,month_sin,5161.234537124634
+IEK,упак,28,tweedie_full,month_cos,5824.712866306305
+IEK,упак,28,tweedie_full,weekday,81.15321969985962
+IEK,упак,28,tweedie_full,month_day,224.28781509399414
+IEK,упак,28,tweedie_full,mean_7,735.4195985794067
+IEK,упак,28,tweedie_full,active_fraction_7,420.48340225219727
+IEK,упак,28,tweedie_full,mean_14,767.6007857322693
+IEK,упак,28,tweedie_full,active_fraction_14,152.84960079193115
+IEK,упак,28,tweedie_full,mean_28,2277.936309337616
+IEK,упак,28,tweedie_full,active_fraction_28,1103.2903046607971
+IEK,упак,28,tweedie_full,mean_56,3556.3906831741333
+IEK,упак,28,tweedie_full,active_fraction_56,10870.564551353455
+IEK,упак,28,tweedie_full,mean_84,28645.6189289093
+IEK,упак,28,tweedie_full,active_fraction_84,6180.918710708618
+IEK,упак,28,tweedie_full,week_lag_1,0.0
+IEK,упак,28,tweedie_full,week_lag_2,109.46789932250977
+IEK,упак,28,tweedie_full,week_lag_3,138.4456024169922
+IEK,упак,28,tweedie_full,week_lag_4,697.3909358978271
+IEK,упак,28,tweedie_full,week_lag_5,224.73389625549316
+IEK,упак,28,tweedie_full,week_lag_6,395.4491958618164
+IEK,упак,28,tweedie_full,week_lag_7,396.69029998779297
+IEK,упак,28,tweedie_full,week_lag_8,235.01599884033203
+IEK,упак,28,tweedie_full,max_56,3715.7938108444214
+IEK,упак,28,tweedie_full,std_56,1378.7152156829834
+IEK,упак,28,tweedie_full,positive_size_56,6745.305061340332
+IEK,упак,28,tweedie_full,recent_ratio,1063.2658710479736
+IEK,упак,28,tweedie_no_sku,age,20591.391277313232
+IEK,упак,28,tweedie_no_sku,days_since_sale,20699.054443836212
+IEK,упак,28,tweedie_no_sku,month_sin,6118.368483543396
+IEK,упак,28,tweedie_no_sku,month_cos,8480.302230834961
+IEK,упак,28,tweedie_no_sku,weekday,519.3978610038757
+IEK,упак,28,tweedie_no_sku,month_day,1431.9671120643616
+IEK,упак,28,tweedie_no_sku,mean_7,1862.1661796569824
+IEK,упак,28,tweedie_no_sku,active_fraction_7,771.8297080993652
+IEK,упак,28,tweedie_no_sku,mean_14,1761.780737876892
+IEK,упак,28,tweedie_no_sku,active_fraction_14,356.3498058319092
+IEK,упак,28,tweedie_no_sku,mean_28,12293.249665260315
+IEK,упак,28,tweedie_no_sku,active_fraction_28,3932.9311532974243
+IEK,упак,28,tweedie_no_sku,mean_56,11429.416456222534
+IEK,упак,28,tweedie_no_sku,active_fraction_56,32687.267038345337
+IEK,упак,28,tweedie_no_sku,mean_84,185726.8906173706
+IEK,упак,28,tweedie_no_sku,active_fraction_84,897638.8389482498
+IEK,упак,28,tweedie_no_sku,week_lag_1,0.0
+IEK,упак,28,tweedie_no_sku,week_lag_2,219.71919631958008
+IEK,упак,28,tweedie_no_sku,week_lag_3,969.7512550354004
+IEK,упак,28,tweedie_no_sku,week_lag_4,2455.788142681122
+IEK,упак,28,tweedie_no_sku,week_lag_5,1609.8681240081787
+IEK,упак,28,tweedie_no_sku,week_lag_6,4204.022183418274
+IEK,упак,28,tweedie_no_sku,week_lag_7,1460.023998260498
+IEK,упак,28,tweedie_no_sku,week_lag_8,935.8200788497925
+IEK,упак,28,tweedie_no_sku,max_56,6324.4760665893555
+IEK,упак,28,tweedie_no_sku,std_56,1519.4891986846924
+IEK,упак,28,tweedie_no_sku,positive_size_56,12418.526138305664
+IEK,упак,28,tweedie_no_sku,recent_ratio,2356.046754837036
+IEK,упак,28,tweedie_no_calendar,sku_id,1188144.9209508896
+IEK,упак,28,tweedie_no_calendar,age,22073.86979484558
+IEK,упак,28,tweedie_no_calendar,days_since_sale,4522.618621349335
+IEK,упак,28,tweedie_no_calendar,mean_7,884.0840911865234
+IEK,упак,28,tweedie_no_calendar,active_fraction_7,583.8766937255859
+IEK,упак,28,tweedie_no_calendar,mean_14,872.5757150650024
+IEK,упак,28,tweedie_no_calendar,active_fraction_14,373.7186985015869
+IEK,упак,28,tweedie_no_calendar,mean_28,2244.942898750305
+IEK,упак,28,tweedie_no_calendar,active_fraction_28,1505.7406063079834
+IEK,упак,28,tweedie_no_calendar,mean_56,3398.978094100952
+IEK,упак,28,tweedie_no_calendar,active_fraction_56,10954.13346195221
+IEK,упак,28,tweedie_no_calendar,mean_84,27196.669920921326
+IEK,упак,28,tweedie_no_calendar,active_fraction_84,6499.11572933197
+IEK,упак,28,tweedie_no_calendar,week_lag_1,0.0
+IEK,упак,28,tweedie_no_calendar,week_lag_2,180.2366008758545
+IEK,упак,28,tweedie_no_calendar,week_lag_3,196.6368989944458
+IEK,упак,28,tweedie_no_calendar,week_lag_4,642.7047080993652
+IEK,упак,28,tweedie_no_calendar,week_lag_5,360.4095039367676
+IEK,упак,28,tweedie_no_calendar,week_lag_6,311.1029987335205
+IEK,упак,28,tweedie_no_calendar,week_lag_7,229.49560356140137
+IEK,упак,28,tweedie_no_calendar,week_lag_8,260.20409870147705
+IEK,упак,28,tweedie_no_calendar,max_56,4245.561630249023
+IEK,упак,28,tweedie_no_calendar,std_56,1803.1737995147705
+IEK,упак,28,tweedie_no_calendar,positive_size_56,7078.145810127258
+IEK,упак,28,tweedie_no_calendar,recent_ratio,1653.1750593185425
+IEK,упак,28,tweedie_no_week_lags,sku_id,1186055.3574950695
+IEK,упак,28,tweedie_no_week_lags,age,14428.61595916748
+IEK,упак,28,tweedie_no_week_lags,days_since_sale,2891.6920833587646
+IEK,упак,28,tweedie_no_week_lags,month_sin,5550.290340423584
+IEK,упак,28,tweedie_no_week_lags,month_cos,4971.040822982788
+IEK,упак,28,tweedie_no_week_lags,weekday,90.5048303604126
+IEK,упак,28,tweedie_no_week_lags,month_day,514.0828051567078
+IEK,упак,28,tweedie_no_week_lags,mean_7,881.3334426879883
+IEK,упак,28,tweedie_no_week_lags,active_fraction_7,327.06370544433594
+IEK,упак,28,tweedie_no_week_lags,mean_14,832.5356593132019
+IEK,упак,28,tweedie_no_week_lags,active_fraction_14,218.3983030319214
+IEK,упак,28,tweedie_no_week_lags,mean_28,2940.5694122314453
+IEK,упак,28,tweedie_no_week_lags,active_fraction_28,662.0383558273315
+IEK,упак,28,tweedie_no_week_lags,mean_56,4230.451630592346
+IEK,упак,28,tweedie_no_week_lags,active_fraction_56,10693.472036361694
+IEK,упак,28,tweedie_no_week_lags,mean_84,29817.63442325592
+IEK,упак,28,tweedie_no_week_lags,active_fraction_84,7112.382986545563
+IEK,упак,28,tweedie_no_week_lags,max_56,3267.9690408706665
+IEK,упак,28,tweedie_no_week_lags,std_56,2211.5316982269287
+IEK,упак,28,tweedie_no_week_lags,positive_size_56,6814.31374835968
+IEK,упак,28,tweedie_no_week_lags,recent_ratio,1801.6998023986816
+IEK,шт,7,tweedie_full,sku_id,3267114.6966400146
+IEK,шт,7,tweedie_full,age,14031.751007080078
+IEK,шт,7,tweedie_full,days_since_sale,82581.3392791748
+IEK,шт,7,tweedie_full,month_sin,25940.315963745117
+IEK,шт,7,tweedie_full,month_cos,34826.110900878906
+IEK,шт,7,tweedie_full,weekday,14435.398025512695
+IEK,шт,7,tweedie_full,month_day,34433.84582519531
+IEK,шт,7,tweedie_full,mean_7,296.34698486328125
+IEK,шт,7,tweedie_full,active_fraction_7,46877.50048828125
+IEK,шт,7,tweedie_full,mean_14,434411.3717956543
+IEK,шт,7,tweedie_full,active_fraction_14,128860.740234375
+IEK,шт,7,tweedie_full,mean_28,202827.5637664795
+IEK,шт,7,tweedie_full,active_fraction_28,67279.15084838867
+IEK,шт,7,tweedie_full,mean_56,907704.1413421631
+IEK,шт,7,tweedie_full,active_fraction_56,55018.011474609375
+IEK,шт,7,tweedie_full,mean_84,18114309.664367676
+IEK,шт,7,tweedie_full,active_fraction_84,210141.40270996094
+IEK,шт,7,tweedie_full,week_lag_1,0.0
+IEK,шт,7,tweedie_full,week_lag_2,11282.205047607422
+IEK,шт,7,tweedie_full,week_lag_3,24589.129760742188
+IEK,шт,7,tweedie_full,week_lag_4,570.0259857177734
+IEK,шт,7,tweedie_full,week_lag_5,6145.765045166016
+IEK,шт,7,tweedie_full,week_lag_6,44218.788650512695
+IEK,шт,7,tweedie_full,week_lag_7,8389.02328491211
+IEK,шт,7,tweedie_full,week_lag_8,7417.703063964844
+IEK,шт,7,tweedie_full,max_56,1023.916015625
+IEK,шт,7,tweedie_full,std_56,18031.1749420166
+IEK,шт,7,tweedie_full,positive_size_56,2204.543975830078
+IEK,шт,7,tweedie_full,recent_ratio,5152.969955444336
+IEK,шт,7,tweedie_no_sku,age,93672.18228912354
+IEK,шт,7,tweedie_no_sku,days_since_sale,146621.4626235962
+IEK,шт,7,tweedie_no_sku,month_sin,39263.6247177124
+IEK,шт,7,tweedie_no_sku,month_cos,66706.61000061035
+IEK,шт,7,tweedie_no_sku,weekday,25648.874507904053
+IEK,шт,7,tweedie_no_sku,month_day,59089.31381607056
+IEK,шт,7,tweedie_no_sku,mean_7,68015.54197692871
+IEK,шт,7,tweedie_no_sku,active_fraction_7,10017.206817626953
+IEK,шт,7,tweedie_no_sku,mean_14,108969.97180175781
+IEK,шт,7,tweedie_no_sku,active_fraction_14,4714.841621398926
+IEK,шт,7,tweedie_no_sku,mean_28,412517.18452453613
+IEK,шт,7,tweedie_no_sku,active_fraction_28,8271.216438293457
+IEK,шт,7,tweedie_no_sku,mean_56,997328.1437072754
+IEK,шт,7,tweedie_no_sku,active_fraction_56,8556.327289581299
+IEK,шт,7,tweedie_no_sku,mean_84,19772885.678100586
+IEK,шт,7,tweedie_no_sku,active_fraction_84,37039.42167663574
+IEK,шт,7,tweedie_no_sku,week_lag_1,0.0
+IEK,шт,7,tweedie_no_sku,week_lag_2,178427.11169433594
+IEK,шт,7,tweedie_no_sku,week_lag_3,79149.97420501709
+IEK,шт,7,tweedie_no_sku,week_lag_4,50344.24402618408
+IEK,шт,7,tweedie_no_sku,week_lag_5,58774.30797576904
+IEK,шт,7,tweedie_no_sku,week_lag_6,65780.43646240234
+IEK,шт,7,tweedie_no_sku,week_lag_7,71479.82683563232
+IEK,шт,7,tweedie_no_sku,week_lag_8,40782.05825805664
+IEK,шт,7,tweedie_no_sku,max_56,12770.810157775879
+IEK,шт,7,tweedie_no_sku,std_56,11258.350341796875
+IEK,шт,7,tweedie_no_sku,positive_size_56,9296.62506866455
+IEK,шт,7,tweedie_no_sku,recent_ratio,10625.122947692871
+IEK,шт,7,tweedie_no_calendar,sku_id,3214709.067253113
+IEK,шт,7,tweedie_no_calendar,age,38414.90408325195
+IEK,шт,7,tweedie_no_calendar,days_since_sale,82154.05628967285
+IEK,шт,7,tweedie_no_calendar,mean_7,0.0
+IEK,шт,7,tweedie_no_calendar,active_fraction_7,53806.080322265625
+IEK,шт,7,tweedie_no_calendar,mean_14,440970.9870452881
+IEK,шт,7,tweedie_no_calendar,active_fraction_14,128286.5498046875
+IEK,шт,7,tweedie_no_calendar,mean_28,207563.3904724121
+IEK,шт,7,tweedie_no_calendar,active_fraction_28,69548.43127441406
+IEK,шт,7,tweedie_no_calendar,mean_56,911093.2263031006
+IEK,шт,7,tweedie_no_calendar,active_fraction_56,49709.31661224365
+IEK,шт,7,tweedie_no_calendar,mean_84,18115262.870437622
+IEK,шт,7,tweedie_no_calendar,active_fraction_84,204088.15546417236
+IEK,шт,7,tweedie_no_calendar,week_lag_1,0.0
+IEK,шт,7,tweedie_no_calendar,week_lag_2,12489.924118041992
+IEK,шт,7,tweedie_no_calendar,week_lag_3,23588.66470336914
+IEK,шт,7,tweedie_no_calendar,week_lag_4,0.0
+IEK,шт,7,tweedie_no_calendar,week_lag_5,7915.579971313477
+IEK,шт,7,tweedie_no_calendar,week_lag_6,40067.123046875
+IEK,шт,7,tweedie_no_calendar,week_lag_7,3926.9050903320312
+IEK,шт,7,tweedie_no_calendar,week_lag_8,7027.239074707031
+IEK,шт,7,tweedie_no_calendar,max_56,2451.4210052490234
+IEK,шт,7,tweedie_no_calendar,std_56,17168.222763061523
+IEK,шт,7,tweedie_no_calendar,positive_size_56,3789.2530212402344
+IEK,шт,7,tweedie_no_calendar,recent_ratio,5633.9479904174805
+IEK,шт,7,tweedie_no_week_lags,sku_id,3276584.900543213
+IEK,шт,7,tweedie_no_week_lags,age,14261.819061279297
+IEK,шт,7,tweedie_no_week_lags,days_since_sale,82040.86111450195
+IEK,шт,7,tweedie_no_week_lags,month_sin,25770.242874145508
+IEK,шт,7,tweedie_no_week_lags,month_cos,34802.54904174805
+IEK,шт,7,tweedie_no_week_lags,weekday,16434.453903198242
+IEK,шт,7,tweedie_no_week_lags,month_day,35030.124099731445
+IEK,шт,7,tweedie_no_week_lags,mean_7,198.38099670410156
+IEK,шт,7,tweedie_no_week_lags,active_fraction_7,31466.70883178711
+IEK,шт,7,tweedie_no_week_lags,mean_14,453766.5119934082
+IEK,шт,7,tweedie_no_week_lags,active_fraction_14,130473.2470703125
+IEK,шт,7,tweedie_no_week_lags,mean_28,204617.6978149414
+IEK,шт,7,tweedie_no_week_lags,active_fraction_28,61673.30825805664
+IEK,шт,7,tweedie_no_week_lags,mean_56,920595.3753814697
+IEK,шт,7,tweedie_no_week_lags,active_fraction_56,67216.16094970703
+IEK,шт,7,tweedie_no_week_lags,mean_84,18144319.970046997
+IEK,шт,7,tweedie_no_week_lags,active_fraction_84,232155.29779052734
+IEK,шт,7,tweedie_no_week_lags,max_56,581.3249969482422
+IEK,шт,7,tweedie_no_week_lags,std_56,17041.20327758789
+IEK,шт,7,tweedie_no_week_lags,positive_size_56,1985.7940368652344
+IEK,шт,7,tweedie_no_week_lags,recent_ratio,6979.491958618164
+IEK,шт,28,tweedie_full,sku_id,6162945.534805298
+IEK,шт,28,tweedie_full,age,24982.456924438477
+IEK,шт,28,tweedie_full,days_since_sale,128527.82461547852
+IEK,шт,28,tweedie_full,month_sin,28776.12710571289
+IEK,шт,28,tweedie_full,month_cos,25393.697952270508
+IEK,шт,28,tweedie_full,weekday,1192.5600128173828
+IEK,шт,28,tweedie_full,month_day,0.0
+IEK,шт,28,tweedie_full,mean_7,10715.960205078125
+IEK,шт,28,tweedie_full,active_fraction_7,9923.429260253906
+IEK,шт,28,tweedie_full,mean_14,160268.77075195312
+IEK,шт,28,tweedie_full,active_fraction_14,31238.2998046875
+IEK,шт,28,tweedie_full,mean_28,17117.29864501953
+IEK,шт,28,tweedie_full,active_fraction_28,4523.1201171875
+IEK,шт,28,tweedie_full,mean_56,1207497.0433654785
+IEK,шт,28,tweedie_full,active_fraction_56,187994.9896850586
+IEK,шт,28,tweedie_full,mean_84,36408015.02044678
+IEK,шт,28,tweedie_full,active_fraction_84,777364.5988922119
+IEK,шт,28,tweedie_full,week_lag_1,0.0
+IEK,шт,28,tweedie_full,week_lag_2,14327.31869506836
+IEK,шт,28,tweedie_full,week_lag_3,9054.230834960938
+IEK,шт,28,tweedie_full,week_lag_4,5992.7301025390625
+IEK,шт,28,tweedie_full,week_lag_5,16513.3359375
+IEK,шт,28,tweedie_full,week_lag_6,25973.559814453125
+IEK,шт,28,tweedie_full,week_lag_7,13254.009887695312
+IEK,шт,28,tweedie_full,week_lag_8,2660.3739624023438
+IEK,шт,28,tweedie_full,max_56,1693.760025024414
+IEK,шт,28,tweedie_full,std_56,799.4239807128906
+IEK,шт,28,tweedie_full,positive_size_56,5757.166000366211
+IEK,шт,28,tweedie_full,recent_ratio,3705.595001220703
+IEK,шт,28,tweedie_no_sku,age,153831.4520263672
+IEK,шт,28,tweedie_no_sku,days_since_sale,253757.69077301025
+IEK,шт,28,tweedie_no_sku,month_sin,65496.81074523926
+IEK,шт,28,tweedie_no_sku,month_cos,89893.53889465332
+IEK,шт,28,tweedie_no_sku,weekday,2651.210968017578
+IEK,шт,28,tweedie_no_sku,month_day,13334.501667022705
+IEK,шт,28,tweedie_no_sku,mean_7,347174.45442199707
+IEK,шт,28,tweedie_no_sku,active_fraction_7,4491.936248779297
+IEK,шт,28,tweedie_no_sku,mean_14,61033.65450668335
+IEK,шт,28,tweedie_no_sku,active_fraction_14,18422.597427368164
+IEK,шт,28,tweedie_no_sku,mean_28,1096656.276184082
+IEK,шт,28,tweedie_no_sku,active_fraction_28,3990.6409759521484
+IEK,шт,28,tweedie_no_sku,mean_56,2054644.050354004
+IEK,шт,28,tweedie_no_sku,active_fraction_56,61893.54000854492
+IEK,шт,28,tweedie_no_sku,mean_84,37684501.92197418
+IEK,шт,28,tweedie_no_sku,active_fraction_84,63362.875144958496
+IEK,шт,28,tweedie_no_sku,week_lag_1,0.0
+IEK,шт,28,tweedie_no_sku,week_lag_2,147883.30234527588
+IEK,шт,28,tweedie_no_sku,week_lag_3,146809.34908294678
+IEK,шт,28,tweedie_no_sku,week_lag_4,95527.99684906006
+IEK,шт,28,tweedie_no_sku,week_lag_5,91029.68876647949
+IEK,шт,28,tweedie_no_sku,week_lag_6,102318.29340362549
+IEK,шт,28,tweedie_no_sku,week_lag_7,147606.3557662964
+IEK,шт,28,tweedie_no_sku,week_lag_8,62319.20203399658
+IEK,шт,28,tweedie_no_sku,max_56,20353.64630126953
+IEK,шт,28,tweedie_no_sku,std_56,1431.9749908447266
+IEK,шт,28,tweedie_no_sku,positive_size_56,25991.493522644043
+IEK,шт,28,tweedie_no_sku,recent_ratio,8176.176788330078
+IEK,шт,28,tweedie_no_calendar,sku_id,6098649.143630981
+IEK,шт,28,tweedie_no_calendar,age,44789.717025756836
+IEK,шт,28,tweedie_no_calendar,days_since_sale,139342.6410522461
+IEK,шт,28,tweedie_no_calendar,mean_7,2134.56005859375
+IEK,шт,28,tweedie_no_calendar,active_fraction_7,11442.489990234375
+IEK,шт,28,tweedie_no_calendar,mean_14,170956.63940429688
+IEK,шт,28,tweedie_no_calendar,active_fraction_14,41136.95068359375
+IEK,шт,28,tweedie_no_calendar,mean_28,17757.115692138672
+IEK,шт,28,tweedie_no_calendar,active_fraction_28,2462.321975708008
+IEK,шт,28,tweedie_no_calendar,mean_56,1199131.7715454102
+IEK,шт,28,tweedie_no_calendar,active_fraction_56,177666.66426086426
+IEK,шт,28,tweedie_no_calendar,mean_84,36401149.18783569
+IEK,шт,28,tweedie_no_calendar,active_fraction_84,776495.9602355957
+IEK,шт,28,tweedie_no_calendar,week_lag_1,0.0
+IEK,шт,28,tweedie_no_calendar,week_lag_2,20555.55029296875
+IEK,шт,28,tweedie_no_calendar,week_lag_3,11138.815933227539
+IEK,шт,28,tweedie_no_calendar,week_lag_4,7639.449966430664
+IEK,шт,28,tweedie_no_calendar,week_lag_5,30946.621459960938
+IEK,шт,28,tweedie_no_calendar,week_lag_6,25802.839599609375
+IEK,шт,28,tweedie_no_calendar,week_lag_7,10715.43798828125
+IEK,шт,28,tweedie_no_calendar,week_lag_8,1752.041015625
+IEK,шт,28,tweedie_no_calendar,max_56,4385.426025390625
+IEK,шт,28,tweedie_no_calendar,std_56,5455.7900390625
+IEK,шт,28,tweedie_no_calendar,positive_size_56,8609.604919433594
+IEK,шт,28,tweedie_no_calendar,recent_ratio,4423.616973876953
+IEK,шт,28,tweedie_no_week_lags,sku_id,6185976.480300903
+IEK,шт,28,tweedie_no_week_lags,age,26048.987579345703
+IEK,шт,28,tweedie_no_week_lags,days_since_sale,122322.94375610352
+IEK,шт,28,tweedie_no_week_lags,month_sin,29210.536911010742
+IEK,шт,28,tweedie_no_week_lags,month_cos,25718.93394470215
+IEK,шт,28,tweedie_no_week_lags,weekday,612.5809936523438
+IEK,шт,28,tweedie_no_week_lags,month_day,0.0
+IEK,шт,28,tweedie_no_week_lags,mean_7,13755.955535888672
+IEK,шт,28,tweedie_no_week_lags,active_fraction_7,9461.309936523438
+IEK,шт,28,tweedie_no_week_lags,mean_14,162230.7108154297
+IEK,шт,28,tweedie_no_week_lags,active_fraction_14,29299.099609375
+IEK,шт,28,tweedie_no_week_lags,mean_28,16204.585723876953
+IEK,шт,28,tweedie_no_week_lags,active_fraction_28,5617.1201171875
+IEK,шт,28,tweedie_no_week_lags,mean_56,1218120.5574035645
+IEK,шт,28,tweedie_no_week_lags,active_fraction_56,204658.28494262695
+IEK,шт,28,tweedie_no_week_lags,mean_84,36426396.76257324
+IEK,шт,28,tweedie_no_week_lags,active_fraction_84,799347.803894043
+IEK,шт,28,tweedie_no_week_lags,max_56,1461.1239929199219
+IEK,шт,28,tweedie_no_week_lags,std_56,1853.8120422363281
+IEK,шт,28,tweedie_no_week_lags,positive_size_56,5320.885009765625
+IEK,шт,28,tweedie_no_week_lags,recent_ratio,5368.258041381836
+Systeme electric,шт,7,tweedie_full,sku_id,24098438.92137146
+Systeme electric,шт,7,tweedie_full,age,77400.0224609375
+Systeme electric,шт,7,tweedie_full,days_since_sale,31120.50099182129
+Systeme electric,шт,7,tweedie_full,month_sin,43180.18921661377
+Systeme electric,шт,7,tweedie_full,month_cos,45319.392669677734
+Systeme electric,шт,7,tweedie_full,weekday,10119.833068847656
+Systeme electric,шт,7,tweedie_full,month_day,99621.79523468018
+Systeme electric,шт,7,tweedie_full,mean_7,11915.44401550293
+Systeme electric,шт,7,tweedie_full,active_fraction_7,433.07598876953125
+Systeme electric,шт,7,tweedie_full,mean_14,4964.330047607422
+Systeme electric,шт,7,tweedie_full,active_fraction_14,18681.01123046875
+Systeme electric,шт,7,tweedie_full,mean_28,90341.65545654297
+Systeme electric,шт,7,tweedie_full,active_fraction_28,11454.318939208984
+Systeme electric,шт,7,tweedie_full,mean_56,210081.0764465332
+Systeme electric,шт,7,tweedie_full,active_fraction_56,15339.59700012207
+Systeme electric,шт,7,tweedie_full,mean_84,2198324.9903411865
+Systeme electric,шт,7,tweedie_full,active_fraction_84,45437.13415527344
+Systeme electric,шт,7,tweedie_full,week_lag_1,0.0
+Systeme electric,шт,7,tweedie_full,week_lag_2,16311.9921875
+Systeme electric,шт,7,tweedie_full,week_lag_3,22824.608963012695
+Systeme electric,шт,7,tweedie_full,week_lag_4,23804.732055664062
+Systeme electric,шт,7,tweedie_full,week_lag_5,10538.27700805664
+Systeme electric,шт,7,tweedie_full,week_lag_6,80764.71376037598
+Systeme electric,шт,7,tweedie_full,week_lag_7,10874.808792114258
+Systeme electric,шт,7,tweedie_full,week_lag_8,29786.474227905273
+Systeme electric,шт,7,tweedie_full,max_56,2696.8090209960938
+Systeme electric,шт,7,tweedie_full,std_56,2515.509994506836
+Systeme electric,шт,7,tweedie_full,positive_size_56,7442.897979736328
+Systeme electric,шт,7,tweedie_full,recent_ratio,9260.917381286621
+Systeme electric,шт,7,tweedie_no_sku,age,172307.32117462158
+Systeme electric,шт,7,tweedie_no_sku,days_since_sale,94050.6435623169
+Systeme electric,шт,7,tweedie_no_sku,month_sin,59172.93627166748
+Systeme electric,шт,7,tweedie_no_sku,month_cos,66331.00297546387
+Systeme electric,шт,7,tweedie_no_sku,weekday,10507.230987548828
+Systeme electric,шт,7,tweedie_no_sku,month_day,130082.13326263428
+Systeme electric,шт,7,tweedie_no_sku,mean_7,17658.20327758789
+Systeme electric,шт,7,tweedie_no_sku,active_fraction_7,1371.8879699707031
+Systeme electric,шт,7,tweedie_no_sku,mean_14,20036.684936523438
+Systeme electric,шт,7,tweedie_no_sku,active_fraction_14,15590.59506225586
+Systeme electric,шт,7,tweedie_no_sku,mean_28,51561.711654663086
+Systeme electric,шт,7,tweedie_no_sku,active_fraction_28,18855.771926879883
+Systeme electric,шт,7,tweedie_no_sku,mean_56,928235.0547485352
+Systeme electric,шт,7,tweedie_no_sku,active_fraction_56,17375.278228759766
+Systeme electric,шт,7,tweedie_no_sku,mean_84,24128120.81340027
+Systeme electric,шт,7,tweedie_no_sku,active_fraction_84,48068.04518890381
+Systeme electric,шт,7,tweedie_no_sku,week_lag_1,0.0
+Systeme electric,шт,7,tweedie_no_sku,week_lag_2,80675.96241760254
+Systeme electric,шт,7,tweedie_no_sku,week_lag_3,60958.21001434326
+Systeme electric,шт,7,tweedie_no_sku,week_lag_4,42339.11317443848
+Systeme electric,шт,7,tweedie_no_sku,week_lag_5,88268.86882019043
+Systeme electric,шт,7,tweedie_no_sku,week_lag_6,306293.0219268799
+Systeme electric,шт,7,tweedie_no_sku,week_lag_7,34400.37880706787
+Systeme electric,шт,7,tweedie_no_sku,week_lag_8,113466.94059753418
+Systeme electric,шт,7,tweedie_no_sku,max_56,26517.722885131836
+Systeme electric,шт,7,tweedie_no_sku,std_56,21712.78675842285
+Systeme electric,шт,7,tweedie_no_sku,positive_size_56,51046.83671569824
+Systeme electric,шт,7,tweedie_no_sku,recent_ratio,20402.81103515625
+Systeme electric,шт,7,tweedie_no_calendar,sku_id,23984195.18436432
+Systeme electric,шт,7,tweedie_no_calendar,age,156099.5293045044
+Systeme electric,шт,7,tweedie_no_calendar,days_since_sale,34533.85216522217
+Systeme electric,шт,7,tweedie_no_calendar,mean_7,12109.080841064453
+Systeme electric,шт,7,tweedie_no_calendar,active_fraction_7,1828.35302734375
+Systeme electric,шт,7,tweedie_no_calendar,mean_14,7335.749008178711
+Systeme electric,шт,7,tweedie_no_calendar,active_fraction_14,18818.634033203125
+Systeme electric,шт,7,tweedie_no_calendar,mean_28,92773.35133361816
+Systeme electric,шт,7,tweedie_no_calendar,active_fraction_28,7747.262168884277
+Systeme electric,шт,7,tweedie_no_calendar,mean_56,207218.76817321777
+Systeme electric,шт,7,tweedie_no_calendar,active_fraction_56,22486.152923583984
+Systeme electric,шт,7,tweedie_no_calendar,mean_84,2229420.411376953
+Systeme electric,шт,7,tweedie_no_calendar,active_fraction_84,48075.204528808594
+Systeme electric,шт,7,tweedie_no_calendar,week_lag_1,0.0
+Systeme electric,шт,7,tweedie_no_calendar,week_lag_2,36447.89208984375
+Systeme electric,шт,7,tweedie_no_calendar,week_lag_3,27185.03302001953
+Systeme electric,шт,7,tweedie_no_calendar,week_lag_4,31077.452964782715
+Systeme electric,шт,7,tweedie_no_calendar,week_lag_5,11155.311935424805
+Systeme electric,шт,7,tweedie_no_calendar,week_lag_6,95439.26335144043
+Systeme electric,шт,7,tweedie_no_calendar,week_lag_7,11524.044906616211
+Systeme electric,шт,7,tweedie_no_calendar,week_lag_8,52169.4287109375
+Systeme electric,шт,7,tweedie_no_calendar,max_56,2741.2330169677734
+Systeme electric,шт,7,tweedie_no_calendar,std_56,3203.292022705078
+Systeme electric,шт,7,tweedie_no_calendar,positive_size_56,15472.519897460938
+Systeme electric,шт,7,tweedie_no_calendar,recent_ratio,7539.225135803223
+Systeme electric,шт,7,tweedie_no_week_lags,sku_id,24190360.396392822
+Systeme electric,шт,7,tweedie_no_week_lags,age,88530.76131439209
+Systeme electric,шт,7,tweedie_no_week_lags,days_since_sale,33732.862060546875
+Systeme electric,шт,7,tweedie_no_week_lags,month_sin,47093.06799316406
+Systeme electric,шт,7,tweedie_no_week_lags,month_cos,46181.69584655762
+Systeme electric,шт,7,tweedie_no_week_lags,weekday,8882.176025390625
+Systeme electric,шт,7,tweedie_no_week_lags,month_day,104174.73706817627
+Systeme electric,шт,7,tweedie_no_week_lags,mean_7,15168.872909545898
+Systeme electric,шт,7,tweedie_no_week_lags,active_fraction_7,607.7760009765625
+Systeme electric,шт,7,tweedie_no_week_lags,mean_14,13107.383010864258
+Systeme electric,шт,7,tweedie_no_week_lags,active_fraction_14,15292.948272705078
+Systeme electric,шт,7,tweedie_no_week_lags,mean_28,105188.41011047363
+Systeme electric,шт,7,tweedie_no_week_lags,active_fraction_28,12903.362991333008
+Systeme electric,шт,7,tweedie_no_week_lags,mean_56,154175.66619873047
+Systeme electric,шт,7,tweedie_no_week_lags,active_fraction_56,28999.005157470703
+Systeme electric,шт,7,tweedie_no_week_lags,mean_84,2281813.6637420654
+Systeme electric,шт,7,tweedie_no_week_lags,active_fraction_84,44323.7229309082
+Systeme electric,шт,7,tweedie_no_week_lags,max_56,4181.218002319336
+Systeme electric,шт,7,tweedie_no_week_lags,std_56,2193.7109985351562
+Systeme electric,шт,7,tweedie_no_week_lags,positive_size_56,7292.870056152344
+Systeme electric,шт,7,tweedie_no_week_lags,recent_ratio,14859.8929977417
+Systeme electric,шт,28,tweedie_full,sku_id,47186092.67541504
+Systeme electric,шт,28,tweedie_full,age,110269.17440032959
+Systeme electric,шт,28,tweedie_full,days_since_sale,16178.272979736328
+Systeme electric,шт,28,tweedie_full,month_sin,32043.61498260498
+Systeme electric,шт,28,tweedie_full,month_cos,55358.88218688965
+Systeme electric,шт,28,tweedie_full,weekday,2218.900993347168
+Systeme electric,шт,28,tweedie_full,month_day,11448.14907836914
+Systeme electric,шт,28,tweedie_full,mean_7,5612.963073730469
+Systeme electric,шт,28,tweedie_full,active_fraction_7,0.0
+Systeme electric,шт,28,tweedie_full,mean_14,2800.0709838867188
+Systeme electric,шт,28,tweedie_full,active_fraction_14,0.0
+Systeme electric,шт,28,tweedie_full,mean_28,9322.679000854492
+Systeme electric,шт,28,tweedie_full,active_fraction_28,32292.081817626953
+Systeme electric,шт,28,tweedie_full,mean_56,568860.4726867676
+Systeme electric,шт,28,tweedie_full,active_fraction_56,35040.05078125
+Systeme electric,шт,28,tweedie_full,mean_84,3640042.8074188232
+Systeme electric,шт,28,tweedie_full,active_fraction_84,73347.77675628662
+Systeme electric,шт,28,tweedie_full,week_lag_1,0.0
+Systeme electric,шт,28,tweedie_full,week_lag_2,401.6929931640625
+Systeme electric,шт,28,tweedie_full,week_lag_3,5670.25
+Systeme electric,шт,28,tweedie_full,week_lag_4,15893.349014282227
+Systeme electric,шт,28,tweedie_full,week_lag_5,24593.680236816406
+Systeme electric,шт,28,tweedie_full,week_lag_6,50567.2802734375
+Systeme electric,шт,28,tweedie_full,week_lag_7,955.526008605957
+Systeme electric,шт,28,tweedie_full,week_lag_8,1032.4230041503906
+Systeme electric,шт,28,tweedie_full,max_56,12566.7529296875
+Systeme electric,шт,28,tweedie_full,std_56,4527.826904296875
+Systeme electric,шт,28,tweedie_full,positive_size_56,2196.668991088867
+Systeme electric,шт,28,tweedie_full,recent_ratio,4250.3889236450195
+Systeme electric,шт,28,tweedie_no_sku,age,218871.91271209717
+Systeme electric,шт,28,tweedie_no_sku,days_since_sale,208162.6964111328
+Systeme electric,шт,28,tweedie_no_sku,month_sin,77222.70176696777
+Systeme electric,шт,28,tweedie_no_sku,month_cos,103952.34669494629
+Systeme electric,шт,28,tweedie_no_sku,weekday,7424.046974182129
+Systeme electric,шт,28,tweedie_no_sku,month_day,22841.602645874023
+Systeme electric,шт,28,tweedie_no_sku,mean_7,7783.056930541992
+Systeme electric,шт,28,tweedie_no_sku,active_fraction_7,0.0
+Systeme electric,шт,28,tweedie_no_sku,mean_14,7239.751937866211
+Systeme electric,шт,28,tweedie_no_sku,active_fraction_14,2234.2950134277344
+Systeme electric,шт,28,tweedie_no_sku,mean_28,125353.69613647461
+Systeme electric,шт,28,tweedie_no_sku,active_fraction_28,21399.536987304688
+Systeme electric,шт,28,tweedie_no_sku,mean_56,1984991.6668701172
+Systeme electric,шт,28,tweedie_no_sku,active_fraction_56,88932.85995483398
+Systeme electric,шт,28,tweedie_no_sku,mean_84,46621562.95915222
+Systeme electric,шт,28,tweedie_no_sku,active_fraction_84,95527.61521148682
+Systeme electric,шт,28,tweedie_no_sku,week_lag_1,0.0
+Systeme electric,шт,28,tweedie_no_sku,week_lag_2,17074.480087280273
+Systeme electric,шт,28,tweedie_no_sku,week_lag_3,46911.52088928223
+Systeme electric,шт,28,tweedie_no_sku,week_lag_4,71806.28646850586
+Systeme electric,шт,28,tweedie_no_sku,week_lag_5,183708.81553649902
+Systeme electric,шт,28,tweedie_no_sku,week_lag_6,319615.84659576416
+Systeme electric,шт,28,tweedie_no_sku,week_lag_7,40640.89465332031
+Systeme electric,шт,28,tweedie_no_sku,week_lag_8,93598.26615905762
+Systeme electric,шт,28,tweedie_no_sku,max_56,69664.48123168945
+Systeme electric,шт,28,tweedie_no_sku,std_56,63360.52632904053
+Systeme electric,шт,28,tweedie_no_sku,positive_size_56,50252.3401184082
+Systeme electric,шт,28,tweedie_no_sku,recent_ratio,29856.574684143066
+Systeme electric,шт,28,tweedie_no_calendar,sku_id,46843753.56365204
+Systeme electric,шт,28,tweedie_no_calendar,age,181071.57968902588
+Systeme electric,шт,28,tweedie_no_calendar,days_since_sale,15326.878135681152
+Systeme electric,шт,28,tweedie_no_calendar,mean_7,4471.465042114258
+Systeme electric,шт,28,tweedie_no_calendar,active_fraction_7,0.0
+Systeme electric,шт,28,tweedie_no_calendar,mean_14,3521.1690368652344
+Systeme electric,шт,28,tweedie_no_calendar,active_fraction_14,981.8610076904297
+Systeme electric,шт,28,tweedie_no_calendar,mean_28,15317.767959594727
+Systeme electric,шт,28,tweedie_no_calendar,active_fraction_28,30989.548362731934
+Systeme electric,шт,28,tweedie_no_calendar,mean_56,597204.4147033691
+Systeme electric,шт,28,tweedie_no_calendar,active_fraction_56,36114.472023010254
+Systeme electric,шт,28,tweedie_no_calendar,mean_84,3875040.3775405884
+Systeme electric,шт,28,tweedie_no_calendar,active_fraction_84,66299.14952087402
+Systeme electric,шт,28,tweedie_no_calendar,week_lag_1,0.0
+Systeme electric,шт,28,tweedie_no_calendar,week_lag_2,242.41900634765625
+Systeme electric,шт,28,tweedie_no_calendar,week_lag_3,8974.679931640625
+Systeme electric,шт,28,tweedie_no_calendar,week_lag_4,16217.196029663086
+Systeme electric,шт,28,tweedie_no_calendar,week_lag_5,37574.799072265625
+Systeme electric,шт,28,tweedie_no_calendar,week_lag_6,69566.19139099121
+Systeme electric,шт,28,tweedie_no_calendar,week_lag_7,513.5529861450195
+Systeme electric,шт,28,tweedie_no_calendar,week_lag_8,1042.713005065918
+Systeme electric,шт,28,tweedie_no_calendar,max_56,16763.898582458496
+Systeme electric,шт,28,tweedie_no_calendar,std_56,9240.062042236328
+Systeme electric,шт,28,tweedie_no_calendar,positive_size_56,2639.730010986328
+Systeme electric,шт,28,tweedie_no_calendar,recent_ratio,7291.123992919922
+Systeme electric,шт,28,tweedie_no_week_lags,sku_id,47096247.67023468
+Systeme electric,шт,28,tweedie_no_week_lags,age,107204.10573577881
+Systeme electric,шт,28,tweedie_no_week_lags,days_since_sale,15689.034042358398
+Systeme electric,шт,28,tweedie_no_week_lags,month_sin,29897.708572387695
+Systeme electric,шт,28,tweedie_no_week_lags,month_cos,48283.986068725586
+Systeme electric,шт,28,tweedie_no_week_lags,weekday,3767.2785110473633
+Systeme electric,шт,28,tweedie_no_week_lags,month_day,11852.806015014648
+Systeme electric,шт,28,tweedie_no_week_lags,mean_7,9453.262985229492
+Systeme electric,шт,28,tweedie_no_week_lags,active_fraction_7,0.0
+Systeme electric,шт,28,tweedie_no_week_lags,mean_14,3012.886001586914
+Systeme electric,шт,28,tweedie_no_week_lags,active_fraction_14,1788.9929809570312
+Systeme electric,шт,28,tweedie_no_week_lags,mean_28,31390.869903564453
+Systeme electric,шт,28,tweedie_no_week_lags,active_fraction_28,29460.09210205078
+Systeme electric,шт,28,tweedie_no_week_lags,mean_56,595151.4974365234
+Systeme electric,шт,28,tweedie_no_week_lags,active_fraction_56,36017.059982299805
+Systeme electric,шт,28,tweedie_no_week_lags,mean_84,3777096.710342407
+Systeme electric,шт,28,tweedie_no_week_lags,active_fraction_84,77673.27373504639
+Systeme electric,шт,28,tweedie_no_week_lags,max_56,15749.50496673584
+Systeme electric,шт,28,tweedie_no_week_lags,std_56,12701.826873779297
+Systeme electric,шт,28,tweedie_no_week_lags,positive_size_56,1294.052978515625
+Systeme electric,шт,28,tweedie_no_week_lags,recent_ratio,5152.4913330078125

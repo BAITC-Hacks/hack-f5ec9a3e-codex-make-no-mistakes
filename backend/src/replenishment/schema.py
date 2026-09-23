@@ -5,6 +5,7 @@ from replenishment.demand import models as demand  # noqa: F401
 from replenishment.intake import models as intake  # noqa: F401
 from replenishment.inventory import models as inventory  # noqa: F401
 from replenishment.kernel.db import Base
+from replenishment.orders import models as orders  # noqa: F401
 from replenishment.supply import models as supply  # noqa: F401
 
 metadata = Base.metadata

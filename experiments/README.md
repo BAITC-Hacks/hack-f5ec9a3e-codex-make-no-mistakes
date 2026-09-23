@@ -15,6 +15,20 @@ Compact manifests, JSON summaries, code snapshots, `INDEX.md`, and `comparison.c
 
 To reproduce an older snapshot after scripts have changed, restore its `code/` files to their original `scripts/` paths in a separate checkout, then run the manifest command. The snapshots retain the scripts' original relative-path assumptions; do not execute them directly inside `runs/.../code/`.
 
+For issue #3 cleaning snapshots, restore `code/cleaning.py` to
+`backend/src/replenishment/demand/cleaning.py`; the other files still belong in
+`scripts/`. See the [cleaning protocol](../docs/DEMAND_CLEANING.md) and
+[paired results](../docs/DEMAND_CLEANING_RESULTS.md). Run
+`experiments/.venv/Scripts/python.exe scripts/backtest_cleaning.py` and
+`experiments/.venv/Scripts/python.exe scripts/backtest_lightgbm.py --cleaning`
+to write separate working outputs without replacing earlier experiments.
+
+The [combined forecast experiment](../docs/COMBINED_FORECAST_EXPERIMENT.md) keeps
+raw and cleaned history together with bulk-order signals. Run
+`experiments/.venv/Scripts/python.exe scripts/backtest_lightgbm.py --combined`.
+Its separate output is `artifacts/lightgbm-combined/`; the same snapshot restore
+rules apply. See the [combined results](../docs/COMBINED_FORECAST_RESULTS.md).
+
 The register independently recalculates full-cohort WAPE, bias, underforecast ratio and MAE from exported predictions. It rejects duplicate, invalid or missing predictions and mismatched metrics. Only runs with matching workbook hashes **and** exact target keys/actual quantities share a comparison section. This does not prove absence of feature leakage: model code and its temporal checks still need review.
 
 Old baseline outputs did not record their original runtime or code hashes. Their registration states that limitation rather than inventing provenance. New model scripts record those details at execution.

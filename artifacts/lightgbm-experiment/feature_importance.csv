@@ -1,0 +1,465 @@
+﻿supplier,unit,horizon,model,feature,gain
+IEK,м,7,lgbm_l2,sku_id,3542115398.0
+IEK,м,7,lgbm_l2,age,197830145.0
+IEK,м,7,lgbm_l2,days_since_sale,57849327.0
+IEK,м,7,lgbm_l2,month_sin,147450804.0
+IEK,м,7,lgbm_l2,month_cos,219406227.0
+IEK,м,7,lgbm_l2,weekday,0.0
+IEK,м,7,lgbm_l2,month_day,69652633.0
+IEK,м,7,lgbm_l2,mean_7,103741826.0
+IEK,м,7,lgbm_l2,active_fraction_7,27901487.0
+IEK,м,7,lgbm_l2,mean_14,116503584.0
+IEK,м,7,lgbm_l2,active_fraction_14,263716660.0
+IEK,м,7,lgbm_l2,mean_28,145904175.703125
+IEK,м,7,lgbm_l2,active_fraction_28,55741947.0
+IEK,м,7,lgbm_l2,mean_56,83136486.0
+IEK,м,7,lgbm_l2,active_fraction_56,450920530.0
+IEK,м,7,lgbm_l2,mean_84,1466233471.0
+IEK,м,7,lgbm_l2,active_fraction_84,500706231.0
+IEK,м,7,lgbm_l2,week_lag_1,0.0
+IEK,м,7,lgbm_l2,week_lag_2,266569224.0
+IEK,м,7,lgbm_l2,week_lag_3,72326433.0
+IEK,м,7,lgbm_l2,week_lag_4,179999496.0
+IEK,м,7,lgbm_l2,week_lag_5,174353510.0
+IEK,м,7,lgbm_l2,week_lag_6,165033245.0
+IEK,м,7,lgbm_l2,week_lag_7,160759578.0
+IEK,м,7,lgbm_l2,week_lag_8,195657616.0
+IEK,м,7,lgbm_l2,max_56,53708241.0
+IEK,м,7,lgbm_l2,std_56,63174446.0
+IEK,м,7,lgbm_l2,positive_size_56,163021896.0
+IEK,м,7,lgbm_l2,recent_ratio,85316027.0
+IEK,м,7,lgbm_tweedie,sku_id,2537865.152294159
+IEK,м,7,lgbm_tweedie,age,23639.730318069458
+IEK,м,7,lgbm_tweedie,days_since_sale,6768.468223571777
+IEK,м,7,lgbm_tweedie,month_sin,7642.000312805176
+IEK,м,7,lgbm_tweedie,month_cos,11232.06865119934
+IEK,м,7,lgbm_tweedie,weekday,710.0625152587891
+IEK,м,7,lgbm_tweedie,month_day,19222.893096923828
+IEK,м,7,lgbm_tweedie,mean_7,11769.661804199219
+IEK,м,7,lgbm_tweedie,active_fraction_7,2504.5145988464355
+IEK,м,7,lgbm_tweedie,mean_14,13039.7845993042
+IEK,м,7,lgbm_tweedie,active_fraction_14,15603.542182922363
+IEK,м,7,lgbm_tweedie,mean_28,13112.212295532227
+IEK,м,7,lgbm_tweedie,active_fraction_28,3805.9033184051514
+IEK,м,7,lgbm_tweedie,mean_56,13602.0073928833
+IEK,м,7,lgbm_tweedie,active_fraction_56,27983.08670425415
+IEK,м,7,lgbm_tweedie,mean_84,73215.8862323761
+IEK,м,7,lgbm_tweedie,active_fraction_84,19371.414783477783
+IEK,м,7,lgbm_tweedie,week_lag_1,0.0
+IEK,м,7,lgbm_tweedie,week_lag_2,8319.009174346924
+IEK,м,7,lgbm_tweedie,week_lag_3,8341.850910186768
+IEK,м,7,lgbm_tweedie,week_lag_4,6009.710424423218
+IEK,м,7,lgbm_tweedie,week_lag_5,4444.803340911865
+IEK,м,7,lgbm_tweedie,week_lag_6,6305.26540184021
+IEK,м,7,lgbm_tweedie,week_lag_7,11117.734397888184
+IEK,м,7,lgbm_tweedie,week_lag_8,14147.668563842773
+IEK,м,7,lgbm_tweedie,max_56,5436.67094039917
+IEK,м,7,lgbm_tweedie,std_56,4193.540542602539
+IEK,м,7,lgbm_tweedie,positive_size_56,8266.751728057861
+IEK,м,7,lgbm_tweedie,recent_ratio,5701.247381210327
+IEK,м,28,lgbm_l2,sku_id,75218133026.0
+IEK,м,28,lgbm_l2,age,3321217344.0
+IEK,м,28,lgbm_l2,days_since_sale,109776490.0
+IEK,м,28,lgbm_l2,month_sin,2629932037.0
+IEK,м,28,lgbm_l2,month_cos,5224978890.0
+IEK,м,28,lgbm_l2,weekday,0.0
+IEK,м,28,lgbm_l2,month_day,63303470.0
+IEK,м,28,lgbm_l2,mean_7,257628147.0
+IEK,м,28,lgbm_l2,active_fraction_7,13729170.0
+IEK,м,28,lgbm_l2,mean_14,426757772.0
+IEK,м,28,lgbm_l2,active_fraction_14,956988732.0
+IEK,м,28,lgbm_l2,mean_28,2850881897.0
+IEK,м,28,lgbm_l2,active_fraction_28,2723297180.0
+IEK,м,28,lgbm_l2,mean_56,1491658777.0
+IEK,м,28,lgbm_l2,active_fraction_56,2182314834.0
+IEK,м,28,lgbm_l2,mean_84,2078439976.0
+IEK,м,28,lgbm_l2,active_fraction_84,6150466262.0
+IEK,м,28,lgbm_l2,week_lag_1,0.0
+IEK,м,28,lgbm_l2,week_lag_2,265994137.0
+IEK,м,28,lgbm_l2,week_lag_3,427471791.0
+IEK,м,28,lgbm_l2,week_lag_4,311011501.0
+IEK,м,28,lgbm_l2,week_lag_5,273195790.0
+IEK,м,28,lgbm_l2,week_lag_6,292771628.0
+IEK,м,28,lgbm_l2,week_lag_7,347111407.0
+IEK,м,28,lgbm_l2,week_lag_8,466164715.0
+IEK,м,28,lgbm_l2,max_56,1281726934.0
+IEK,м,28,lgbm_l2,std_56,256268898.0
+IEK,м,28,lgbm_l2,positive_size_56,827430965.0
+IEK,м,28,lgbm_l2,recent_ratio,828303880.0
+IEK,м,28,lgbm_tweedie,sku_id,4798499.023853302
+IEK,м,28,lgbm_tweedie,age,63659.11135673523
+IEK,м,28,lgbm_tweedie,days_since_sale,10516.280975341797
+IEK,м,28,lgbm_tweedie,month_sin,16468.167278289795
+IEK,м,28,lgbm_tweedie,month_cos,25162.31672859192
+IEK,м,28,lgbm_tweedie,weekday,22.348499298095703
+IEK,м,28,lgbm_tweedie,month_day,290.10750579833984
+IEK,м,28,lgbm_tweedie,mean_7,1341.7135734558105
+IEK,м,28,lgbm_tweedie,active_fraction_7,0.0
+IEK,м,28,lgbm_tweedie,mean_14,3508.386724472046
+IEK,м,28,lgbm_tweedie,active_fraction_14,4425.5805015563965
+IEK,м,28,lgbm_tweedie,mean_28,16900.913887023926
+IEK,м,28,lgbm_tweedie,active_fraction_28,5997.651062011719
+IEK,м,28,lgbm_tweedie,mean_56,35790.09532165527
+IEK,м,28,lgbm_tweedie,active_fraction_56,32337.357177734375
+IEK,м,28,lgbm_tweedie,mean_84,155518.91483688354
+IEK,м,28,lgbm_tweedie,active_fraction_84,19893.969425201416
+IEK,м,28,lgbm_tweedie,week_lag_1,0.0
+IEK,м,28,lgbm_tweedie,week_lag_2,482.26849365234375
+IEK,м,28,lgbm_tweedie,week_lag_3,519.4271945953369
+IEK,м,28,lgbm_tweedie,week_lag_4,1005.1552066802979
+IEK,м,28,lgbm_tweedie,week_lag_5,340.63160133361816
+IEK,м,28,lgbm_tweedie,week_lag_6,695.8200912475586
+IEK,м,28,lgbm_tweedie,week_lag_7,412.3077926635742
+IEK,м,28,lgbm_tweedie,week_lag_8,6179.525203704834
+IEK,м,28,lgbm_tweedie,max_56,10611.163152694702
+IEK,м,28,lgbm_tweedie,std_56,10319.736167907715
+IEK,м,28,lgbm_tweedie,positive_size_56,16293.572034835815
+IEK,м,28,lgbm_tweedie,recent_ratio,9758.408697128296
+IEK,упак,7,lgbm_l2,sku_id,12970900.181793213
+IEK,упак,7,lgbm_l2,age,2911531.5153808594
+IEK,упак,7,lgbm_l2,days_since_sale,259249.33251953125
+IEK,упак,7,lgbm_l2,month_sin,209514.51953125
+IEK,упак,7,lgbm_l2,month_cos,338809.43060302734
+IEK,упак,7,lgbm_l2,weekday,0.0
+IEK,упак,7,lgbm_l2,month_day,353947.35546875
+IEK,упак,7,lgbm_l2,mean_7,1058469.498413086
+IEK,упак,7,lgbm_l2,active_fraction_7,1277787.3743896484
+IEK,упак,7,lgbm_l2,mean_14,3046380.3916625977
+IEK,упак,7,lgbm_l2,active_fraction_14,669248.1850585938
+IEK,упак,7,lgbm_l2,mean_28,2896671.7548217773
+IEK,упак,7,lgbm_l2,active_fraction_28,2080322.2396240234
+IEK,упак,7,lgbm_l2,mean_56,3546521.110107422
+IEK,упак,7,lgbm_l2,active_fraction_56,6934477.033508301
+IEK,упак,7,lgbm_l2,mean_84,18994723.56121826
+IEK,упак,7,lgbm_l2,active_fraction_84,12464776.991699219
+IEK,упак,7,lgbm_l2,week_lag_1,0.0
+IEK,упак,7,lgbm_l2,week_lag_2,1005272.1860351562
+IEK,упак,7,lgbm_l2,week_lag_3,651189.5464477539
+IEK,упак,7,lgbm_l2,week_lag_4,3739691.8583374023
+IEK,упак,7,lgbm_l2,week_lag_5,649601.5278320312
+IEK,упак,7,lgbm_l2,week_lag_6,1357681.5578918457
+IEK,упак,7,lgbm_l2,week_lag_7,954993.0819091797
+IEK,упак,7,lgbm_l2,week_lag_8,627003.7143554688
+IEK,упак,7,lgbm_l2,max_56,989646.0909423828
+IEK,упак,7,lgbm_l2,std_56,319116.54486083984
+IEK,упак,7,lgbm_l2,positive_size_56,720061.2789306641
+IEK,упак,7,lgbm_l2,recent_ratio,836073.0881347656
+IEK,упак,7,lgbm_tweedie,sku_id,458167.33765363693
+IEK,упак,7,lgbm_tweedie,age,7961.5572872161865
+IEK,упак,7,lgbm_tweedie,days_since_sale,6169.097752571106
+IEK,упак,7,lgbm_tweedie,month_sin,2609.5655426979065
+IEK,упак,7,lgbm_tweedie,month_cos,4954.470120429993
+IEK,упак,7,lgbm_tweedie,weekday,1701.5085496902466
+IEK,упак,7,lgbm_tweedie,month_day,5000.397510051727
+IEK,упак,7,lgbm_tweedie,mean_7,2077.2845306396484
+IEK,упак,7,lgbm_tweedie,active_fraction_7,3340.7172889709473
+IEK,упак,7,lgbm_tweedie,mean_14,2951.946487426758
+IEK,упак,7,lgbm_tweedie,active_fraction_14,1557.4090957641602
+IEK,упак,7,lgbm_tweedie,mean_28,1790.6865530014038
+IEK,упак,7,lgbm_tweedie,active_fraction_28,2753.5948944091797
+IEK,упак,7,lgbm_tweedie,mean_56,1248.6505126953125
+IEK,упак,7,lgbm_tweedie,active_fraction_56,1218.3361911773682
+IEK,упак,7,lgbm_tweedie,mean_84,14680.030325889587
+IEK,упак,7,lgbm_tweedie,active_fraction_84,164311.11603164673
+IEK,упак,7,lgbm_tweedie,week_lag_1,0.0
+IEK,упак,7,lgbm_tweedie,week_lag_2,2836.075831413269
+IEK,упак,7,lgbm_tweedie,week_lag_3,550.8601665496826
+IEK,упак,7,lgbm_tweedie,week_lag_4,3525.6965622901917
+IEK,упак,7,lgbm_tweedie,week_lag_5,2263.368118286133
+IEK,упак,7,lgbm_tweedie,week_lag_6,2906.3970623016357
+IEK,упак,7,lgbm_tweedie,week_lag_7,2158.066294670105
+IEK,упак,7,lgbm_tweedie,week_lag_8,3323.1587200164795
+IEK,упак,7,lgbm_tweedie,max_56,1127.8553376197815
+IEK,упак,7,lgbm_tweedie,std_56,1365.4065132141113
+IEK,упак,7,lgbm_tweedie,positive_size_56,3529.3555870056152
+IEK,упак,7,lgbm_tweedie,recent_ratio,3243.74498462677
+IEK,упак,28,lgbm_l2,sku_id,388308147.9770508
+IEK,упак,28,lgbm_l2,age,53611152.6105957
+IEK,упак,28,lgbm_l2,days_since_sale,6683.39990234375
+IEK,упак,28,lgbm_l2,month_sin,5811975.404785156
+IEK,упак,28,lgbm_l2,month_cos,24548963.768066406
+IEK,упак,28,lgbm_l2,weekday,0.0
+IEK,упак,28,lgbm_l2,month_day,75756.6015625
+IEK,упак,28,lgbm_l2,mean_7,18917474.040039062
+IEK,упак,28,lgbm_l2,active_fraction_7,4845074.298828125
+IEK,упак,28,lgbm_l2,mean_14,7734644.034423828
+IEK,упак,28,lgbm_l2,active_fraction_14,2075830.8139648438
+IEK,упак,28,lgbm_l2,mean_28,26377686.049072266
+IEK,упак,28,lgbm_l2,active_fraction_28,1756926.0712890625
+IEK,упак,28,lgbm_l2,mean_56,93562898.84716797
+IEK,упак,28,lgbm_l2,active_fraction_56,346124301.2167969
+IEK,упак,28,lgbm_l2,mean_84,25775901.467773438
+IEK,упак,28,lgbm_l2,active_fraction_84,27545897.96484375
+IEK,упак,28,lgbm_l2,week_lag_1,0.0
+IEK,упак,28,lgbm_l2,week_lag_2,619757.5979003906
+IEK,упак,28,lgbm_l2,week_lag_3,1308068.7895507812
+IEK,упак,28,lgbm_l2,week_lag_4,1594286.4005126953
+IEK,упак,28,lgbm_l2,week_lag_5,1830176.7238769531
+IEK,упак,28,lgbm_l2,week_lag_6,1221651.3073730469
+IEK,упак,28,lgbm_l2,week_lag_7,861602.9776611328
+IEK,упак,28,lgbm_l2,week_lag_8,1042297.7966308594
+IEK,упак,28,lgbm_l2,max_56,6209889.675537109
+IEK,упак,28,lgbm_l2,std_56,1334997.4384765625
+IEK,упак,28,lgbm_l2,positive_size_56,9311273.033203125
+IEK,упак,28,lgbm_l2,recent_ratio,1350713.9851074219
+IEK,упак,28,lgbm_tweedie,sku_id,1187258.1240019798
+IEK,упак,28,lgbm_tweedie,age,14936.714299201965
+IEK,упак,28,lgbm_tweedie,days_since_sale,2917.354390144348
+IEK,упак,28,lgbm_tweedie,month_sin,5161.234537124634
+IEK,упак,28,lgbm_tweedie,month_cos,5824.712866306305
+IEK,упак,28,lgbm_tweedie,weekday,81.15321969985962
+IEK,упак,28,lgbm_tweedie,month_day,224.28781509399414
+IEK,упак,28,lgbm_tweedie,mean_7,735.4195985794067
+IEK,упак,28,lgbm_tweedie,active_fraction_7,420.48340225219727
+IEK,упак,28,lgbm_tweedie,mean_14,767.6007857322693
+IEK,упак,28,lgbm_tweedie,active_fraction_14,152.84960079193115
+IEK,упак,28,lgbm_tweedie,mean_28,2277.936309337616
+IEK,упак,28,lgbm_tweedie,active_fraction_28,1103.2903046607971
+IEK,упак,28,lgbm_tweedie,mean_56,3556.3906831741333
+IEK,упак,28,lgbm_tweedie,active_fraction_56,10870.564551353455
+IEK,упак,28,lgbm_tweedie,mean_84,28645.6189289093
+IEK,упак,28,lgbm_tweedie,active_fraction_84,6180.918710708618
+IEK,упак,28,lgbm_tweedie,week_lag_1,0.0
+IEK,упак,28,lgbm_tweedie,week_lag_2,109.46789932250977
+IEK,упак,28,lgbm_tweedie,week_lag_3,138.4456024169922
+IEK,упак,28,lgbm_tweedie,week_lag_4,697.3909358978271
+IEK,упак,28,lgbm_tweedie,week_lag_5,224.73389625549316
+IEK,упак,28,lgbm_tweedie,week_lag_6,395.4491958618164
+IEK,упак,28,lgbm_tweedie,week_lag_7,396.69029998779297
+IEK,упак,28,lgbm_tweedie,week_lag_8,235.01599884033203
+IEK,упак,28,lgbm_tweedie,max_56,3715.7938108444214
+IEK,упак,28,lgbm_tweedie,std_56,1378.7152156829834
+IEK,упак,28,lgbm_tweedie,positive_size_56,6745.305061340332
+IEK,упак,28,lgbm_tweedie,recent_ratio,1063.2658710479736
+IEK,шт,7,lgbm_l2,sku_id,25646353257.0
+IEK,шт,7,lgbm_l2,age,92932394.0
+IEK,шт,7,lgbm_l2,days_since_sale,826837.0
+IEK,шт,7,lgbm_l2,month_sin,742254217.0
+IEK,шт,7,lgbm_l2,month_cos,263220365.0
+IEK,шт,7,lgbm_l2,weekday,5677009.0
+IEK,шт,7,lgbm_l2,month_day,197176324.0
+IEK,шт,7,lgbm_l2,mean_7,112462115.0
+IEK,шт,7,lgbm_l2,active_fraction_7,8591313.30078125
+IEK,шт,7,lgbm_l2,mean_14,22294086.5
+IEK,шт,7,lgbm_l2,active_fraction_14,57005206.296875
+IEK,шт,7,lgbm_l2,mean_28,16064324.0
+IEK,шт,7,lgbm_l2,active_fraction_28,30857252.6015625
+IEK,шт,7,lgbm_l2,mean_56,23869842.8984375
+IEK,шт,7,lgbm_l2,active_fraction_56,55371699.0
+IEK,шт,7,lgbm_l2,mean_84,186519904.203125
+IEK,шт,7,lgbm_l2,active_fraction_84,33665708.390625
+IEK,шт,7,lgbm_l2,week_lag_1,0.0
+IEK,шт,7,lgbm_l2,week_lag_2,173529831.296875
+IEK,шт,7,lgbm_l2,week_lag_3,303422562.203125
+IEK,шт,7,lgbm_l2,week_lag_4,89364822.703125
+IEK,шт,7,lgbm_l2,week_lag_5,118987823.0
+IEK,шт,7,lgbm_l2,week_lag_6,44818884.203125
+IEK,шт,7,lgbm_l2,week_lag_7,263548649.1015625
+IEK,шт,7,lgbm_l2,week_lag_8,42960836.1953125
+IEK,шт,7,lgbm_l2,max_56,70493914.0
+IEK,шт,7,lgbm_l2,std_56,3318835.0
+IEK,шт,7,lgbm_l2,positive_size_56,13714704.0
+IEK,шт,7,lgbm_l2,recent_ratio,93560909.0
+IEK,шт,7,lgbm_tweedie,sku_id,3267114.6966400146
+IEK,шт,7,lgbm_tweedie,age,14031.751007080078
+IEK,шт,7,lgbm_tweedie,days_since_sale,82581.3392791748
+IEK,шт,7,lgbm_tweedie,month_sin,25940.315963745117
+IEK,шт,7,lgbm_tweedie,month_cos,34826.110900878906
+IEK,шт,7,lgbm_tweedie,weekday,14435.398025512695
+IEK,шт,7,lgbm_tweedie,month_day,34433.84582519531
+IEK,шт,7,lgbm_tweedie,mean_7,296.34698486328125
+IEK,шт,7,lgbm_tweedie,active_fraction_7,46877.50048828125
+IEK,шт,7,lgbm_tweedie,mean_14,434411.3717956543
+IEK,шт,7,lgbm_tweedie,active_fraction_14,128860.740234375
+IEK,шт,7,lgbm_tweedie,mean_28,202827.5637664795
+IEK,шт,7,lgbm_tweedie,active_fraction_28,67279.15084838867
+IEK,шт,7,lgbm_tweedie,mean_56,907704.1413421631
+IEK,шт,7,lgbm_tweedie,active_fraction_56,55018.011474609375
+IEK,шт,7,lgbm_tweedie,mean_84,18114309.664367676
+IEK,шт,7,lgbm_tweedie,active_fraction_84,210141.40270996094
+IEK,шт,7,lgbm_tweedie,week_lag_1,0.0
+IEK,шт,7,lgbm_tweedie,week_lag_2,11282.205047607422
+IEK,шт,7,lgbm_tweedie,week_lag_3,24589.129760742188
+IEK,шт,7,lgbm_tweedie,week_lag_4,570.0259857177734
+IEK,шт,7,lgbm_tweedie,week_lag_5,6145.765045166016
+IEK,шт,7,lgbm_tweedie,week_lag_6,44218.788650512695
+IEK,шт,7,lgbm_tweedie,week_lag_7,8389.02328491211
+IEK,шт,7,lgbm_tweedie,week_lag_8,7417.703063964844
+IEK,шт,7,lgbm_tweedie,max_56,1023.916015625
+IEK,шт,7,lgbm_tweedie,std_56,18031.1749420166
+IEK,шт,7,lgbm_tweedie,positive_size_56,2204.543975830078
+IEK,шт,7,lgbm_tweedie,recent_ratio,5152.969955444336
+IEK,шт,28,lgbm_l2,sku_id,409678175467.0
+IEK,шт,28,lgbm_l2,age,2141427159.0
+IEK,шт,28,lgbm_l2,days_since_sale,7223013.0
+IEK,шт,28,lgbm_l2,month_sin,7597121087.0
+IEK,шт,28,lgbm_l2,month_cos,4442155491.0
+IEK,шт,28,lgbm_l2,weekday,0.0
+IEK,шт,28,lgbm_l2,month_day,6149830.0
+IEK,шт,28,lgbm_l2,mean_7,484530581.0
+IEK,шт,28,lgbm_l2,active_fraction_7,10203814.0
+IEK,шт,28,lgbm_l2,mean_14,93076492.0
+IEK,шт,28,lgbm_l2,active_fraction_14,64664030.0
+IEK,шт,28,lgbm_l2,mean_28,299082755.0
+IEK,шт,28,lgbm_l2,active_fraction_28,109889372.0
+IEK,шт,28,lgbm_l2,mean_56,124508894.0
+IEK,шт,28,lgbm_l2,active_fraction_56,1945066990.0
+IEK,шт,28,lgbm_l2,mean_84,2134867827.0
+IEK,шт,28,lgbm_l2,active_fraction_84,322044352.0
+IEK,шт,28,lgbm_l2,week_lag_1,0.0
+IEK,шт,28,lgbm_l2,week_lag_2,1972825792.0
+IEK,шт,28,lgbm_l2,week_lag_3,3734291947.0
+IEK,шт,28,lgbm_l2,week_lag_4,3295479731.0
+IEK,шт,28,lgbm_l2,week_lag_5,223114500.0
+IEK,шт,28,lgbm_l2,week_lag_6,99600036.0
+IEK,шт,28,lgbm_l2,week_lag_7,1481114991.0
+IEK,шт,28,lgbm_l2,week_lag_8,126995838.0
+IEK,шт,28,lgbm_l2,max_56,339367410.0
+IEK,шт,28,lgbm_l2,std_56,19897349.0
+IEK,шт,28,lgbm_l2,positive_size_56,103503645.0
+IEK,шт,28,lgbm_l2,recent_ratio,213272668.0
+IEK,шт,28,lgbm_tweedie,sku_id,6162945.534805298
+IEK,шт,28,lgbm_tweedie,age,24982.456924438477
+IEK,шт,28,lgbm_tweedie,days_since_sale,128527.82461547852
+IEK,шт,28,lgbm_tweedie,month_sin,28776.12710571289
+IEK,шт,28,lgbm_tweedie,month_cos,25393.697952270508
+IEK,шт,28,lgbm_tweedie,weekday,1192.5600128173828
+IEK,шт,28,lgbm_tweedie,month_day,0.0
+IEK,шт,28,lgbm_tweedie,mean_7,10715.960205078125
+IEK,шт,28,lgbm_tweedie,active_fraction_7,9923.429260253906
+IEK,шт,28,lgbm_tweedie,mean_14,160268.77075195312
+IEK,шт,28,lgbm_tweedie,active_fraction_14,31238.2998046875
+IEK,шт,28,lgbm_tweedie,mean_28,17117.29864501953
+IEK,шт,28,lgbm_tweedie,active_fraction_28,4523.1201171875
+IEK,шт,28,lgbm_tweedie,mean_56,1207497.0433654785
+IEK,шт,28,lgbm_tweedie,active_fraction_56,187994.9896850586
+IEK,шт,28,lgbm_tweedie,mean_84,36408015.02044678
+IEK,шт,28,lgbm_tweedie,active_fraction_84,777364.5988922119
+IEK,шт,28,lgbm_tweedie,week_lag_1,0.0
+IEK,шт,28,lgbm_tweedie,week_lag_2,14327.31869506836
+IEK,шт,28,lgbm_tweedie,week_lag_3,9054.230834960938
+IEK,шт,28,lgbm_tweedie,week_lag_4,5992.7301025390625
+IEK,шт,28,lgbm_tweedie,week_lag_5,16513.3359375
+IEK,шт,28,lgbm_tweedie,week_lag_6,25973.559814453125
+IEK,шт,28,lgbm_tweedie,week_lag_7,13254.009887695312
+IEK,шт,28,lgbm_tweedie,week_lag_8,2660.3739624023438
+IEK,шт,28,lgbm_tweedie,max_56,1693.760025024414
+IEK,шт,28,lgbm_tweedie,std_56,799.4239807128906
+IEK,шт,28,lgbm_tweedie,positive_size_56,5757.166000366211
+IEK,шт,28,lgbm_tweedie,recent_ratio,3705.595001220703
+Systeme electric,шт,7,lgbm_l2,sku_id,705538559758.0
+Systeme electric,шт,7,lgbm_l2,age,73487719032.0
+Systeme electric,шт,7,lgbm_l2,days_since_sale,2508909716.0
+Systeme electric,шт,7,lgbm_l2,month_sin,46175904734.0
+Systeme electric,шт,7,lgbm_l2,month_cos,55664422976.0
+Systeme electric,шт,7,lgbm_l2,weekday,0.0
+Systeme electric,шт,7,lgbm_l2,month_day,15122169668.0
+Systeme electric,шт,7,lgbm_l2,mean_7,15178419518.0
+Systeme electric,шт,7,lgbm_l2,active_fraction_7,392182532.0
+Systeme electric,шт,7,lgbm_l2,mean_14,8605762256.0
+Systeme electric,шт,7,lgbm_l2,active_fraction_14,4066882682.0
+Systeme electric,шт,7,lgbm_l2,mean_28,248217820.0
+Systeme electric,шт,7,lgbm_l2,active_fraction_28,41802283098.0
+Systeme electric,шт,7,lgbm_l2,mean_56,20584280818.0
+Systeme electric,шт,7,lgbm_l2,active_fraction_56,9492288816.0
+Systeme electric,шт,7,lgbm_l2,mean_84,7096241770.0
+Systeme electric,шт,7,lgbm_l2,active_fraction_84,5532515222.0
+Systeme electric,шт,7,lgbm_l2,week_lag_1,0.0
+Systeme electric,шт,7,lgbm_l2,week_lag_2,4901475024.0
+Systeme electric,шт,7,lgbm_l2,week_lag_3,61921144702.0
+Systeme electric,шт,7,lgbm_l2,week_lag_4,18089170248.0
+Systeme electric,шт,7,lgbm_l2,week_lag_5,21777212294.0
+Systeme electric,шт,7,lgbm_l2,week_lag_6,22984642492.0
+Systeme electric,шт,7,lgbm_l2,week_lag_7,5011449614.0
+Systeme electric,шт,7,lgbm_l2,week_lag_8,2355843880.0
+Systeme electric,шт,7,lgbm_l2,max_56,3219631348.0
+Systeme electric,шт,7,lgbm_l2,std_56,353136130.0
+Systeme electric,шт,7,lgbm_l2,positive_size_56,509532250.0
+Systeme electric,шт,7,lgbm_l2,recent_ratio,21079612958.0
+Systeme electric,шт,7,lgbm_tweedie,sku_id,24098438.92137146
+Systeme electric,шт,7,lgbm_tweedie,age,77400.0224609375
+Systeme electric,шт,7,lgbm_tweedie,days_since_sale,31120.50099182129
+Systeme electric,шт,7,lgbm_tweedie,month_sin,43180.18921661377
+Systeme electric,шт,7,lgbm_tweedie,month_cos,45319.392669677734
+Systeme electric,шт,7,lgbm_tweedie,weekday,10119.833068847656
+Systeme electric,шт,7,lgbm_tweedie,month_day,99621.79523468018
+Systeme electric,шт,7,lgbm_tweedie,mean_7,11915.44401550293
+Systeme electric,шт,7,lgbm_tweedie,active_fraction_7,433.07598876953125
+Systeme electric,шт,7,lgbm_tweedie,mean_14,4964.330047607422
+Systeme electric,шт,7,lgbm_tweedie,active_fraction_14,18681.01123046875
+Systeme electric,шт,7,lgbm_tweedie,mean_28,90341.65545654297
+Systeme electric,шт,7,lgbm_tweedie,active_fraction_28,11454.318939208984
+Systeme electric,шт,7,lgbm_tweedie,mean_56,210081.0764465332
+Systeme electric,шт,7,lgbm_tweedie,active_fraction_56,15339.59700012207
+Systeme electric,шт,7,lgbm_tweedie,mean_84,2198324.9903411865
+Systeme electric,шт,7,lgbm_tweedie,active_fraction_84,45437.13415527344
+Systeme electric,шт,7,lgbm_tweedie,week_lag_1,0.0
+Systeme electric,шт,7,lgbm_tweedie,week_lag_2,16311.9921875
+Systeme electric,шт,7,lgbm_tweedie,week_lag_3,22824.608963012695
+Systeme electric,шт,7,lgbm_tweedie,week_lag_4,23804.732055664062
+Systeme electric,шт,7,lgbm_tweedie,week_lag_5,10538.27700805664
+Systeme electric,шт,7,lgbm_tweedie,week_lag_6,80764.71376037598
+Systeme electric,шт,7,lgbm_tweedie,week_lag_7,10874.808792114258
+Systeme electric,шт,7,lgbm_tweedie,week_lag_8,29786.474227905273
+Systeme electric,шт,7,lgbm_tweedie,max_56,2696.8090209960938
+Systeme electric,шт,7,lgbm_tweedie,std_56,2515.509994506836
+Systeme electric,шт,7,lgbm_tweedie,positive_size_56,7442.897979736328
+Systeme electric,шт,7,lgbm_tweedie,recent_ratio,9260.917381286621
+Systeme electric,шт,28,lgbm_l2,sku_id,11485325485200.0
+Systeme electric,шт,28,lgbm_l2,age,637146661162.0
+Systeme electric,шт,28,lgbm_l2,days_since_sale,110757196.0
+Systeme electric,шт,28,lgbm_l2,month_sin,389053528942.0
+Systeme electric,шт,28,lgbm_l2,month_cos,400769633664.0
+Systeme electric,шт,28,lgbm_l2,weekday,0.0
+Systeme electric,шт,28,lgbm_l2,month_day,17240163600.0
+Systeme electric,шт,28,lgbm_l2,mean_7,31041320272.0
+Systeme electric,шт,28,lgbm_l2,active_fraction_7,3659820448.0
+Systeme electric,шт,28,lgbm_l2,mean_14,8065208074.0
+Systeme electric,шт,28,lgbm_l2,active_fraction_14,888747800.0
+Systeme electric,шт,28,lgbm_l2,mean_28,4836556712.0
+Systeme electric,шт,28,lgbm_l2,active_fraction_28,598859758924.0
+Systeme electric,шт,28,lgbm_l2,mean_56,122387844068.0
+Systeme electric,шт,28,lgbm_l2,active_fraction_56,218110125314.0
+Systeme electric,шт,28,lgbm_l2,mean_84,64993645686.0
+Systeme electric,шт,28,lgbm_l2,active_fraction_84,114391096088.0
+Systeme electric,шт,28,lgbm_l2,week_lag_1,0.0
+Systeme electric,шт,28,lgbm_l2,week_lag_2,48739560364.0
+Systeme electric,шт,28,lgbm_l2,week_lag_3,132351130118.0
+Systeme electric,шт,28,lgbm_l2,week_lag_4,76429183958.0
+Systeme electric,шт,28,lgbm_l2,week_lag_5,68207066478.0
+Systeme electric,шт,28,lgbm_l2,week_lag_6,72380937122.0
+Systeme electric,шт,28,lgbm_l2,week_lag_7,79674046952.0
+Systeme electric,шт,28,lgbm_l2,week_lag_8,5480277442.0
+Systeme electric,шт,28,lgbm_l2,max_56,148961808370.0
+Systeme electric,шт,28,lgbm_l2,std_56,3824727746.0
+Systeme electric,шт,28,lgbm_l2,positive_size_56,6096742838.0
+Systeme electric,шт,28,lgbm_l2,recent_ratio,99566863384.0
+Systeme electric,шт,28,lgbm_tweedie,sku_id,47186092.67541504
+Systeme electric,шт,28,lgbm_tweedie,age,110269.17440032959
+Systeme electric,шт,28,lgbm_tweedie,days_since_sale,16178.272979736328
+Systeme electric,шт,28,lgbm_tweedie,month_sin,32043.61498260498
+Systeme electric,шт,28,lgbm_tweedie,month_cos,55358.88218688965
+Systeme electric,шт,28,lgbm_tweedie,weekday,2218.900993347168
+Systeme electric,шт,28,lgbm_tweedie,month_day,11448.14907836914
+Systeme electric,шт,28,lgbm_tweedie,mean_7,5612.963073730469
+Systeme electric,шт,28,lgbm_tweedie,active_fraction_7,0.0
+Systeme electric,шт,28,lgbm_tweedie,mean_14,2800.0709838867188
+Systeme electric,шт,28,lgbm_tweedie,active_fraction_14,0.0
+Systeme electric,шт,28,lgbm_tweedie,mean_28,9322.679000854492
+Systeme electric,шт,28,lgbm_tweedie,active_fraction_28,32292.081817626953
+Systeme electric,шт,28,lgbm_tweedie,mean_56,568860.4726867676
+Systeme electric,шт,28,lgbm_tweedie,active_fraction_56,35040.05078125
+Systeme electric,шт,28,lgbm_tweedie,mean_84,3640042.8074188232
+Systeme electric,шт,28,lgbm_tweedie,active_fraction_84,73347.77675628662
+Systeme electric,шт,28,lgbm_tweedie,week_lag_1,0.0
+Systeme electric,шт,28,lgbm_tweedie,week_lag_2,401.6929931640625
+Systeme electric,шт,28,lgbm_tweedie,week_lag_3,5670.25
+Systeme electric,шт,28,lgbm_tweedie,week_lag_4,15893.349014282227
+Systeme electric,шт,28,lgbm_tweedie,week_lag_5,24593.680236816406
+Systeme electric,шт,28,lgbm_tweedie,week_lag_6,50567.2802734375
+Systeme electric,шт,28,lgbm_tweedie,week_lag_7,955.526008605957
+Systeme electric,шт,28,lgbm_tweedie,week_lag_8,1032.4230041503906
+Systeme electric,шт,28,lgbm_tweedie,max_56,12566.7529296875
+Systeme electric,шт,28,lgbm_tweedie,std_56,4527.826904296875
+Systeme electric,шт,28,lgbm_tweedie,positive_size_56,2196.668991088867
+Systeme electric,шт,28,lgbm_tweedie,recent_ratio,4250.3889236450195

@@ -17,6 +17,7 @@ from sqlalchemy import create_engine
 from replenishment.catalog import writing as catalog
 from replenishment.demand import writing as demand
 from replenishment.intake import writing as intake
+from replenishment.intake.adapters.csv import CsvWorkbook, csv_observation
 from replenishment.intake.adapters.normalization import (
     classify,
     number,
@@ -58,19 +59,21 @@ def discover(path):
     return files
 
 
-def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION):
+def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION, *, content=None):
     path = Path(path)
     supplier = supplier_for(path, supplier)
     if not re.fullmatch(r"[A-Za-z0-9._-]{1,64}", version):
         raise ValueError("Normalizer version must be a nonempty stable identifier")
-    content = path.read_bytes()
+    original_path = str(path.resolve()) if content is None else str(path)
+    content = path.read_bytes() if content is None else content
     digest = hashlib.sha256(content).hexdigest()
     counts = Counter()
     with engine.begin() as connection:
         intake.lock_import(connection)
         workbook_id, complete = intake.existing_workbook(connection, digest, version, supplier)
         if complete:
-            return {"path": str(path), "sha256": digest, "status": "skipped", "normalizer_version": version}
+            return {"path": str(path), "sha256": digest, "status": "skipped",
+                    "workbook_id": str(workbook_id), "normalizer_version": version}
         new_source = workbook_id is None
         workbook_id = workbook_id or uuid4()
         if new_source:
@@ -81,11 +84,11 @@ def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION):
                         {
                             "id": workbook_id,
                             "sha256": digest,
-                            "original_path": str(path.resolve()),
+                            "original_path": original_path,
                             "archive_name": None,
                             "byte_size": len(content),
                             "content": content,
-                            "capture_version": "xlsx-xml-v1",
+                            "capture_version": "csv-v1" if path.suffix.lower() == ".csv" else "xlsx-xml-v1",
                         }
                     ]
                 },
@@ -115,7 +118,7 @@ def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION):
 
         date_match = re.search(r"\d{2}\.\d{2}\.\d{4}", path.name)
         as_of = datetime.strptime(date_match[0], "%d.%m.%Y").date() if date_match else None
-        book = Workbook(content)
+        book = CsvWorkbook(content) if path.suffix.lower() == ".csv" else Workbook(content)
         try:
             for sheet in book.sheets:
                 iterator = book.rows(sheet)
@@ -183,8 +186,9 @@ def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION):
                             if cell_type == "e":
                                 finding("excel_error", sheet.name, row, column, cell.get("value"))
                             if cell_type == "n" and value(cells, column) not in (None, ""):
+                                normalized_number = number(cells, column)
                                 original = Decimal(value(cells, column))
-                                if number(cells, column) != original:
+                                if normalized_number != original:
                                     finding("numeric_rounding", sheet.name, row, column, str(original))
                             if cell["type"] == "f" and cell.get("cached_value") is None:
                                 finding("formula_cache_missing", sheet.name, row, column)
@@ -201,7 +205,7 @@ def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION):
                             continue
                         if not isinstance(sku, str):
                             raise ValueError(f"SKU must be stored as text: {sheet.name}!{sku_col}{row}")
-                        if kind != "movements" and sku in seen:
+                        if kind not in ("movements", "csv") and sku in seen:
                             finding(
                                 "duplicate_sku",
                                 sheet.name,
@@ -228,20 +232,34 @@ def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION):
                                 "category_year": 2026 if category is not None else None,
                             }
                         )
-                        for table, item in observations(kind, supplier, cells, row, headers, unit, as_of):
-                            if table == "movements":
+                        items = ([csv_observation(cells, row)] if kind == "csv" else
+                                 observations(kind, supplier, cells, row, headers, unit, as_of))
+                        for table, item in items:
+                            if table == "movements" or kind == "csv":
                                 name = item.pop("warehouse_name")
-                                if not name:
+                                if not name and table == "movements":
                                     raise ValueError(f"Movement warehouse missing: {sheet.name}!G{row}")
-                                if name not in warehouses:
+                                if name and name not in warehouses:
                                     warehouses[name] = uuid4()
                                     warehouse_rows.append({"id": warehouses[name], "name": name})
-                                item["warehouse_id"] = warehouses[name]
+                                item["warehouse_id"] = warehouses.get(name)
+                            if table == "movements":
                                 if item["quantity"] is None:
                                     finding("missing_movement_quantity", sheet.name, row, "H")
                                 elif item["quantity"] < 0:
                                     finding("negative_movement", sheet.name, row, "H", str(item["quantity"]))
                             if table == "shipment_lines":
+                                if kind == "csv":
+                                    shipment_id = uuid4()
+                                    shipments[item["source_column"]] = shipment_id
+                                    batch["shipments"].append({
+                                        "id": shipment_id, "supplier_id": supplier_id,
+                                        "source_sheet_id": sheet_id, "source_column": f"E{row}",
+                                        "normalizer_version": version, "header": value(cells, "D"),
+                                        "document_number": item.pop("document_number"), "ordered_on": None,
+                                        "expected_on": item.pop("expected_on"), "date_basis": "explicit",
+                                        "warehouse_id": item.pop("warehouse_id"),
+                                    })
                                 item.update(
                                     shipment_id=shipments[item["source_column"]], supplier_id=supplier_id
                                 )
@@ -296,9 +314,13 @@ def import_workbook(engine, path, supplier=None, version=NORMALIZER_VERSION):
         "path": str(path),
         "sha256": digest,
         "status": "imported",
+        "workbook_id": str(workbook_id),
         "normalizer_version": version,
         "counts": dict(counts),
         "findings": len(findings) - 1,
+        "warnings": [{"code": entry["code"], "description": entry["description"],
+                      "evidence": entry["evidence"]}
+                     for entry in findings.values() if entry["code"] != "import_complete"],
     }
 
 

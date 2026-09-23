@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "EKT: API",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["replenishment.api.app:create_app", "--factory", "--reload", "--host", "127.0.0.1", "--port", "8000"],
+      "cwd": "${workspaceFolder}/backend",
+      "env": {"DATABASE_URL": "postgresql+psycopg://replenishment:local_dev_only@127.0.0.1:55432/replenishment"},
+      "preLaunchTask": "EKT: database",
+      "justMyCode": true
+    },
+    {
+      "name": "EKT: browser",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://127.0.0.1:5173",
+      "webRoot": "${workspaceFolder}/frontend",
+      "preLaunchTask": "EKT: frontend"
+    }
+  ],
+  "compounds": [
+    {"name": "EKT: full development (F5)", "configurations": ["EKT: API", "EKT: browser"], "stopAll": true}
+  ]
+}

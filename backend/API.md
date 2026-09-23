@@ -1,5 +1,10 @@
 # API данных / Source data API v1
 
+Purchasing endpoints are now documented in [PLANNING.md](PLANNING.md) and the exact
+[planning contract](../docs/PLANNING_API.md). The source endpoints below remain read-only;
+their historical statement that the application has no scenario writes applies only to this source-data slice.
+Расчёт, сценарии, утверждение и экспорт добавлены отдельными маршрутами; исходные данные не изменяются.
+
 ## Русский
 
 Запуск из `backend` с заданным `DATABASE_URL`:
@@ -83,3 +88,43 @@ does not claim any forecast, recommended order, approval or scenario-write capab
 Run API regression tests only with `API_TEST_DATABASE_URL` pointing at the dedicated
 `replenishment_api_test` database: `uv run pytest tests/test_api.py`. Tests create/drop the
 isolated test tables, never use the application database.
+
+## Client delivery recommendations
+
+`GET /api/v1/delivery-planning/demo-input` supplies the real-road Almaty example.
+`POST /api/v1/delivery-planning/recommend` returns per-client SKU quantities, proposed
+dates, vehicle routes, stock/capacity issues, and the fixed-day versus flexible-day
+comparison. This stateless endpoint is separate from supplier purchasing scenarios.
+See [input/output contract and runnable example](DELIVERY_PLANNING.md).
+# Browser source uploads
+
+The **Источники данных** page uploads XLSX, canonical UTF-8 CSV, or ZIP collections
+through `POST /api/v1/sources/upload?filename=...&supplier=iek|systeme` using the
+original binary request body (`application/octet-stream`). Supplier is optional
+when it can be inferred from the filename/archive path. Maximum upload: 64 MiB;
+ZIP: up to 30 XLSX/CSV files, 512 MiB expanded. Nginx permits the same body limit
+and allows 15 minutes for synchronous imports.
+
+The response contains `results`, one per workbook: `status` (`imported`, `skipped`,
+or `failed`), original path, and on success the persistent `workbook_id`, counts,
+and quality warnings. Each workbook commits atomically; a ZIP can therefore
+report both committed workbooks and failures. Exact-byte retries are idempotent.
+Existing domain writers retain original bytes and provenance; no migration is needed.
+
+`GET /api/v1/sources/template.csv` supplies the exact CSV schema:
+`record_type,sku,name,date,quantity,unit,warehouse,document_number,document_text`.
+Supported record types: `monthly_sales`, `monthly_stock`, `movements`, `incoming`.
+Dates are ISO dates (monthly records require day 01), numbers use a decimal point,
+and SKU remains text. Movement rows require unit, warehouse, and both document
+fields; original outgoing document classification is preserved. CSV shipments
+have explicit expected dates. Missing quantities are rejected rather than made zero.
+
+Persisted records appear through existing table endpoints filtered by `workbook_id`.
+`GET /api/v1/sources/export/{table}.csv?workbook_id=...` exports the full selected
+observation table with provenance, streaming rows with formula-injection protection.
+This audit export has a different schema from the upload template.
+The Sources page can prepare an explicit SKU/date/warehouse selection via
+`POST /api/v1/planning/source-input` and download its input/provenance JSON.
+Unknown stock, warehouse scope, conflicting sources, and missing business policies
+remain explicit. After upload the connected workspace refreshes its product,
+warehouse and workbook selectors for the existing source-based calculation flow.

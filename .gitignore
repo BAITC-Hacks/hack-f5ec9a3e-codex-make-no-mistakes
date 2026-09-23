@@ -7,3 +7,6 @@ __pycache__/
 .env
 node_modules/
 dist/
+/artifacts/demand-cleaning/
+/artifacts/lightgbm-cleaning/
+/artifacts/lightgbm-combined/

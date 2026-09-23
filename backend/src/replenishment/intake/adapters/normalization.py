@@ -29,6 +29,8 @@ def number(cells, column):
         raise ValueError(f"Invalid numeric value at {column}: {raw!r}") from exc
     if not result.is_finite():
         raise ValueError(f"Non-finite numeric value at {column}")
+    if abs(result) >= Decimal("1e18"):
+        raise ValueError(f"Value exceeds Numeric(30,12) at {column}: {raw}")
     with localcontext() as context:
         context.prec = max(40, len(result.as_tuple().digits) + 16)
         rounded = result.quantize(Decimal("0.000000000001"), rounding=ROUND_HALF_UP)
@@ -48,6 +50,8 @@ def month_header(label):
 
 def classify(headers, supplier):
     first = headers.get(1, {})
+    if value(first, "A") == "record_type" and value(first, "B") == "sku":
+        return "csv", 1, "B", "C", None, "F"
     third = headers.get(3, {})
     if str(value(third, "A")).lower() == "год":
         return "seasonality", 3, None, None, None, None

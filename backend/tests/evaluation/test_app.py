@@ -1,78 +1,78 @@
-"""Future boundary acceptance; synthetic mechanics, never report business impact."""
+"""V2 calculation boundary acceptance checks."""
 
 from copy import deepcopy
-from decimal import Decimal
 
-from evaluation.checks import example, ordering_case
-from evaluation.contracts import validate_requests, validate_results
-from evaluation.metrics import order_oracle
+import pytest
 
-
-def calculate(app, batch):
-    validate_requests(batch)
-    pristine = deepcopy(batch)
-    result = app(batch)
-    assert batch == pristine
-    return validate_results(batch, result)
+from replenishment.calculation import calculate
+from replenishment.calculation.contracts import validate_batch, validate_results
+from replenishment.calculation.evaluation import evaluate_origins
 
 
-def test_response_and_one_result_per_input(app):
-    first = example()
-    second = {**deepcopy(first), "case_id": "second", "sku": "0002_"}
-    results = calculate(app, [first, second])
-    assert {r["case_id"] for r in results} == {first["case_id"], second["case_id"]}
+def batch():
+    return {
+        "contract_version": "2",
+        "planning_date": "2025-06-22",
+        "series": [
+            {
+                "series_id": "supplier:sku:scope:none",
+                "supplier": "supplier",
+                "sku": "sku",
+                "scope": "warehouse:unknown",
+                "unit": None,
+                "history": [
+                    {"month": f"2025-{month:02}-01", "quantity": str(10 + month), "evidence": []}
+                    for month in range(1, 6)
+                ],
+                "category": None,
+                "inventory": None,
+                "shipments": [],
+                "quantity_rules": [],
+                "assumptions": [],
+            }
+        ],
+        "parameters": {},
+        "source_selection": [],
+    }
 
 
-def test_missing_stock_allows_forecast_prevents_order(app):
-    result = calculate(app, [example()])[0]
-    assert result["status"] == "ok"
-    assert result.get("recommended_quantity") is None
-    assert result["reason"]
+def test_v2_result_has_three_targets_and_supplier_draft():
+    payload = batch()
+    result = calculate(payload)
+    validate_results(payload, result)
+    assert result["target_months"] == ["2025-07-01", "2025-08-01", "2025-09-01"]
+    assert len(result["forecasts"]) == 3
+    assert result["drafts"][0]["state"] == "blocked"
+    assert result["drafts"][0]["blocking_reason"]
 
 
-def test_no_future_batch_leakage_including_fitting(app):
-    earlier = example()
-    later = deepcopy(earlier)
-    later.update(case_id="later", origin="2024-02", target_month="2024-03")
-    later["history"].append({**deepcopy(later["history"][0]), "month": "2024-02", "quantity": "999999"})
-    alone = calculate(app, [earlier])[0]
-    mixed = {r["case_id"]: r for r in calculate(app, [later, earlier])}
-    assert mixed[earlier["case_id"]] == alone
-    later["history"][-1]["quantity"] = "0"
-    poisoned = {r["case_id"]: r for r in calculate(app, [earlier, later])}
-    assert poisoned[earlier["case_id"]] == alone
+def test_future_rows_do_not_change_earlier_calculation():
+    original = batch()
+    baseline = evaluate_origins(original["series"], ["2025-02-01"])
+    changed = deepcopy(original)
+    changed["series"][0]["history"].append({"month": "2025-12-01", "quantity": "999999", "evidence": []})
+    changed_result = evaluate_origins(changed["series"], ["2025-02-01"])
+    assert changed_result["rows"] == baseline["rows"]
+    assert changed_result["metrics"] == baseline["metrics"]
 
 
-def test_constraints_and_explanations_reconcile(app):
-    request = ordering_case()
-    result = calculate(app, [request])[0]
-    assert result["status"] == "ok"
-    order = Decimal(result["recommended_quantity"])
-    components = result["components"]
-    assert Decimal(components["free_stock"]) == Decimal(request["stock"]["free"])
-    assert Decimal(components["eligible_transit"]) == 120
-    for key in ("minimum", "multiple"):
-        assert Decimal(components[key]) == Decimal(request["constraints"][key])
-    assert Decimal(components["coverage_demand"]) == Decimal(result["forecast"])
-    assert order % 6 == 0 and (order == 0 or order >= 12)
-    assert order == order_oracle(
-        components["coverage_demand"],
-        components["free_stock"],
-        components["eligible_transit"],
-        components["multiple"],
-        components["minimum"],
-    )
+def test_invalid_draft_identity_or_state_is_rejected():
+    payload = batch()
+    result = calculate(payload)
+    result["drafts"][0]["supplier"] = "other"
+    with pytest.raises(ValueError):
+        validate_results(payload, result)
+
+    result = calculate(payload)
+    result["drafts"][0]["state"] = "ready"
+    with pytest.raises(ValueError):
+        validate_results(payload, result)
 
 
-def test_more_eligible_stock_or_transit_cannot_increase_order(app):
-    request = ordering_case()
-    base = calculate(app, [request])[0]
-    for field in ("stock", "receipts"):
-        changed = deepcopy(request)
-        if field == "stock":
-            changed["stock"]["free"] = "100"
-        else:
-            changed["receipts"][0]["quantity"] = "200"
-        result = calculate(app, [changed])[0]
-        assert Decimal(result["forecast"]) == Decimal(base["forecast"])
-        assert Decimal(result["recommended_quantity"]) <= Decimal(base["recommended_quantity"])
+def test_batch_rejects_duplicate_natural_identity():
+    payload = batch()
+    duplicate = deepcopy(payload["series"][0])
+    duplicate["series_id"] = "different"
+    payload["series"].append(duplicate)
+    with pytest.raises(ValueError):
+        validate_batch(payload)

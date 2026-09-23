@@ -1,123 +1,140 @@
-# Inventory evaluation v1 / Оценка пополнения v1
+# Forecast-first methodology v2 / Методология v2
+
+This is the active calculation and evaluation contract. It replaces the unimplemented v1
+application assumptions; saved v1 reports and registered 7/28-day experiments remain unchanged.
+See [D12](DECISIONS.md#d12--forecast-first-core--основной-расчёт-2026-09-23).
 
 ## Русский
 
-Это инфраструктура оценки и TDD, без реализации прогнозирования и заказов. Первый результат —
-проверяемый отчёт готовности, **NOT EVALUATED**, а не успешный бизнес-результат.
-Используется отдельный от Python 3.10 research benchmark контур: существующий backend Python 3.12,
-его `uv.lock`, pytest и стандартная библиотека. База данных не нужна.
+Основной вход — `replenishment.calculation.calculate(batch) -> results`, `contract_version: "2"`.
+Чистый расчёт принимает закреплённые месячные ряды и доказательства, возвращает три датированных
+прогноза и черновик для каждого ряда. SQL, HTTP и LLM находятся за пределами арифметики.
 
-Из `backend/`:
+Идентичность ряда: поставщик + точный SKU + охват источника + единица. Главная история — отдельные
+месячные книги продаж. Движения Алматы и встроенные продажи Systeme служат отдельной сверкой;
+они не добавляются к месячным продажам. Конфликты не усредняются, повторные сводки не удваиваются.
+Пустая ячейка, ноль, Excel error и формула без кеша различаются. Пропущенный месяц не становится нулём.
+Итоги, будущие формулы, незавершённые месяцы и отрицательные продажи не входят в обучение.
 
-```sh
-uv sync --frozen
-uv run python ../scripts/check_eval_contract.py
-uv run pytest -q tests/evaluation
-uv run python ../scripts/evaluate.py --year 2024
-uv run python ../scripts/evaluate.py --year 2024 --require-app
-```
+Для среза принято **22 сентября 2026**. История заканчивается августом, сентябрь прогнозируется
+внутренне; три публикуемые цели — **октябрь, ноябрь, декабрь 2026**. Единица может быть неизвестна:
+прогноз тогда выражается в единицах количества источника. Это не даёт основания объединять
+физические объёмы либо пересчитывать единицу закупки. Межисточниковый вывод единицы маркируется.
 
-Последняя команда обязана завершиться ненулевым кодом, пока отсутствует приложение или не оценён
-ни один реальный случай. Обычный запуск создаёт отчёт с явными пропусками. Исключения приложения,
-нарушения контракта и повреждённые источники не превращаются в успешные пропуски.
+Кандидаты: среднее трёх последних валидных наблюдений; EWMA с `alpha=0.3`; календарная сезонность,
+сглаженный десезонализированный уровень и затухающий тренд (`alpha=0.3`, damping `0.8`). Разреженная
+сезонность стягивается к сопоставимой подтверждённой категории либо нормированному паттерну
+поставщика. Короткая история использует уровень с ограничением; отсутствие истории даёт
+`insufficient_data`, не нулевой спрос. Исторические коэффициенты Excel не применяются повторно.
 
-Результаты: `artifacts/inventory-evaluation/<UTC>-inventory-evaluation-v1/`.
-Каждый каталог неизменяем: `manifest.json`, `results.json`, `cases.csv`, автономный `report.html`.
-`--output <новый-каталог>` задаёт путь; существующий каталог никогда не перезаписывается.
-Откройте `report.html` локально. Все строки, включая пропущенные, находятся в CSV.
-HTML содержит те же JSON-метрики и пять строк CLI. Исходные книги не изменяются.
+Аномалии выявляются по остаткам после учёта уровня/сезонности/тренда и по сумме документа/SKU,
+а не отдельной строке накладной. Изолированный избыток — кандидат корректировки; устойчивый рост
+сохраняется. Сырые и скорректированные варианты сравниваются на одинаковых исходных фактах.
+Вычитание транзакционного выброса из месячного ряда допустимо только при совместимом охвате
+и сверке месячных сумм. Документ не является customer ID.
 
-В обоих закреплённых месячных отчётах продаж единица измерения отсутствует. Поэтому протокол v1
-сохраняет `unit: null` и причину `unknown_unit`, не переносит единицы из движений, остатков или
-2026 года без подтверждения. Все SKU участвуют в 11 парах январь→февраль … ноябрь→декабрь 2024.
-Числовой ноль допустим; пустые, отрицательные и противоречивые обязательные наблюдения исключаются.
-В истории используются только валидные завершённые месяцы до цели; непосредственно предыдущий
-месяц обязателен. Плохие более ранние необязательные месяцы не заполняются и не передаются модели.
-Полнота периода здесь означает завершённый календарный месяц, не подтверждение полноты учёта продаж.
+Обучение/предобработка повторяются независимо на каждой дате. Development origins: июнь–сентябрь
+2025; retrospective comparison: январь–май 2026. Для каждой даты обучение заканчивается перед
+месяцем планирования, затем мост и три цели. Все кандидаты используют одинаковые допустимые
+ключи; пропуски, исключения и нулевая обучающая шкала учитываются отдельно. Данные 2026 уже
+изучались и не называются unseen.
 
-Источники — две месячные книги из `docs/sources/manifest.json`; хеш и размер проверяются до чтения
-через существующие `Workbook`, `classify`, `observations`. Агрегатная вкладка сезонности отдельно
-отмечена как исключённая. Складской охват неизвестен; его нельзя присоединять к именованному складу.
-Исторические поступления и подтверждённое время остатков отсутствуют: эффект для запасов N/A.
-Исторический остаток не считается альтернативной закупочной политикой. Нет заявлений об экономии.
+## English
 
-## English: protocol and boundary
+The V2 batch contains `planning_date`, `source_selection`, `parameters`, and `series`. Each series
+has an explicit scope, nullable unit, source-linked monthly history, selected attributes, inventory,
+shipments, quantity rules and assumptions. Results separate forecast `status` from draft `state`.
+Quantities serialize as finite Decimal strings. The current-month bridge is internal; exactly three
+following calendar months are published.
 
-The fixed future entrypoint is `replenishment.calculation.calculate(batch: list[dict]) -> list[dict]`.
-It is deliberately absent. Contracts and mechanical oracles live only in `backend/tests/evaluation`.
-There is no plugin registry, endpoint, fake forecast, or production placeholder. Imports must remain
-side-effect free; calculation must use only supplied as-of observations, including during preprocessing
-and model fitting. Each case has its own origin; later cases in a batch must not train earlier predictions.
-Deterministic case selection does not promise deterministic model training.
+The primary error is absolute forecast error divided by the series' mean observed training quantity,
+averaged equally across SKUs and horizons and then equally across suppliers. Zero-scale series are
+reported separately. Diagnostics include normalized bias, underforecast, per-horizon results, coverage,
+runtime and LLM accounting. Physical WAPE is reported only within comparable known unit cohorts;
+unknown quantity units never become a pooled physical total. Historical targets are never adjusted.
 
-The version string is `inventory-evaluation-v1`. `contracts.py` is the executable schema:
+An expensive challenger must improve primary development error by at least **3%**, have no worse
+absolute normalized bias, no supplier/horizon degradation over **5%**, and no coverage loss. Freeze
+selection before the 2026 retrospective comparison. These are engineering acceptance thresholds,
+not statistical-significance claims. LightGBM uses the existing fixed Tweedie research settings,
+supplier-specific models, historical-scale-normalized targets, lag/rolling/missingness/calendar
+features, and no missing targets converted to zero. Its dependencies stay in the research environment
+unless promotion is supported by this evaluation.
 
-- Requests require `contract_version`, `case_id`, `supplier`, exact string `sku`, nonempty `unit`,
-  `origin`, `target_month`, `history`, `stock`, `receipts`, `constraints`.
-- Months are `YYYY-MM`; target immediately follows origin. History is sorted, unique, nonnegative,
-  includes origin, and contains no target actual. Each observation has `month`, `quantity`, `sources`.
-- Evidence references contain `path`, SHA-256 `sha256`, `sheet`, `cell`. Quantities are finite,
-  nonnegative decimal strings (no exponent). Missing optional observations are JSON `null`.
-- Stock, if confirmed, has `free`, `as_of` (origin month-end), `scope`, `sources`. Historical opening
-  balances or unspecified snapshots cannot populate it without verified timing and common scope.
-- Receipts, if confirmed, are a list of `id`, `quantity`, `due`, `known_at`, `scope`, `sources`.
-  `null` means unknown, `[]` means confirmed none. IDs unique; known by origin; due after origin.
-  Only transit due within the coverage horizon can reduce an order. Arrival dates alone do not prove
-  actual delivery for replay.
-- Constraints, if historically confirmed, have `minimum`, positive `multiple`, positive
-  `coverage_months`, `confirmed_at`, `sources`. Zero minimum is permitted. No inferred 2026 rules.
-- Responses echo all identity fields and target; require `status`, `forecast`, `reason`.
-  Status is `ok`, `insufficient_data`, or `unsupported`. `ok` requires a forecast. Other statuses
-  require `forecast: null` and a nonempty reason. Missing ordering also requires an explicit reason.
-- Optional `recommended_quantity`, `components`, `evidence` accompany supported ordering. Components:
-  `coverage_demand`, `free_stock`, `eligible_transit`, `minimum`, `multiple`. Explanations must reconcile
-  to rounded nonnegative order. No order without confirmed stock, receipt completeness and constraints.
-- Unexpected fields, malformed nested records, duplicate/missing results and changed identity fail.
+A small deterministic LLM historical pilot sees only training history and known context, with no
+future actuals or tools. It cannot establish catalogue-wide promotion. Paid stages require explicitly
+configured model IDs and known prices. Cache exact input/schema/prompt/model, reserve worst-case
+request cost before each dispatch/retry/escalation, and cap the run at **$1**. Refusal, incomplete or
+invalid output, unknown pricing and exhausted budget are recorded failures/limitations; deterministic
+forecasts survive. Mappings require local cell/type/period/reconciliation validation after schema checks.
 
-Run the same five commands above from `backend/`. For pending TDD alone, use
-`uv run pytest -q tests/evaluation --require-app`. Normal tests skip absent-app checks with
-`app_not_implemented`; strict tests fail. Once the exact module exists, missing dependencies,
-missing `calculate`, exceptions and invalid responses fail normally. Strict CLI additionally runs
-the future app acceptance tests after a real batch succeeds. Synthetic fixtures never enter reports.
+Run records persist source selections, versions, parameters, quality and LLM accounting. Per-series
+input snapshots, forecasts and draft lines commit atomically. Identical inputs and implementation
+versions reuse completed runs; `--rerun` explicitly creates another. Failed transactions do not expose
+completed partial results. The [backend instructions](../backend/README.md) describe import/run/export;
+[API documentation](../backend/API.md) describes paginated reads.
 
-The acceptance suite covers batch identity, missing stock, constraints, order monotonicity,
-explanation reconciliation and future-case poisoning across fitting/preprocessing. These observable
-checks are not proof against every hidden external data read; review the implemented model's as-of
-data access before making a leakage-free claim.
+## Evidence limits / Ограничения
 
-## Metrics and measurement scope
+- Recorded sales are not unconstrained demand. Monthly stock snapshots cannot establish exact
+  stockout durations; no numerical lost-demand uplift follows from blanks or low sales alone.
+- Customer concentration remains unverified: customer IDs are absent; document numbers do not replace them.
+- Reported Excel growth/seasonality coefficients remain source evidence. Unverified periods (including
+  the thirteen-month total) prevent a like-for-like numeric growth comparison; none is applied again.
+- Missing stock, arrival dates, lead times, BOM and unit conversions remain explicit limitations or blockers.
+- No inventory simulation, savings claim, supplier submission, approval workflow or purchasing UI is included.
+- Tests use actual source-derived rows with controlled in-memory transformations. Provider stubs exercise
+  transport failure handling only; they are not business evidence.
 
-Supplier/unit cohorts remain separate, including monthly breakdowns. WAPE = sum absolute error /
-sum actual × 100; signed bias = sum(prediction − actual) / sum actual × 100; MAE = sum absolute error /
-number evaluated; underforecast = sum max(actual − prediction, 0). No evaluated pairs means N/A.
-Zero total actual means percentage metrics are undefined, even if MAE is defined. Each cohort records
-candidate/evaluated/skipped counts, actual denominator and percentage status. Unknown units never pool.
+## Completed monthly comparison / Завершённое сравнение
 
-`metrics.replay` is a test-support recorded-condition oracle: initialize once, carry stock and unique
-pending receipt IDs forward, and stop at missing demand or a month gap. It is not a purchasing engine
-and is not invoked for the current source data. Inventory metrics remain explicitly unavailable until
-scope/timing and observed delivery continuity are established. No reconstruction from monthly stocks.
+[Frozen results and code](../experiments/monthly/20260923-forecast-first/results.json) cover all
+3,017 series in the two dedicated monthly workbooks. Both model families use exactly the same
+target keys and unchanged actuals: 17,539 valid development targets and 20,321 retrospective targets.
+Missing actuals and absent training history are recorded as exclusions. The reported coverage
+denominator is the target ledger for series with training history; exclusions also include series
+without training history. Unknown units in these workbooks prevent physical WAPE aggregation.
 
-An available app receives one cold invocation (first call after module import), one warm-up and
-20 measured invocations of an identical eligible batch. Median and nearest-rank p95 are informational;
-no SLA. Copying/validation is outside call timing. Cold is not OS-cache-cold or module import time.
-No eligible batch means app latency is N/A. Harness preparation/render timings stay separate.
-CPU and peak RSS cover the entire evaluation process through calculation, not app-only resources;
-source bytes mean file content opened, not physical disk reads. Rows inspected count adapter-yielded
-rows including headers; rows supplied count history observations in one eligible batch. Internal XML
-passes, hashing and source-header inspection are identified by scope rather than falsely called app work.
-Report timing measures an in-memory HTML render, excludes final writes. LLM accounting is N/A when
-provider-reported usage is unavailable; the harness itself makes no LLM calls. Add actual provider
-accounting when an implemented app uses one; never estimate tokens/cost from these harness timings.
+| Candidate / Кандидат | Development normalized error | Retrospective normalized error |
+| --- | ---: | ---: |
+| Recent level, retained / сохранён | 0.856049 | 0.727624 |
+| EWMA | 0.841429 | 0.709433 |
+| EWMA with candidate adjustments | 0.834872 | 0.705226 |
+| Seasonal damped trend | 1.037364 | 0.914029 |
+| LightGBM Tweedie | 0.986543 | 0.823826 |
 
-Manifests record source hashes, revision/dirty state, code hashes, Python/platform and command.
-Each run also snapshots its evaluation code, adapters, lockfile and protocol under `code/`.
-To reproduce, restore these paths into a separate checkout of the recorded revision, sync the backend
-environment, and run the recorded command with a new output directory. Reports are Git-ignored local
-artifacts; copy a complete run directory to share it. Source workbooks remain in their pinned locations.
-Runs stay distinct from immutable 2025/2026 research comparisons; nothing updates those tables.
+The best adjusted statistical improvement is 2.47%, below the 3% promotion threshold. LightGBM
+is 15.24% worse on development and exceeds the 5% supplier/horizon degradation guard for every
+supplier/horizon. Selection remains **recent_level**, frozen before the retrospective comparison.
+Production repeats this development selection on its pinned canonical inputs and stores evaluation
+summaries with each run; it does not select from the 2026 score. The September bridge is a full-month
+forecast prorated exactly once for September 22–30, including the stock snapshot day.
 
-Verification also runs `uv run ruff check . ../scripts/evaluate.py ../scripts/check_eval_contract.py`,
-`uv run lint-imports`, and `uv run pytest -q -m "not postgres" tests/test_excel_import.py
-tests/test_audit_baseline.py`. Database/API integrations remain optional and retain their existing
-dedicated test-database guards; evaluation never reads `DATABASE_URL`.
+LightGBM remains research-only. The isolated run used Python 3.10.20 and the repository's pinned
+research dependencies; no production ML dependency was added. Paid LLM evaluation was not executed
+without explicitly configured credentials/models/prices; recorded spend is **$0**, and numerical
+LLM deployment remains unverified. Transport, caching, semantic mapping checks, escalation and
+budget failures have runnable tests.
+
+Русский: основной вариант — среднее трёх последних валидных наблюдений. Улучшение скорректированного
+EWMA 2,47% не проходит порог 3%; LightGBM хуже на 15,24%. Выбор не использует ретроспективу 2026.
+Численные LLM-прогнозы не внедрены без оплаченного сопоставимого испытания. Клиенты, stockout,
+потерянный спрос и своевременность пополнения остаются непроверенными там, где нет исходных фактов.
+
+## Delivered snapshot / Сохранённый срез
+
+Local PostgreSQL run `3d3c6169-79ee-4488-a125-0f63bb895512` pins all 12 workbook hashes with
+normalizer `v2.3` and planning date `2026-09-22`. It stores 3,017 input snapshots and 9,051
+October–December results: **9,018 `ok`, 33 `insufficient_data`**. Drafts are **371 estimated Systeme,
+183 blocked Systeme, 2,463 blocked IEK**. No line is presented as a verified executable order.
+Repeating the identical CLI request reused that run. The all-supplier and Systeme CSVs were generated
+from stored quantities; source-row references resolve through the existing read API.
+
+Verification: full backend suite **95 passed**, including PostgreSQL; final focused rechecks **53 passed**.
+Ruff, the V2 contract check and import boundaries pass. Dedicated test databases passed migration
+upgrade, downgrade, recreation and schema-drift checks, concurrent run reuse, failed-write rollback,
+source deduplication, reservation reconciliation, receipt timing and exact CSV/API quantities.
+
+Русский: сохранено 3 017 рядов, 9 051 результатов прогноза, 371 оценочный черновик Systeme.
+Остальные 2 646 строк блокируются явно; повторный запрос использует тот же завершённый запуск.
+Проверки не доказывают экономию запасов или восстановление потерянного спроса.

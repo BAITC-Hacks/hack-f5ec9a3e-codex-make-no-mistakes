@@ -14,7 +14,7 @@ from alembic.config import Config
 from sqlalchemy import create_engine, inspect, text
 from sqlalchemy.engine import make_url
 
-from replenishment.cli.import_excel import import_workbook, supplier_for
+from replenishment.cli.import_excel import NORMALIZER_VERSION, import_workbook, supplier_for
 from replenishment.intake.adapters.normalization import classify, number, shipment_header
 from replenishment.intake.adapters.xlsx import Workbook
 
@@ -125,8 +125,9 @@ def test_real_snapshot_provenance_and_ambiguities(import_engine):
             text("""
             SELECT s.metric,s.quantity,s.warehouse_id,s.date_basis
             FROM inventory_observations s JOIN catalog_products p ON p.id=s.product_id
-            WHERE p.sku='300200745_' AND s.normalizer_version='v1'
-        """)
+            WHERE p.sku='300200745_' AND s.normalizer_version=:version
+        """),
+            {"version": NORMALIZER_VERSION},
         ).all()
         assert {r.metric: r.quantity for r in stock}["free"] == Decimal(23)
         assert all(r.warehouse_id is None and r.date_basis == "filename" for r in stock)

@@ -3,7 +3,7 @@
 DATABASE_URL ?= postgresql+psycopg://replenishment:local_dev_only@127.0.0.1:55432/replenishment
 export DATABASE_URL
 
-.PHONY: help install dev-setup db-up db-stop migrate import-data dev-api dev-ui lint build test test-backend test-ui test-postgres test-eval test-eval-strict test-registry evaluate evaluate-strict check
+.PHONY: help install dev-setup db-up db-stop migrate import-data calculate dev-api dev-ui lint build test test-backend test-ui test-postgres test-eval test-eval-strict test-registry evaluate evaluate-strict check
 
 help: ## List available tasks
 	@awk 'BEGIN {FS = ":.*## "} /^[a-z-]+:.*## / {printf "  %-20s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -30,6 +30,9 @@ migrate: ## Apply migrations and check schema drift
 import-data: ## Import docs/data (identical imports are skipped)
 	cd backend && uv run --frozen python -m replenishment.cli.import_excel ../docs/data
 
+calculate: ## Persist forecast-first results for the documented 2026-09-22 planning snapshot
+	cd backend && uv run --frozen python -m replenishment.cli.calculate --planning-date 2026-09-22
+
 dev-api: ## Run API with reload on 127.0.0.1:8000
 	cd backend && uv run --frozen uvicorn replenishment.api.app:create_app --factory --reload --host 127.0.0.1 --port 8000
 
@@ -37,7 +40,7 @@ dev-ui: ## Run Vite on 127.0.0.1:5173 (separate terminal)
 	cd frontend && npm run dev
 
 lint: ## Check backend style and module boundaries
-	cd backend && uv run --frozen ruff check . ../scripts/evaluate.py ../scripts/check_eval_contract.py
+	cd backend && uv run --frozen ruff check . ../scripts/evaluate.py ../scripts/check_eval_contract.py ../scripts/backtest_monthly_lightgbm.py
 	cd backend && uv run --frozen lint-imports
 
 build: ## Type-check and build frontend
@@ -65,10 +68,10 @@ test-eval-strict: ## Run evaluation acceptance tests, requiring the calculation 
 test-registry: ## Check forecast experiment registry rejection rules
 	cd backend && uv run --frozen python ../scripts/check_experiment_registry.py
 
-evaluate: ## Write a real-data 2024 readiness report under artifacts/inventory-evaluation
-	cd backend && uv run --frozen python ../scripts/evaluate.py --year 2024
+evaluate: ## Evaluate monthly forecasts on pinned source documents
+	cd backend && uv run --frozen python ../scripts/evaluate.py
 
-evaluate-strict: ## Evaluate 2024, requiring the app and at least one evaluated case
-	cd backend && uv run --frozen python ../scripts/evaluate.py --year 2024 --require-app
+evaluate-strict: test-eval-strict ## Run acceptance tests and the same monthly evaluation
+	cd backend && uv run --frozen python ../scripts/evaluate.py
 
 check: lint test build test-registry ## Run routine checks without PostgreSQL or research dependencies

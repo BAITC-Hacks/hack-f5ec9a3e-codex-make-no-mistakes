@@ -23,10 +23,15 @@ TABLES = {
     "report-metrics": "demand_report_metrics",
     "seasonality": "demand_seasonality_observations",
     "findings": "intake_findings",
+    "runs": "calculation_runs",
+    "calculation-inputs": "calculation_inputs",
+    "forecasts": "calculation_forecasts",
+    "drafts": "calculation_drafts",
 }
 FILTERS = (
     "supplier_id", "product_id", "workbook_id", "sheet_id", "normalizer_version",
     "warehouse_id", "metric", "kind", "status", "category_code", "sku",
+    "run_id", "series_id", "supplier", "scope", "unit", "state", "target_month",
 )
 SEARCH = ("sku", "name", "supplier_article", "category_code", "original_path", "description",
           "document_number", "document_text", "label", "header", "code", "supplier_code")
@@ -50,6 +55,11 @@ def projection(metadata, key):
     table = metadata.tables[TABLES[key]]
     columns = {col.name: col for col in table.c if col.name not in {"content", "layout"}}
     joined = table
+    if key in {"forecasts", "drafts"}:
+        inputs = metadata.tables["calculation_inputs"]
+        joined = joined.join(inputs, (table.c.run_id == inputs.c.run_id)
+                             & (table.c.series_id == inputs.c.series_id))
+        columns.update({name: inputs.c[name] for name in ("supplier", "sku", "scope", "unit")})
     if key == "catalog":
         columns["product_id"] = table.c.id
     elif "product_id" in columns:
@@ -107,6 +117,9 @@ def read_table(connection, metadata, key, *, page, page_size, sort, direction, q
     if sort not in columns:
         raise ValueError(f"Unsupported sort column: {sort}")
     conditions = []
+    if key in {"calculation-inputs", "forecasts", "drafts"}:
+        runs = metadata.tables["calculation_runs"]
+        conditions.append(columns["run_id"].in_(select(runs.c.id).where(runs.c.status == "completed")))
     for name, value in filters.items():
         if value is None:
             continue

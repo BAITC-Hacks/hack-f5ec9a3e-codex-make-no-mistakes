@@ -15,7 +15,8 @@ make dev-api         # API with reload; keep running
 make dev-ui          # Frontend; run in a second terminal
 make check           # Lint, DB-free tests, frontend build, registry guards
 make test-eval       # Evaluation contracts and tests only; no DB
-make evaluate        # Generate a 2024 readiness report
+make evaluate        # Evaluate monthly three-period forecasts on original documents
+make calculate       # Persist pinned forecast/order drafts in PostgreSQL
 ```
 
 `make install` installs dependencies without starting Docker. `make test` runs
@@ -24,9 +25,9 @@ backend and frontend tests; `make test-postgres` requires an explicitly set
 instructions in the backend setup). `DATABASE_URL` defaults to local Compose;
 override it through the environment when needed. `make db-stop` preserves data.
 
-Evaluation currently reports **NOT EVALUATED**; absent-app tests skip normally.
-`make test-eval-strict` and `make evaluate-strict` require the calculation app
-and fail until their acceptance conditions are met. Reports use new immutable
+The main application implements the **v2 forecast-first contract**. Development origins are
+June–September 2025; the January–May 2026 comparison is retrospective.
+`make test-eval-strict` and `make evaluate-strict` exercise the implemented calculation contract. Reports use new immutable
 directories under `artifacts/inventory-evaluation/`. See the
 [evaluation protocol](docs/INVENTORY_EVALUATION.md). Forecast research retains its
 separate [Python 3.10 environment](experiments/README.md).
@@ -36,12 +37,12 @@ Start with the [project documentation](docs/README.md), then read the
 The original brief and all 12 extracted supplier workbooks are included in `docs/`.
 
 Current state: source documentation, locked audit checks, modular SQLAlchemy models, PostgreSQL migration,
-Excel ingestion, read API and React tables are implemented. Order calculation remains subsequent work.
+Excel ingestion, read API and React tables are implemented. The forecast-first calculation, supplier draft persistence and CSV export are the main backend path.
 See [backend setup RU/EN](backend/README.md), [architecture](backend/ARCHITECTURE.md)
 and [Excel-to-database mapping](docs/DATA_MODEL.md).
 
 Текущее состояние: документация, проверки аудита, модульные модели SQLAlchemy, миграция PostgreSQL,
-импорт Excel, API чтения и React-таблицы. Расчёт заказов — следующий этап.
+импорт Excel, API чтения и React-таблицы. Основной forecast-first расчёт, сохранение черновиков и CSV-экспорт доступны через CLI.
 
 Запуск / Run: [backend + import](backend/README.md), [frontend](frontend/README.md).
 API: [contract RU/EN](backend/API.md). UI scope: [requirements RU/EN](docs/FRONTEND_REQUIREMENTS.md).

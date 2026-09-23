@@ -88,3 +88,11 @@ does not claim any forecast, recommended order, approval or scenario-write capab
 Run API regression tests only with `API_TEST_DATABASE_URL` pointing at the dedicated
 `replenishment_api_test` database: `uv run pytest tests/test_api.py`. Tests create/drop the
 isolated test tables, never use the application database.
+
+## Client delivery recommendations
+
+`GET /api/v1/delivery-planning/demo-input` supplies the real-road Almaty example.
+`POST /api/v1/delivery-planning/recommend` returns per-client SKU quantities, proposed
+dates, vehicle routes, stock/capacity issues, and the fixed-day versus flexible-day
+comparison. This stateless endpoint is separate from supplier purchasing scenarios.
+See [input/output contract and runnable example](DELIVERY_PLANNING.md).

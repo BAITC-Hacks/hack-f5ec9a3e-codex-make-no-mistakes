@@ -1,0 +1,235 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.93274974823,
+          43.292527757616
+        ]
+      },
+      "properties": {
+        "id": "depot_elkom_ryskulov",
+        "name": "Электрокомплекс — Рыскулова",
+        "address": "Алматы, проспект Рыскулова, 39",
+        "role": "assumed_depot_at_real_business",
+        "longitude": 76.93274974823,
+        "latitude": 43.292527757616,
+        "business_source": "https://elkom.kz/contacts/",
+        "coordinate_source": "https://elkom.kz/contacts/",
+        "coordinate_evidence": "Branch map placemark ID 25695; LAT/LON also agree with Store structured data.",
+        "suitability": "Electrical products and lighting distributor; physical store at this address.",
+        "suitability_source": "https://elkom.kz/contacts/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.928091351771,
+          43.261192166879
+        ]
+      },
+      "properties": {
+        "id": "electroset",
+        "name": "Электросеть",
+        "address": "Алматы, улица Масанчи, 5",
+        "role": "candidate_delivery",
+        "longitude": 76.928091351771,
+        "latitude": 43.261192166879,
+        "business_source": "https://electroset.kz/contacts/",
+        "coordinate_source": "https://electroset.kz/contacts/",
+        "coordinate_evidence": "Show-on-map data-coordinates and branch placemark 1125149 agree.",
+        "suitability": "Company lists IEK and Systeme Electric among offered electrical brands.",
+        "suitability_source": "https://electroset.kz/company/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.883308589458,
+          43.250666270457
+        ]
+      },
+      "properties": {
+        "id": "elkom_tole_bi",
+        "name": "Электрокомплекс — Толе би",
+        "address": "Алматы, улица Толе би, 211",
+        "role": "candidate_delivery",
+        "longitude": 76.883308589458,
+        "latitude": 43.250666270457,
+        "business_source": "https://elkom.kz/contacts/",
+        "coordinate_source": "https://elkom.kz/contacts/",
+        "coordinate_evidence": "Branch placemark ID 25698. Rejected JSON-LD value 43.271597014037,76.908029168844 because it duplicates the overall map center instead of the branch marker.",
+        "suitability": "Electrical goods store; scenario could represent a branch replenishment.",
+        "suitability_source": "https://elkom.kz/contacts/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.874914,
+          43.247169
+        ]
+      },
+      "properties": {
+        "id": "electrika",
+        "name": "Electrika.kz",
+        "address": "Алматы, улица Прокофьева, 112, рынок Тастак",
+        "role": "candidate_delivery",
+        "longitude": 76.874914,
+        "latitude": 43.247169,
+        "business_source": "https://electrika.kz/Gde_kupit_elektriku",
+        "coordinate_source": "https://electrika.kz/Gde_kupit_elektriku",
+        "coordinate_evidence": "DG.marker and place:location metadata agree. Map viewport longitude 76.87854 is not used.",
+        "suitability": "Electrical installation materials and tools for construction and repair.",
+        "suitability_source": "https://electrika.kz/Gde_kupit_elektriku"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.864089,
+          43.257641
+        ]
+      },
+      "properties": {
+        "id": "eltech",
+        "name": "ELTECH Ltd",
+        "address": "Алматы, улица Нурпеисова, 2а (2 in map listing)",
+        "role": "candidate_delivery",
+        "longitude": 76.864089,
+        "latitude": 43.257641,
+        "business_source": "https://www.eltech.kz/en/about",
+        "coordinate_source": "https://2gis.kz/almaty/firm/9429940000786873",
+        "coordinate_evidence": "Directions destination for the organization linked by its official site's widget. Rejected widget viewport center 76.866975,43.255261. Address suffix differs between owner and map listing; delivery entrance not verified.",
+        "suitability": "Distributor/assembler of breakers, contactors, electrical enclosures and automation products; B2B site, not necessarily retail walk-in.",
+        "suitability_source": "https://www.eltech.kz/en/about"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.891795,
+          43.274958
+        ]
+      },
+      "properties": {
+        "id": "tekled",
+        "name": "TEKLED",
+        "address": "Алматы, проспект Рыскулова, 99 (99/1 on tekled.kz)",
+        "role": "candidate_delivery",
+        "longitude": 76.891795,
+        "latitude": 43.274958,
+        "business_source": "https://www.tekledgroup.com/ru/kontakty/almaty-kontakty/",
+        "coordinate_source": "https://2gis.kz/almaty/firm/9429940000912772",
+        "coordinate_evidence": "Directions destination from the 2GIS organization linked by the official contact page. Street number varies between official pages; entrance not verified.",
+        "suitability": "Lighting and electrical goods store. Category fit only; no inferred IEK/Systeme dealership.",
+        "suitability_source": "https://www.tekledgroup.com/ru/kontakty/almaty-kontakty/"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.856346,
+          43.262259
+        ]
+      },
+      "properties": {
+        "id": "svetotehnika",
+        "name": "Светотехника / Svetotechnika.kz",
+        "address": "Алматы, проспект Рыскулова, 103/21",
+        "role": "candidate_delivery",
+        "longitude": 76.856346,
+        "latitude": 43.262259,
+        "business_source": "https://svetotehnika.kz/contacts",
+        "coordinate_source": "https://2gis.kz/almaty/firm/70000001095013731",
+        "coordinate_evidence": "Directions destination; listing address agrees with company's contact page.",
+        "suitability": "Lighting retailer/wholesaler. Category fit only; specific supplier brands unconfirmed.",
+        "suitability_source": "https://svetotehnika.kz/contacts"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.8925506502913,
+          43.17355212622448
+        ]
+      },
+      "properties": {
+        "id": "distel",
+        "name": "DisTEL",
+        "address": "Алматы, улица Хан-Тенгри, 55В",
+        "role": "candidate_delivery",
+        "longitude": 76.8925506502913,
+        "latitude": 43.17355212622448,
+        "business_source": "https://distel-almaty.kz/contacts",
+        "coordinate_source": "https://distel-almaty.kz/contacts",
+        "coordinate_evidence": "Official contact page's Google map q latitude/longitude marker.",
+        "suitability": "Electrical/telecom wholesaler and retailer; company lists IEK and Schneider Electric products among others.",
+        "suitability_source": "https://distel-almaty.kz/about_us"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.844098,
+          43.199554
+        ]
+      },
+      "properties": {
+        "id": "otvertka",
+        "name": "Отвертка.kz — пункт выдачи",
+        "address": "Алматы, улица О. Жандосова, 2Б, угол Яссауи",
+        "role": "candidate_delivery",
+        "longitude": 76.844098,
+        "latitude": 43.199554,
+        "business_source": "https://otvertka.kz/pickup",
+        "coordinate_source": "https://2gis.kz/almaty/firm/9429940001609250",
+        "coordinate_evidence": "Organization linked by official pickup page; public map point. Pickup site is distinct from the legal-address wording on the contact page.",
+        "suitability": "Order pickup/warehouse for a retailer with electrical goods and IEK contactor catalog.",
+        "suitability_source": "https://otvertka.kz/category/kontaktory/iek?page=5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.898944,
+          43.251348
+        ]
+      },
+      "properties": {
+        "id": "220volt",
+        "name": "220 Volt",
+        "address": "Алматы, улица Толе би, 180",
+        "role": "candidate_delivery",
+        "longitude": 76.898944,
+        "latitude": 43.251348,
+        "business_source": "https://220volt.kz/contract-offer/",
+        "coordinate_source": "https://2gis.kz/almaty/firm/70000001022782881",
+        "coordinate_evidence": "Directions destination. Official legal address and public store listing agree on Tole bi 180; store identity also corroborated by Yandex listing 196913036938.",
+        "suitability": "Electrical goods retailer; company describes electrical-product distribution.",
+        "suitability_source": "https://220volt.kz/kompaniya/"
+      }
+    }
+  ]
+}

@@ -10,6 +10,7 @@ from pydantic import BaseModel
 from sqlalchemy import Engine, create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 
+from replenishment.api.deliveries import router as deliveries_router
 from replenishment.api.orders import create_orders_router
 from replenishment.api.planning_sources import create_planning_sources_router
 from replenishment.browsing.tables import TABLES, describe_tables, read_table, source_row
@@ -65,6 +66,7 @@ def create_app(engine: Engine | None = None) -> FastAPI:
     app = FastAPI(title="Replenishment planning and source data", version="1.1.0", lifespan=lifespan)
     app.include_router(create_orders_router(engine))
     app.include_router(create_planning_sources_router(engine, metadata))
+    app.include_router(deliveries_router)
 
     @app.get("/api/v1/health")
     def health():

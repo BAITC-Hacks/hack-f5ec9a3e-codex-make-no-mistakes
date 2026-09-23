@@ -1,2 +1,5 @@
 # Original brief bytes are pinned in docs/sources/manifest.json.
 docs/sources/*.docx.md -text
+# Preserve captured routing evidence and the byte hashes in its run manifests.
+docs/sources/almaty-routing/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+experiments/routing/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

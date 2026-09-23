@@ -1,5 +1,15 @@
 # Архитектура / Architecture
 
+## Client delivery planning
+
+`delivery_planning.py` combines explicit client/SKU forecasts and opening stock with
+the pure `routing.py` solver. It owns outbound shipment sizing and shared warehouse
+availability checks; it reuses the pure planning contract's quantity types without
+importing storage models. `api/deliveries.py` exposes stateless recommendations and
+an explicitly loaded Almaty example. This flow performs no database writes and needs
+no migration. It is separate from supplier purchasing and adds no frontend code.
+See [delivery planning contract](DELIVERY_PLANNING.md).
+
 ## Purchasing backend extension / Расширение backend закупок
 
 Migration `0002` adds `orders_scenarios`, immutable `orders_revisions`, and immutable

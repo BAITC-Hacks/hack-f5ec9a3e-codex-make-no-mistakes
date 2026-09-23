@@ -1,0 +1,206 @@
+{
+  "horizon_start": "2026-09-28",
+  "timezone": "Asia/Almaty",
+  "synthetic_fields": [
+    "orders",
+    "stock",
+    "forecast",
+    "receiving_windows",
+    "fleet",
+    "costs",
+    "depot_role"
+  ],
+  "forecast_assumption": {
+    "customer": "distel",
+    "available_units": 50,
+    "reserve_units": 10,
+    "daily_consumption": 10,
+    "daily_bucket_start": "09:00"
+  },
+  "orders": [
+    {
+      "id": "electroset",
+      "location": 1,
+      "preferred_day": 0,
+      "windows": [
+        [
+          600,
+          780
+        ]
+      ],
+      "ready_minute": 0,
+      "latest_safe_minute": 780,
+      "service_minutes": 15,
+      "weight_kg": 100,
+      "volume_litres": 150,
+      "locked_day": true
+    },
+    {
+      "id": "elkom_tole_bi",
+      "location": 2,
+      "preferred_day": 3,
+      "windows": [
+        [
+          4920,
+          5100
+        ]
+      ],
+      "ready_minute": 0,
+      "latest_safe_minute": 5100,
+      "service_minutes": 15,
+      "weight_kg": 100,
+      "volume_litres": 150,
+      "locked_day": true
+    },
+    {
+      "id": "electrika",
+      "location": 3,
+      "preferred_day": 3,
+      "windows": [
+        [
+          4920,
+          5100
+        ]
+      ],
+      "ready_minute": 0,
+      "latest_safe_minute": 5100,
+      "service_minutes": 15,
+      "weight_kg": 100,
+      "volume_litres": 150,
+      "locked_day": true
+    },
+    {
+      "id": "eltech",
+      "location": 4,
+      "preferred_day": 3,
+      "windows": [
+        [
+          4920,
+          5100
+        ]
+      ],
+      "ready_minute": 0,
+      "latest_safe_minute": 5100,
+      "service_minutes": 15,
+      "weight_kg": 100,
+      "volume_litres": 150,
+      "locked_day": true
+    },
+    {
+      "id": "tekled",
+      "location": 5,
+      "preferred_day": 0,
+      "windows": [
+        [
+          600,
+          780
+        ]
+      ],
+      "ready_minute": 0,
+      "latest_safe_minute": 780,
+      "service_minutes": 15,
+      "weight_kg": 100,
+      "volume_litres": 150,
+      "locked_day": true
+    },
+    {
+      "id": "svetotehnika",
+      "location": 6,
+      "preferred_day": 0,
+      "windows": [
+        [
+          600,
+          780
+        ]
+      ],
+      "ready_minute": 0,
+      "latest_safe_minute": 780,
+      "service_minutes": 15,
+      "weight_kg": 100,
+      "volume_litres": 150,
+      "locked_day": true
+    },
+    {
+      "id": "distel",
+      "location": 7,
+      "preferred_day": 0,
+      "windows": [
+        [
+          600,
+          780
+        ],
+        [
+          4920,
+          5100
+        ]
+      ],
+      "ready_minute": 0,
+      "latest_safe_minute": 6300,
+      "service_minutes": 15,
+      "weight_kg": 100,
+      "volume_litres": 150,
+      "locked_day": false
+    },
+    {
+      "id": "otvertka",
+      "location": 8,
+      "preferred_day": 3,
+      "windows": [
+        [
+          4920,
+          5100
+        ]
+      ],
+      "ready_minute": 0,
+      "latest_safe_minute": 5100,
+      "service_minutes": 15,
+      "weight_kg": 100,
+      "volume_litres": 150,
+      "locked_day": true
+    },
+    {
+      "id": "220volt",
+      "location": 9,
+      "preferred_day": 3,
+      "windows": [
+        [
+          4920,
+          5100
+        ]
+      ],
+      "ready_minute": 0,
+      "latest_safe_minute": 5100,
+      "service_minutes": 15,
+      "weight_kg": 100,
+      "volume_litres": 150,
+      "locked_day": true
+    }
+  ],
+  "shifts": [
+    {
+      "vehicle_id": "van_1",
+      "day": 0,
+      "start_minute": 600,
+      "end_minute": 840,
+      "capacity_kg": 1000,
+      "capacity_litres": 4000,
+      "fuel_ml_per_km": 100,
+      "activation_cost": 0
+    },
+    {
+      "vehicle_id": "van_1",
+      "day": 3,
+      "start_minute": 4920,
+      "end_minute": 5160,
+      "capacity_kg": 1000,
+      "capacity_litres": 4000,
+      "fuel_ml_per_km": 100,
+      "activation_cost": 0
+    }
+  ],
+  "costs": {
+    "fuel_price_per_litre": 250,
+    "paid_cost_per_minute": 50,
+    "changed_day_penalty": 0
+  }
+}
